@@ -1,0 +1,39 @@
+<div class="product-list-container">
+  <div class="header">
+    <button class="back-btn" (click)="goBack()">
+      <i class="pi pi-arrow-left"></i>
+    </button>
+    <div class="search-wrapper">
+      <i class="pi pi-search search-icon"></i>
+      <input
+        type="text"
+        class="search-input"
+        placeholder="Earphone"
+        [(ngModel)]="searchTerm"
+        (input)="loadProducts()"
+      />
+    </div>
+    <button class="cart-btn" routerLink="/cart">
+      <i class="pi pi-shopping-cart"></i>
+    </button>
+  </div>
+
+  <div class="results-header">
+    <h3 class="results-title">Search result for "{{ searchTerm || 'Products' }}"</h3>
+    <button class="filters-btn">
+      <span>Filters</span>
+      <i class="pi pi-sliders-h"></i>
+    </button>
+  </div>
+
+  <div class="products-grid">
+    <app-product-card
+      *ngFor="let product of products"
+      [product]="product">
+    </app-product-card>
+  </div>
+
+  <div *ngIf="products.length === 0" class="no-results">
+    <p>No products found</p>
+  </div>
+</div>

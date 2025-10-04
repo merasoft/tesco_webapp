@@ -1,0 +1,128 @@
+.product-detail-container {
+  @apply min-h-screen bg-gray-50;
+}
+
+.header {
+  @apply bg-white px-4 py-3 flex items-center justify-between shadow-sm;
+}
+
+.back-btn, .cart-btn {
+  @apply p-2 rounded-full hover:bg-gray-100 transition-colors border-0 bg-transparent cursor-pointer;
+}
+
+.back-btn i, .cart-btn i {
+  @apply text-xl text-gray-700;
+}
+
+.page-title {
+  @apply text-lg font-semibold;
+}
+
+.product-image-section {
+  @apply bg-gray-100 p-8 flex items-center justify-center;
+  min-height: 300px;
+}
+
+.product-image-section img {
+  @apply max-w-full max-h-80 object-contain;
+}
+
+.product-info-section {
+  @apply bg-white rounded-t-3xl -mt-6 relative p-6;
+}
+
+.product-header {
+  @apply flex justify-between items-start mb-6;
+}
+
+.product-name {
+  @apply text-xl font-semibold mb-2;
+}
+
+.product-price {
+  @apply text-2xl font-bold text-gray-900;
+}
+
+.buy-count {
+  @apply text-sm font-normal text-gray-500 ml-2;
+}
+
+.favorite-btn {
+  @apply p-3 rounded-full border-0 bg-transparent cursor-pointer;
+}
+
+.favorite-btn i {
+  @apply text-2xl text-gray-400;
+}
+
+.favorite-btn .pi-heart-fill {
+  @apply text-red-500;
+}
+
+.color-section {
+  @apply mb-6;
+}
+
+.section-title {
+  @apply text-base font-semibold mb-3;
+}
+
+.color-options {
+  @apply flex gap-3;
+}
+
+.color-option {
+  @apply w-12 h-12 rounded-full cursor-pointer border-4 border-transparent transition-all;
+}
+
+.color-option.selected {
+  @apply border-blue-500;
+}
+
+.seller-section {
+  @apply flex items-center justify-between p-4 bg-gray-50 rounded-lg mb-6;
+}
+
+.seller-info {
+  @apply flex items-center gap-3;
+}
+
+.seller-avatar {
+  @apply w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center;
+}
+
+.seller-avatar i {
+  @apply text-white text-xl;
+}
+
+.seller-name {
+  @apply font-semibold text-gray-900;
+}
+
+.seller-time {
+  @apply text-sm text-gray-500;
+}
+
+.follow-btn {
+  @apply px-6 py-2 bg-white border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50 transition-colors font-medium;
+}
+
+.description-section {
+  @apply mb-6;
+}
+
+.description-text {
+  @apply text-gray-600 leading-relaxed;
+}
+
+.action-buttons {
+  @apply flex gap-3 pt-4;
+}
+
+.add-cart-btn {
+  @apply flex-1 py-3 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300 transition-colors border-0 cursor-pointer;
+}
+
+.buy-now-btn {
+  @apply flex-1 py-3 bg-blue-500 text-white rounded-lg font-semibold hover:bg-blue-800 transition-colors border-0 cursor-pointer;
+}

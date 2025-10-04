@@ -1,0 +1,39 @@
+.category-container {
+  @apply px-4 py-4;
+}
+
+.section-title {
+  @apply text-lg font-semibold mb-4;
+}
+
+.category-grid {
+  @apply grid grid-cols-5 gap-4;
+}
+
+.category-item {
+  @apply flex flex-col items-center cursor-pointer transition-transform hover:scale-105;
+}
+
+.category-icon {
+  @apply w-16 h-16 bg-white rounded-full shadow-md flex items-center justify-center p-3 mb-2;
+}
+
+.category-icon img {
+  @apply w-full h-full object-contain;
+}
+
+.category-name {
+  @apply text-sm text-center text-gray-700;
+}
+
+@media (max-width: 768px) {
+  .category-grid {
+    @apply grid-cols-4;
+  }
+}
+
+@media (max-width: 480px) {
+  .category-grid {
+    @apply grid-cols-3;
+  }
+}

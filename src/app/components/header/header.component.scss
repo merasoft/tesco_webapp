@@ -1,0 +1,31 @@
+.header-container {
+  @apply bg-white shadow-sm px-4 py-3;
+}
+
+.header-top {
+  @apply flex justify-between items-center max-w-7xl mx-auto;
+}
+
+.location {
+  @apply flex items-center gap-2 cursor-pointer;
+}
+
+.location-text {
+  @apply text-sm font-medium text-gray-700;
+}
+
+.header-icons {
+  @apply flex items-center gap-4;
+}
+
+.icon-btn {
+  @apply relative p-2 rounded-full hover:bg-gray-100 transition-colors border-0 bg-transparent cursor-pointer;
+}
+
+.icon-btn i {
+  @apply text-xl text-gray-700;
+}
+
+.badge {
+  @apply absolute -top-1 -right-1 bg-red-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-semibold;
+}

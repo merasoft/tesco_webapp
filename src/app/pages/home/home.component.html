@@ -1,0 +1,43 @@
+<div class="home-container">
+  <app-header></app-header>
+  <app-search-bar></app-search-bar>
+  <app-banner-slider></app-banner-slider>
+  <app-brand-list></app-brand-list>
+  <app-category-list></app-category-list>
+
+  <div class="recent-products">
+    <div class="section-header">
+      <h3 class="section-title">Recent product</h3>
+      <button class="filters-btn">
+        <span>Filters</span>
+        <i class="pi pi-sliders-h"></i>
+      </button>
+    </div>
+
+    <div class="products-grid">
+      <app-product-card
+        *ngFor="let product of recentProducts"
+        [product]="product">
+      </app-product-card>
+    </div>
+  </div>
+
+  <nav class="bottom-nav">
+    <button class="nav-item active">
+      <i class="pi pi-home"></i>
+      <span>Home</span>
+    </button>
+    <button class="nav-item">
+      <i class="pi pi-heart"></i>
+      <span>Wishlist</span>
+    </button>
+    <button class="nav-item">
+      <i class="pi pi-file"></i>
+      <span>History</span>
+    </button>
+    <button class="nav-item">
+      <i class="pi pi-user"></i>
+      <span>Account</span>
+    </button>
+  </nav>
+</div>

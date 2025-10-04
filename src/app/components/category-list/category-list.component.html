@@ -1,0 +1,14 @@
+<div class="category-container">
+  <h3 class="section-title">Category</h3>
+  <div class="category-grid">
+    <div
+      *ngFor="let category of categories"
+      class="category-item"
+      (click)="selectCategory(category.id)">
+      <div class="category-icon">
+        <img [src]="category.icon" [alt]="category.name" />
+      </div>
+      <span class="category-name">{{ category.name }}</span>
+    </div>
+  </div>
+</div>

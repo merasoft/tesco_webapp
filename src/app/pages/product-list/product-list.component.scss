@@ -1,0 +1,67 @@
+.product-list-container {
+  @apply min-h-screen bg-gray-50;
+}
+
+.header {
+  @apply bg-white px-4 py-3 flex items-center gap-3 shadow-sm;
+}
+
+.back-btn {
+  @apply p-2 rounded-full hover:bg-gray-100 transition-colors border-0 bg-transparent cursor-pointer;
+}
+
+.back-btn i {
+  @apply text-xl text-gray-700;
+}
+
+.search-wrapper {
+  @apply relative flex-1;
+}
+
+.search-icon {
+  @apply absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400;
+}
+
+.search-input {
+  @apply w-full pl-10 pr-4 py-2 bg-gray-100 rounded-lg border-0 focus:outline-none focus:ring-2 focus:ring-blue-500;
+}
+
+.cart-btn {
+  @apply p-2 rounded-full hover:bg-gray-100 transition-colors border-0 bg-transparent cursor-pointer;
+}
+
+.cart-btn i {
+  @apply text-xl text-gray-700;
+}
+
+.results-header {
+  @apply px-4 py-4 flex justify-between items-center;
+}
+
+.results-title {
+  @apply text-base font-medium;
+}
+
+.filters-btn {
+  @apply flex items-center gap-2 px-3 py-1 bg-white rounded-lg border border-gray-200 cursor-pointer hover:bg-gray-50 transition-colors text-sm;
+}
+
+.products-grid {
+  @apply px-4 grid grid-cols-2 gap-4;
+}
+
+.no-results {
+  @apply text-center py-12 text-gray-500;
+}
+
+@media (min-width: 768px) {
+  .products-grid {
+    @apply grid-cols-3;
+  }
+}
+
+@media (min-width: 1024px) {
+  .products-grid {
+    @apply grid-cols-4;
+  }
+}

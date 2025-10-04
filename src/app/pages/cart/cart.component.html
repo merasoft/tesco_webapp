@@ -1,0 +1,62 @@
+<div class="cart-container">
+  <div class="header">
+    <button class="back-btn" (click)="goBack()">
+      <i class="pi pi-arrow-left"></i>
+    </button>
+    <h2 class="page-title">Your Cart</h2>
+    <div class="cart-icon">
+      <i class="pi pi-shopping-cart"></i>
+    </div>
+  </div>
+
+  <div class="delivery-info">
+    <span class="delivery-label">Delivery to</span>
+    <div class="delivery-location">
+      <span>{{ deliveryLocation }}</span>
+      <i class="pi pi-chevron-down"></i>
+    </div>
+  </div>
+
+  <div class="cart-items">
+    <div *ngFor="let item of cartItems" class="cart-item">
+      <img [src]="item.image" [alt]="item.name" class="item-image" />
+
+      <div class="item-details">
+        <h3 class="item-name">{{ item.name }}</h3>
+        <p class="item-variant" *ngIf="item.variant">Variant: {{ item.variant }}</p>
+        <p class="item-price">$ {{ item.price }}</p>
+      </div>
+
+      <div class="item-actions">
+        <div class="quantity-controls">
+          <button class="qty-btn" (click)="updateQuantity(item.id, -1)">
+            <i class="pi pi-minus"></i>
+          </button>
+          <span class="quantity">{{ item.quantity }}</span>
+          <button class="qty-btn" (click)="updateQuantity(item.id, 1)">
+            <i class="pi pi-plus"></i>
+          </button>
+        </div>
+        <button class="remove-btn" (click)="removeItem(item.id)">
+          <i class="pi pi-trash"></i>
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="cartItems.length === 0" class="empty-cart">
+      <i class="pi pi-shopping-cart"></i>
+      <p>Your cart is empty</p>
+      <button class="shop-now-btn" (click)="goBack()">Shop Now</button>
+    </div>
+  </div>
+
+  <div class="cart-footer" *ngIf="cartItems.length > 0">
+    <div class="total-section">
+      <span class="total-label">Totals</span>
+      <span class="total-amount">$ {{ total.toFixed(2) }}</span>
+    </div>
+    <button class="checkout-btn" (click)="proceedToCheckout()">
+      Continue for payments
+    </button>
+  </div>
+</div>

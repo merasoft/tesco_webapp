@@ -1,0 +1,63 @@
+<div class="product-detail-container" *ngIf="product">
+  <div class="header">
+    <button class="back-btn" (click)="goBack()">
+      <i class="pi pi-arrow-left"></i>
+    </button>
+    <h2 class="page-title">Details product</h2>
+    <button class="cart-btn" routerLink="/cart">
+      <i class="pi pi-shopping-cart"></i>
+    </button>
+  </div>
+
+  <div class="product-image-section">
+    <img [src]="product.image" [alt]="product.name" />
+  </div>
+
+  <div class="product-info-section">
+    <div class="product-header">
+      <div>
+        <h1 class="product-name">{{ product.name }}</h1>
+        <p class="product-price">$ {{ product.price }},99 <span class="buy-count">( {{ product.buyCount }} people buy this )</span></p>
+      </div>
+      <button class="favorite-btn" (click)="toggleFavorite()">
+        <i [class]="isFavorite ? 'pi pi-heart-fill' : 'pi pi-heart'"></i>
+      </button>
+    </div>
+
+    <div class="color-section">
+      <h3 class="section-title">Choose the color</h3>
+      <div class="color-options">
+        <div
+          *ngFor="let color of product.colors"
+          class="color-option"
+          [class.selected]="selectedColor === color"
+          [style.background-color]="color"
+          (click)="selectColor(color)">
+        </div>
+      </div>
+    </div>
+
+    <div class="seller-section">
+      <div class="seller-info">
+        <div class="seller-avatar">
+          <i class="pi pi-building"></i>
+        </div>
+        <div class="seller-details">
+          <p class="seller-name">{{ product.seller }}</p>
+          <p class="seller-time">online 12 mins ago</p>
+        </div>
+      </div>
+      <button class="follow-btn">Follow</button>
+    </div>
+
+    <div class="description-section">
+      <h3 class="section-title">Description of product</h3>
+      <p class="description-text">{{ product.description }}</p>
+    </div>
+
+    <div class="action-buttons">
+      <button class="add-cart-btn" (click)="addToCart()">Add to Cart</button>
+      <button class="buy-now-btn" (click)="buyNow()">Buy Now</button>
+    </div>
+  </div>
+</div>

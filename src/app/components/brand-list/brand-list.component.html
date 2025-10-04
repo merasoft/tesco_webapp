@@ -1,0 +1,12 @@
+<div class="brand-container">
+  <div class="brand-scroll">
+    <div
+      *ngFor="let brand of brands"
+      class="brand-item"
+      (click)="selectBrand(brand.id)">
+      <div class="brand-logo">
+        <img [src]="brand.logo" [alt]="brand.name" />
+      </div>
+    </div>
+  </div>
+</div>

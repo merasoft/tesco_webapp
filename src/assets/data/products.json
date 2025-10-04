@@ -1,0 +1,174 @@
+{
+  "categories": [
+    {
+      "id": 1,
+      "name": "Apparel",
+      "icon": "https://cdn-icons-png.flaticon.com/512/3050/3050155.png"
+    },
+    {
+      "id": 2,
+      "name": "School",
+      "icon": "https://cdn-icons-png.flaticon.com/512/3976/3976625.png"
+    },
+    {
+      "id": 3,
+      "name": "Sports",
+      "icon": "https://cdn-icons-png.flaticon.com/512/857/857418.png"
+    },
+    {
+      "id": 4,
+      "name": "Electronic",
+      "icon": "https://cdn-icons-png.flaticon.com/512/3659/3659898.png"
+    },
+    {
+      "id": 5,
+      "name": "All",
+      "icon": "https://cdn-icons-png.flaticon.com/512/1705/1705312.png"
+    }
+  ],
+  "brands": [
+    {
+      "id": 1,
+      "name": "Apple",
+      "logo": "https://cdn-icons-png.flaticon.com/512/731/731985.png"
+    },
+    {
+      "id": 2,
+      "name": "Samsung",
+      "logo": "https://cdn-icons-png.flaticon.com/512/882/882749.png"
+    },
+    {
+      "id": 3,
+      "name": "Sony",
+      "logo": "https://cdn-icons-png.flaticon.com/512/5969/5969283.png"
+    },
+    {
+      "id": 4,
+      "name": "LG",
+      "logo": "https://cdn-icons-png.flaticon.com/512/882/882804.png"
+    }
+  ],
+  "banners": [
+    {
+      "id": 1,
+      "title": "SALE UPTO 60% OFF",
+      "subtitle": "School Collections",
+      "image": "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=800&h=400&fit=crop",
+      "bgColor": "#FFF4E6"
+    },
+    {
+      "id": 2,
+      "title": "ELECTRONIC GEAR",
+      "subtitle": "DRONE 40% OFF",
+      "image": "https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=800&h=400&fit=crop",
+      "bgColor": "#1E3A8A"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Air pods max by Apple",
+      "price": 1999.99,
+      "oldPrice": 2499.99,
+      "image": "https://images.unsplash.com/photo-1625135794221-8e9e91e32b0e?w=400&h=400&fit=crop",
+      "categoryId": 4,
+      "brandId": 1,
+      "variant": "Gray",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla arcu mi tincidunt eget morbi, turpis mi sed. Neque viverra varius, morbi consequat. Nulla bibendum purus odio semper purus. Ut cursus platea id blandit. Amet non at proin justo nulla ac. A blandit morbi suspendisse.",
+      "colors": ["#FFC0CB", "#FFFFFF", "#90EE90", "#ADD8E6", "#2F4F4F"],
+      "seller": "Apple Store",
+      "buyCount": 219
+    },
+    {
+      "id": 2,
+      "name": "Monitor LG 22''inc 4K 120Fps",
+      "price": 299.99,
+      "image": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&h=400&fit=crop",
+      "categoryId": 4,
+      "brandId": 4,
+      "variant": "120 Fps",
+      "description": "High quality 4K monitor with 120fps refresh rate for ultimate gaming experience.",
+      "colors": ["#000000"],
+      "seller": "LG Official",
+      "buyCount": 156
+    },
+    {
+      "id": 3,
+      "name": "Earphones for monitor",
+      "price": 199.99,
+      "image": "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400&h=400&fit=crop",
+      "categoryId": 4,
+      "brandId": 2,
+      "variant": "Combo",
+      "description": "Premium earphones with noise cancellation and crystal clear sound.",
+      "colors": ["#FFFFFF", "#000000"],
+      "seller": "Samsung Audio",
+      "buyCount": 342
+    },
+    {
+      "id": 4,
+      "name": "Aesthetic Mug - white",
+      "price": 19.99,
+      "image": "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=400&h=400&fit=crop",
+      "categoryId": 1,
+      "brandId": 3,
+      "variant": "White",
+      "description": "Beautiful ceramic mug for your daily coffee routine.",
+      "colors": ["#FFFFFF", "#000000", "#FF6B6B"],
+      "seller": "Home Decor Store",
+      "buyCount": 89
+    },
+    {
+      "id": 5,
+      "name": "Wireless Earbuds Pro",
+      "price": 199.99,
+      "image": "https://images.unsplash.com/photo-1606841837239-c5a1a4a07af7?w=400&h=400&fit=crop",
+      "categoryId": 4,
+      "brandId": 1,
+      "variant": "White",
+      "description": "Advanced wireless earbuds with active noise cancellation.",
+      "colors": ["#FFFFFF"],
+      "seller": "Apple Store",
+      "buyCount": 567
+    },
+    {
+      "id": 6,
+      "name": "Gaming Headset RGB",
+      "price": 149.99,
+      "image": "https://images.unsplash.com/photo-1599669454699-248893623440?w=400&h=400&fit=crop",
+      "categoryId": 3,
+      "brandId": 2,
+      "variant": "Black",
+      "description": "Professional gaming headset with RGB lighting and surround sound.",
+      "colors": ["#000000", "#FF0000"],
+      "seller": "Gaming Pro",
+      "buyCount": 234
+    },
+    {
+      "id": 7,
+      "name": "Beats Studio Headphones",
+      "price": 299.99,
+      "image": "https://images.unsplash.com/photo-1545127398-14699f92334b?w=400&h=400&fit=crop",
+      "categoryId": 4,
+      "brandId": 1,
+      "variant": "Gold",
+      "description": "Premium over-ear headphones with studio-quality sound.",
+      "colors": ["#D4AF37", "#FFFFFF", "#000000"],
+      "seller": "Beats Official",
+      "buyCount": 445
+    },
+    {
+      "id": 8,
+      "name": "Sport Earphones",
+      "price": 79.99,
+      "image": "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=400&h=400&fit=crop",
+      "categoryId": 3,
+      "brandId": 3,
+      "variant": "Black",
+      "description": "Sweat-resistant earphones perfect for workouts and sports.",
+      "colors": ["#000000", "#00FF00"],
+      "seller": "SportTech",
+      "buyCount": 678
+    }
+  ]
+}
