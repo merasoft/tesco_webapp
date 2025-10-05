@@ -1,13 +1,6 @@
-<div class="search-container">
-  <div class="search-wrapper">
-    <i class="pi pi-search search-icon"></i>
-    <input
-      type="text"
-      class="search-input"
-      placeholder="Search here..."
-      [(ngModel)]="searchText"
-      (keyup.enter)="onSearch()"
-      (input)="onInputChange()"
-    />
-  </div>
+<div class="px-4 py-3 bg-white">
+  <p-iconfield>
+    <p-inputicon styleClass="text-base mt-0 -translate-y-1/2 pi pi-search" />
+    <input type="text" pInputText placeholder="Search" [(ngModel)]="searchText" (keyup)="$event.key === 'Enter' && onSearch()" (input)="onInputChange()" />
+  </p-iconfield>
 </div>

@@ -1,15 +1,11 @@
-.search-container {
-  @apply px-4 py-3 bg-white;
-}
+:host ::ng-deep {
+  .p-iconfield {
+    .p-inputtext {
+      @apply w-full py-2 pr-4 text-gray-800 text-sm pl-9 border border-gray-200 rounded-lg focus:ring-1 focus:ring-gray-300;
+    }
 
-.search-wrapper {
-  @apply relative max-w-7xl mx-auto;
-}
-
-.search-icon {
-  @apply absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400;
-}
-
-.search-input {
-  @apply w-full pl-12 pr-4 py-3 bg-gray-100 rounded-lg border-0 focus:outline-none focus:ring-2 focus:ring-blue-500;
+    .p-inputicon {
+      @apply text-gray-400;
+    }
+  }
 }

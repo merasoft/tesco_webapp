@@ -1,36 +1,13 @@
-.banner-container {
-  @apply px-4 py-4;
-}
+::ng-deep .banner-carousel {
+  @apply h-full;
 
-.banner-item {
-  @apply rounded-2xl p-6 flex items-center justify-between overflow-hidden;
-  min-height: 180px;
-}
-
-.banner-content {
-  @apply flex-1;
-}
-
-.banner-title {
-  @apply text-2xl font-bold mb-2;
-}
-
-.banner-subtitle {
-  @apply text-lg;
-}
-
-.banner-image {
-  @apply flex-shrink-0 ml-4;
-}
-
-.banner-image img {
-  @apply w-32 h-32 object-cover rounded-lg;
-}
-
-:host ::ng-deep .p-carousel-indicators {
-  @apply mt-4;
-}
-
-:host ::ng-deep .p-carousel-indicator button {
-  @apply w-2 h-2 rounded-full;
+  .p-carousel {
+    &,
+    &-content-container,
+    &-content,
+    &-viewport,
+    &-item-list {
+      @apply h-full;
+    }
+  }
 }

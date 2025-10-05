@@ -1,17 +1,22 @@
-<header class="header-container">
-  <div class="header-top">
-    <div class="location">
-      <span class="location-text">{{ location }}</span>
-      <i class="pi pi-chevron-down"></i>
+<header class="bg-white border-b border-gray-100 px-4 py-2.5">
+  <div class="flex items-end justify-between">
+    <div class="flex items-center gap-1.5 flex-1">
+      <p-iftalabel class="w-full">
+        <p-select [options]="locations" [(ngModel)]="selectedLocation" optionLabel="name" class="location-select">
+          <ng-template pTemplate="selectedItem">
+            <span class="text-sm font-medium text-gray-800">{{ selectedLocation?.name }}</span>
+          </ng-template>
+        </p-select>
+        <label for="dd-city">Delivery Address</label>
+      </p-iftalabel>
     </div>
 
-    <div class="header-icons">
-      <button class="icon-btn" (click)="goToCart()">
-        <i class="pi pi-shopping-cart"></i>
-        <span class="badge" *ngIf="cartCount > 0">{{ cartCount }}</span>
+    <div class="flex items-center gap-4">
+      <button (click)="goToCart()">
+        <i class="pi pi-shopping-cart text-xl" pBadge [value]="cartCount" [badgeStyleClass]="cartCount > 0 ? 'flex' : 'hidden'"></i>
       </button>
-      <button class="icon-btn">
-        <i class="pi pi-bell"></i>
+      <button (click)="goToCart()">
+        <i class="pi pi-bell text-xl" pBadge [value]="1" [badgeStyleClass]="'flex'"></i>
       </button>
     </div>
   </div>

@@ -2,23 +2,34 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from '../../services/data.service';
 
+interface Location {
+  name: string;
+  value: string;
+}
+
 @Component({
   selector: 'app-header',
   standalone: false,
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
   cartCount = 0;
-  location = 'Salatiga City, Central Java';
+  selectedLocation: Location | null = null;
+  locations: Location[] = [
+    { name: 'Salatiga City, Central Java', value: 'salatiga' },
+    { name: 'Jakarta, DKI Jakarta', value: 'jakarta' },
+    { name: 'Surabaya, East Java', value: 'surabaya' },
+    { name: 'Bandung, West Java', value: 'bandung' },
+    { name: 'Yogyakarta, DIY', value: 'yogyakarta' },
+  ];
 
-  constructor(
-    private dataService: DataService,
-    private router: Router
-  ) {}
+  constructor(private dataService: DataService, private router: Router) {}
 
   ngOnInit(): void {
-    this.dataService.cartItems$.subscribe(items => {
+    this.selectedLocation = this.locations[0];
+
+    this.dataService.cartItems$.subscribe((items) => {
       this.cartCount = this.dataService.getCartCount();
     });
   }

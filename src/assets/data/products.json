@@ -19,11 +19,6 @@
       "id": 4,
       "name": "Electronic",
       "icon": "https://cdn-icons-png.flaticon.com/512/3659/3659898.png"
-    },
-    {
-      "id": 5,
-      "name": "All",
-      "icon": "https://cdn-icons-png.flaticon.com/512/1705/1705312.png"
     }
   ],
   "brands": [
@@ -54,14 +49,16 @@
       "title": "SALE UPTO 60% OFF",
       "subtitle": "School Collections",
       "image": "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=800&h=400&fit=crop",
-      "bgColor": "#FFF4E6"
+      "bgColor": "#FFF4E6",
+      "textColor": "#111827"
     },
     {
       "id": 2,
       "title": "ELECTRONIC GEAR",
       "subtitle": "DRONE 40% OFF",
       "image": "https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=800&h=400&fit=crop",
-      "bgColor": "#1E3A8A"
+      "bgColor": "#1E3A8A",
+      "textColor": "#FFFFFF"
     }
   ],
   "products": [

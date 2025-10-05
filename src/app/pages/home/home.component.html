@@ -2,7 +2,6 @@
   <app-header></app-header>
   <app-search-bar></app-search-bar>
   <app-banner-slider></app-banner-slider>
-  <app-brand-list></app-brand-list>
   <app-category-list></app-category-list>
 
   <div class="recent-products">
@@ -15,10 +14,7 @@
     </div>
 
     <div class="products-grid">
-      <app-product-card
-        *ngFor="let product of recentProducts"
-        [product]="product">
-      </app-product-card>
+      <app-product-card *ngFor="let product of recentProducts" [product]="product"> </app-product-card>
     </div>
   </div>
 

@@ -1,21 +1,17 @@
-<div class="banner-container">
-  <p-carousel
-    [value]="banners"
-    [numVisible]="1"
-    [numScroll]="1"
-    [circular]="true"
-    [autoplayInterval]="3000"
-    [responsiveOptions]="responsiveOptions">
-    <ng-template let-banner pTemplate="item">
-      <div class="banner-item" [style.background-color]="banner.bgColor">
-        <div class="banner-content">
-          <h2 class="banner-title">{{ banner.title }}</h2>
-          <p class="banner-subtitle">{{ banner.subtitle }}</p>
+<div class="px-4">
+  <div class="h-44 rounded-2xl overflow-hidden">
+    <p-carousel [value]="banners" [numVisible]="1" [numScroll]="1" [circular]="true" [autoplayInterval]="5000" [showNavigators]="false" [showIndicators]="false" class="banner-carousel">
+      <ng-template let-banner pTemplate="item">
+        <div class="h-full p-4 flex items-center justify-between" [style.background-color]="banner.bgColor">
+          <div class="flex-1">
+            <h2 class="text-xl font-bold mb-2" [style.color]="banner.textColor">{{ banner.title }}</h2>
+            <p class="text-base" [style.color]="banner.textColor">{{ banner.subtitle }}</p>
+          </div>
+          <div class="flex-shrink-0 ml-4">
+            <img [src]="banner.image" [alt]="banner.title" class="w-32 h-32 object-cover rounded-lg" />
+          </div>
         </div>
-        <div class="banner-image">
-          <img [src]="banner.image" [alt]="banner.title" />
-        </div>
-      </div>
-    </ng-template>
-  </p-carousel>
+      </ng-template>
+    </p-carousel>
+  </div>
 </div>
