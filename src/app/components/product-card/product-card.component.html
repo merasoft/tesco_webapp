@@ -1,11 +1,12 @@
-<div class="product-card" (click)="viewProduct()">
-  <div class="product-image">
-    <img [src]="product.image" [alt]="product.name" />
+<div class="h-full flex flex-col bg-gray-50 rounded-xl overflow-hidden shadow" (click)="viewProduct()">
+  <div class="w-full aspect-square flex items-center justify-center">
+    <img [src]="product.image" [alt]="product.name" class="object-cover" />
   </div>
-  <div class="product-info">
-    <h4 class="product-name">{{ product.name }}</h4>
-    <p class="product-price">${{ product.price }}</p>
-    <button class="add-to-cart-btn" (click)="addToCart($event)">
+  <div class="p-3 flex flex-col flex-1">
+    <h4 class="text-sm font-medium text-gray-800 mb-2 line-clamp-2">{{ product.name }}</h4>
+    <p class="font-bold text-gray-900 mt-auto mb-2">{{ product.price | numberFormat }} sum</p>
+    <button class="w-full bg-blue-500 text-sm text-white py-2 rounded-lg hover:bg-blue-600 transition-colors border-0 cursor-pointer font-medium" (click)="addToCart($event)">
+      <i class="mr-2 text-sm pi pi-shopping-cart"></i>
       Add to cart
     </button>
   </div>

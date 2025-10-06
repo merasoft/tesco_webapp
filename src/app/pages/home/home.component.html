@@ -1,39 +1,41 @@
-<div class="home-container">
+<div class="min-h-screen bg-gray-50 pb-20">
   <app-header></app-header>
   <app-search-bar></app-search-bar>
   <app-banner-slider></app-banner-slider>
   <app-category-list></app-category-list>
 
-  <div class="recent-products">
-    <div class="section-header">
-      <h3 class="section-title">Recent product</h3>
-      <button class="filters-btn">
-        <span>Filters</span>
-        <i class="pi pi-sliders-h"></i>
+  <div class="px-4 py-4">
+    <div class="flex items-center justify-between mb-4">
+      <h3 class="text-lg font-semibold text-gray-900">Recent product</h3>
+      <button class="flex items-center gap-2 px-3 py-2 bg-white rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition-colors">
+        <span class="text-sm font-medium">Filters</span>
+        <i class="pi pi-sliders-h text-sm"></i>
       </button>
     </div>
 
-    <div class="products-grid">
-      <app-product-card *ngFor="let product of recentProducts" [product]="product"> </app-product-card>
+    <div class="grid grid-cols-2 gap-y-4 gap-x-3">
+      <app-product-card *ngFor="let product of recentProducts" [product]="product"></app-product-card>
     </div>
   </div>
 
-  <nav class="bottom-nav">
-    <button class="nav-item active">
-      <i class="pi pi-home"></i>
-      <span>Home</span>
-    </button>
-    <button class="nav-item">
-      <i class="pi pi-heart"></i>
-      <span>Wishlist</span>
-    </button>
-    <button class="nav-item">
-      <i class="pi pi-file"></i>
-      <span>History</span>
-    </button>
-    <button class="nav-item">
-      <i class="pi pi-user"></i>
-      <span>Account</span>
-    </button>
+  <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-2">
+    <div class="flex items-center justify-between mx-auto">
+      <button class="flex flex-col items-center gap-1 py-2 px-3 text-blue-500">
+        <i class="pi pi-home text-lg"></i>
+        <span class="text-xs font-medium">Home</span>
+      </button>
+      <button class="flex flex-col items-center gap-1 py-2 px-3 text-gray-400 hover:text-gray-600 transition-colors">
+        <i class="pi pi-heart text-lg"></i>
+        <span class="text-xs">Wishlist</span>
+      </button>
+      <button class="flex flex-col items-center gap-1 py-2 px-3 text-gray-400 hover:text-gray-600 transition-colors">
+        <i class="pi pi-file text-lg"></i>
+        <span class="text-xs">History</span>
+      </button>
+      <button class="flex flex-col items-center gap-1 py-2 px-3 text-gray-400 hover:text-gray-600 transition-colors">
+        <i class="pi pi-user text-lg"></i>
+        <span class="text-xs">Account</span>
+      </button>
+    </div>
   </nav>
 </div>

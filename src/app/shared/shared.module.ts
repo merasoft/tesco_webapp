@@ -15,12 +15,18 @@ import { InputTextModule } from 'primeng/inputtext';
 import { RippleModule } from 'primeng/ripple';
 import { SelectModule } from 'primeng/select';
 
+// Pipes
+import { NumberFormatPipe } from './pipes/number-format.pipe';
+
 const PRIME_NG_MODULES = [BadgeModule, ButtonModule, CardModule, CarouselModule, DropdownModule, IconFieldModule, IftaLabelModule, InputIconModule, InputTextModule, RippleModule, SelectModule];
 
 const ANGULAR_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
 
+const PIPES = [NumberFormatPipe];
+
 @NgModule({
+  declarations: [...PIPES],
   imports: [...ANGULAR_MODULES, ...PRIME_NG_MODULES],
-  exports: [...ANGULAR_MODULES, ...PRIME_NG_MODULES],
+  exports: [...ANGULAR_MODULES, ...PRIME_NG_MODULES, ...PIPES],
 })
 export class SharedModule {}

@@ -64,10 +64,10 @@
   "products": [
     {
       "id": 1,
-      "name": "Air pods max by Apple",
-      "price": 1999.99,
-      "oldPrice": 2499.99,
-      "image": "https://images.unsplash.com/photo-1625135794221-8e9e91e32b0e?w=400&h=400&fit=crop",
+      "name": "Air pods max by Apple - Gray",
+      "price": 25000000,
+      "oldPrice": 31000000,
+      "image": "https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=400&h=400&fit=crop&auto=format",
       "categoryId": 4,
       "brandId": 1,
       "variant": "Gray",
@@ -79,7 +79,7 @@
     {
       "id": 2,
       "name": "Monitor LG 22''inc 4K 120Fps",
-      "price": 299.99,
+      "price": 3800000,
       "image": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&h=400&fit=crop",
       "categoryId": 4,
       "brandId": 4,
@@ -92,7 +92,7 @@
     {
       "id": 3,
       "name": "Earphones for monitor",
-      "price": 199.99,
+      "price": 2500000,
       "image": "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400&h=400&fit=crop",
       "categoryId": 4,
       "brandId": 2,
@@ -105,7 +105,7 @@
     {
       "id": 4,
       "name": "Aesthetic Mug - white",
-      "price": 19.99,
+      "price": 250000,
       "image": "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=400&h=400&fit=crop",
       "categoryId": 1,
       "brandId": 3,
@@ -117,8 +117,8 @@
     },
     {
       "id": 5,
-      "name": "Wireless Earbuds Pro",
-      "price": 199.99,
+      "name": "Wireless Earbuds Pro by Apple",
+      "price": 2500000,
       "image": "https://images.unsplash.com/photo-1606841837239-c5a1a4a07af7?w=400&h=400&fit=crop",
       "categoryId": 4,
       "brandId": 1,
@@ -130,8 +130,8 @@
     },
     {
       "id": 6,
-      "name": "Gaming Headset RGB",
-      "price": 149.99,
+      "name": "Gaming Headset RGB by Samsung",
+      "price": 1900000,
       "image": "https://images.unsplash.com/photo-1599669454699-248893623440?w=400&h=400&fit=crop",
       "categoryId": 3,
       "brandId": 2,
@@ -143,8 +143,8 @@
     },
     {
       "id": 7,
-      "name": "Beats Studio Headphones",
-      "price": 299.99,
+      "name": "Beats Studio Headphones - Gold",
+      "price": 3800000,
       "image": "https://images.unsplash.com/photo-1545127398-14699f92334b?w=400&h=400&fit=crop",
       "categoryId": 4,
       "brandId": 1,
@@ -157,7 +157,7 @@
     {
       "id": 8,
       "name": "Sport Earphones",
-      "price": 79.99,
+      "price": 1000000,
       "image": "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=400&h=400&fit=crop",
       "categoryId": 3,
       "brandId": 3,
