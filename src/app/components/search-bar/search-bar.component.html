@@ -1,6 +1,6 @@
 <div class="px-4 py-3 bg-white">
   <p-iconfield>
     <p-inputicon styleClass="text-base mt-0 -translate-y-1/2 pi pi-search" />
-    <input type="text" pInputText placeholder="Search" [(ngModel)]="searchText" (keyup)="$event.key === 'Enter' && onSearch()" (input)="onInputChange()" />
+    <input type="text" pInputText placeholder="Search products..." [(ngModel)]="searchText" (keydown)="onKeyDown($event)" (input)="onInputChange()" autocomplete="off" maxlength="100" />
   </p-iconfield>
 </div>

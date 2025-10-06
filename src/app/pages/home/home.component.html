@@ -7,19 +7,21 @@
   <div class="px-4 py-4">
     <div class="flex items-center justify-between mb-4">
       <h3 class="text-lg font-semibold text-gray-900">Recent product</h3>
-      <button class="flex items-center gap-2 px-3 py-2 bg-white rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition-colors">
+      <button class="flex items-center gap-2 px-3 py-2 bg-white rounded-lg border border-gray-200 text-gray-700 hover:bg-gray-50 transition-colors" (click)="openFilters()">
         <span class="text-sm font-medium">Filters</span>
         <i class="pi pi-sliders-h text-sm"></i>
       </button>
     </div>
 
-    <div class="grid grid-cols-2 gap-y-4 gap-x-3">
+    <div class="grid grid-cols-2 gap-4">
       <app-product-card *ngFor="let product of recentProducts" [product]="product"></app-product-card>
     </div>
   </div>
 
+  <app-filters [(filtersOpen)]="filtersOpen" (filtersApplied)="onFiltersApplied($event)"> </app-filters>
+
   <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-2">
-    <div class="flex items-center justify-between mx-auto">
+    <div class="flex items-center justify-between">
       <button class="flex flex-col items-center gap-1 py-2 px-3 text-blue-500">
         <i class="pi pi-home text-lg"></i>
         <span class="text-xs font-medium">Home</span>

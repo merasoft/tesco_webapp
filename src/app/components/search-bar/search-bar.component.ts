@@ -14,16 +14,35 @@ export class SearchBarComponent {
   constructor(private router: Router) {}
 
   onSearch(): void {
-    if (this.searchText.trim()) {
+    const trimmedSearch = this.searchText.trim();
+    if (trimmedSearch) {
       this.router.navigate(['/products'], {
-        queryParams: { search: this.searchText },
+        queryParams: { search: trimmedSearch },
       });
+      this.search.emit(trimmedSearch);
+    } else {
+      // Navigate to products without search parameter if empty
+      this.router.navigate(['/products']);
+      this.search.emit('');
     }
   }
 
   onInputChange(): void {
-    if (!this.searchText.trim()) {
+    const trimmedSearch = this.searchText.trim();
+    if (!trimmedSearch) {
       this.search.emit('');
+    }
+  }
+
+  onClear(): void {
+    this.searchText = '';
+    this.search.emit('');
+  }
+
+  onKeyDown(event: KeyboardEvent): void {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      this.onSearch();
     }
   }
 }

@@ -1,39 +1,61 @@
-<div class="product-list-container">
-  <div class="header">
-    <button class="back-btn" (click)="goBack()">
-      <i class="pi pi-arrow-left"></i>
-    </button>
-    <div class="search-wrapper">
-      <i class="pi pi-search search-icon"></i>
-      <input
-        type="text"
-        class="search-input"
-        placeholder="Earphone"
-        [(ngModel)]="searchTerm"
-        (input)="loadProducts()"
-      />
+<div class="min-h-screen">
+  <!-- Header -->
+  <header class="bg-white border-b border-gray-100 px-4 py-2.5">
+    <div class="flex items-end justify-between">
+      <div class="flex items-center gap-1.5 flex-1">
+        <button (click)="goBack()">
+          <i class="pi pi-arrow-left text-xl"></i>
+        </button>
+        <div class="flex-1 ml-3">
+          <p-iconfield>
+            <p-inputicon styleClass="text-base mt-0 -translate-y-1/2 pi pi-search" />
+            <input type="text" pInputText placeholder="Search products..." [(ngModel)]="searchTerm" (input)="loadProducts()" autocomplete="off" maxlength="100" />
+          </p-iconfield>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <button routerLink="/cart">
+          <i class="pi pi-shopping-bag text-xl" pBadge [value]="cartCount" [badgeStyleClass]="cartCount > 0 ? 'flex' : 'hidden'"></i>
+        </button>
+      </div>
     </div>
-    <button class="cart-btn" routerLink="/cart">
-      <i class="pi pi-shopping-cart"></i>
+  </header>
+
+  <!-- Results Header -->
+  <div class="px-4 py-4 flex justify-between items-center">
+    <h3 class="text-base font-medium text-gray-900">Search results</h3>
+    <button class="flex items-center gap-2 px-3 py-2 bg-white rounded-lg border border-gray-200 text-gray-700 transition-colors text-sm" (click)="onFiltersClick()">
+      <span class="font-medium">Filters</span>
+      <i class="pi pi-sliders-h text-sm"></i>
     </button>
   </div>
 
-  <div class="results-header">
-    <h3 class="results-title">Search result for "{{ searchTerm || 'Products' }}"</h3>
-    <button class="filters-btn">
-      <span>Filters</span>
-      <i class="pi pi-sliders-h"></i>
-    </button>
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="px-4 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+    <div *ngFor="let i of [1, 2, 3, 4, 5, 6]" class="bg-white rounded-lg p-4 animate-pulse">
+      <div class="bg-gray-200 aspect-square rounded-lg mb-3"></div>
+      <div class="bg-gray-200 h-4 rounded mb-2"></div>
+      <div class="bg-gray-200 h-3 rounded w-2/3"></div>
+    </div>
   </div>
 
-  <div class="products-grid">
-    <app-product-card
-      *ngFor="let product of products"
-      [product]="product">
-    </app-product-card>
+  <!-- Products Grid -->
+  <div *ngIf="!isLoading" class="px-4 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
+    <app-product-card *ngFor="let product of products" [product]="product" />
   </div>
 
-  <div *ngIf="products.length === 0" class="no-results">
-    <p>No products found</p>
+  <!-- No Results -->
+  <div *ngIf="!isLoading && products.length === 0" class="text-center py-12 text-gray-500">
+    <i class="pi pi-search text-4xl mb-4 block text-gray-300"></i>
+    <p class="text-lg mb-2">No products found</p>
+    <p class="text-sm">Try adjusting your search or filters</p>
   </div>
+
+  <!-- Filters Component -->
+  <app-filters 
+    [(filtersOpen)]="filtersOpen" 
+    (filtersApplied)="onFiltersApplied($event)"
+    (filtersCancelled)="onFiltersCancelled()">
+  </app-filters>
 </div>

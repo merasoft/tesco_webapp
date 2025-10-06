@@ -3,22 +3,44 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // PrimeNG Modules
+import { AccordionModule } from 'primeng/accordion';
 import { BadgeModule } from 'primeng/badge';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { CarouselModule } from 'primeng/carousel';
+import { CheckboxModule } from 'primeng/checkbox';
+import { DrawerModule } from 'primeng/drawer';
 import { DropdownModule } from 'primeng/dropdown';
 import { IconFieldModule } from 'primeng/iconfield';
 import { IftaLabelModule } from 'primeng/iftalabel';
 import { InputIconModule } from 'primeng/inputicon';
+import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { RippleModule } from 'primeng/ripple';
 import { SelectModule } from 'primeng/select';
+import { SliderModule } from 'primeng/slider';
 
 // Pipes
 import { NumberFormatPipe } from './pipes/number-format.pipe';
 
-const PRIME_NG_MODULES = [BadgeModule, ButtonModule, CardModule, CarouselModule, DropdownModule, IconFieldModule, IftaLabelModule, InputIconModule, InputTextModule, RippleModule, SelectModule];
+const PRIME_NG_MODULES = [
+  AccordionModule,
+  BadgeModule,
+  ButtonModule,
+  CardModule,
+  CarouselModule,
+  CheckboxModule,
+  DrawerModule,
+  DropdownModule,
+  IconFieldModule,
+  IftaLabelModule,
+  InputIconModule,
+  InputNumberModule,
+  InputTextModule,
+  RippleModule,
+  SelectModule,
+  SliderModule,
+];
 
 const ANGULAR_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
 

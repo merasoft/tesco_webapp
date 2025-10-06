@@ -1,0 +1,86 @@
+::ng-deep {
+  .p-inputnumber {
+    .p-inputnumber-input {
+      @apply w-full px-3 py-2 border border-gray-300 rounded-lg text-sm transition-all duration-200;
+
+      &:focus {
+        @apply ring-2 ring-blue-500 border-blue-500 outline-none;
+      }
+    }
+
+    .p-inputnumber-button-group {
+      display: none;
+    }
+  }
+
+  .p-slider {
+    @apply bg-gray-200 rounded-full;
+    height: 6px;
+
+    .p-slider-range {
+      @apply bg-blue-500 rounded-full;
+    }
+
+    .p-slider-handle {
+      @apply bg-white border-2 border-blue-600 shadow-md;
+      width: 20px;
+      height: 20px;
+      margin-top: -10px !important;
+
+      &:focus {
+        @apply ring-2 ring-blue-200;
+      }
+    }
+  }
+
+  .p-checkbox {
+    @apply flex items-center justify-center;
+
+    &-box {
+      @apply w-5 h-5 border-2 border-gray-300 rounded transition-all duration-200;
+    }
+
+    &.p-highlight &-box {
+      @apply bg-blue-600 border-blue-600;
+    }
+
+    &-icon {
+      @apply text-white w-4 h-4;
+    }
+  }
+
+  .filter-option {
+    @apply flex items-center p-2 rounded-lg transition-colors cursor-pointer;
+
+    .rating-stars {
+      line-height: 1;
+      letter-spacing: 0.1em;
+    }
+  }
+
+  .filter-accordion {
+    .p-accordion {
+      &header {
+        @apply px-3 py-2;
+      }
+
+      &content-content {
+        @apply p-0;
+      }
+    }
+  }
+}
+
+::ng-deep {
+  .filter-drawer {
+    .p-drawer {
+      &-header {
+        @apply p-4 border-b border-gray-200;
+      }
+
+      &-content {
+        @apply p-4;
+      }
+    }
+  }
+}

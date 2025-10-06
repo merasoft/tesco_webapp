@@ -3,22 +3,118 @@
     {
       "id": 1,
       "name": "Apparel",
-      "icon": "https://cdn-icons-png.flaticon.com/512/3050/3050155.png"
+      "slug": "apparel",
+      "icon": "https://cdn-icons-png.flaticon.com/512/3050/3050155.png",
+      "count": 1,
+      "children": [
+        {
+          "id": 11,
+          "name": "Clothing",
+          "slug": "clothing",
+          "count": 1,
+          "children": [
+            { "id": 111, "name": "T-Shirts", "slug": "t-shirts", "count": 0 },
+            { "id": 112, "name": "Jeans", "slug": "jeans", "count": 0 }
+          ]
+        },
+        {
+          "id": 12,
+          "name": "Accessories",
+          "slug": "accessories",
+          "count": 1,
+          "children": [
+            { "id": 121, "name": "Mugs", "slug": "mugs", "count": 1 },
+            { "id": 122, "name": "Bags", "slug": "bags", "count": 0 }
+          ]
+        }
+      ]
     },
     {
       "id": 2,
       "name": "School",
-      "icon": "https://cdn-icons-png.flaticon.com/512/3976/3976625.png"
+      "slug": "school",
+      "icon": "https://cdn-icons-png.flaticon.com/512/3976/3976625.png",
+      "count": 0,
+      "children": [
+        {
+          "id": 21,
+          "name": "Stationery",
+          "slug": "stationery",
+          "count": 0,
+          "children": [
+            { "id": 211, "name": "Notebooks", "slug": "notebooks", "count": 0 },
+            { "id": 212, "name": "Pens", "slug": "pens", "count": 0 }
+          ]
+        },
+        {
+          "id": 22,
+          "name": "Bags",
+          "slug": "school-bags",
+          "count": 0,
+          "children": [
+            { "id": 221, "name": "Backpacks", "slug": "backpacks", "count": 0 },
+            { "id": 222, "name": "Lunch Boxes", "slug": "lunch-boxes", "count": 0 }
+          ]
+        }
+      ]
     },
     {
       "id": 3,
       "name": "Sports",
-      "icon": "https://cdn-icons-png.flaticon.com/512/857/857418.png"
+      "slug": "sports",
+      "icon": "https://cdn-icons-png.flaticon.com/512/857/857418.png",
+      "count": 2,
+      "children": [
+        {
+          "id": 31,
+          "name": "Gaming",
+          "slug": "gaming",
+          "count": 1,
+          "children": [
+            { "id": 311, "name": "Gaming Headsets", "slug": "gaming-headsets", "count": 1 },
+            { "id": 312, "name": "Gaming Keyboards", "slug": "gaming-keyboards", "count": 0 }
+          ]
+        },
+        {
+          "id": 32,
+          "name": "Fitness",
+          "slug": "fitness",
+          "count": 1,
+          "children": [
+            { "id": 321, "name": "Sport Earphones", "slug": "sport-earphones", "count": 1 },
+            { "id": 322, "name": "Fitness Trackers", "slug": "fitness-trackers", "count": 0 }
+          ]
+        }
+      ]
     },
     {
       "id": 4,
       "name": "Electronic",
-      "icon": "https://cdn-icons-png.flaticon.com/512/3659/3659898.png"
+      "slug": "electronic",
+      "icon": "https://cdn-icons-png.flaticon.com/512/3659/3659898.png",
+      "count": 5,
+      "children": [
+        {
+          "id": 41,
+          "name": "Audio",
+          "slug": "audio",
+          "count": 4,
+          "children": [
+            { "id": 411, "name": "Headphones", "slug": "headphones", "count": 2 },
+            { "id": 412, "name": "Earbuds", "slug": "earbuds", "count": 2 }
+          ]
+        },
+        {
+          "id": 42,
+          "name": "Computer",
+          "slug": "computer",
+          "count": 1,
+          "children": [
+            { "id": 421, "name": "Monitors", "slug": "monitors", "count": 1 },
+            { "id": 422, "name": "Keyboards", "slug": "keyboards", "count": 0 }
+          ]
+        }
+      ]
     }
   ],
   "brands": [
