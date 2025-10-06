@@ -8,9 +8,11 @@ import { AppComponent } from './app.component';
 import { BannerSliderComponent } from './components/banner-slider/banner-slider.component';
 import { CategoryListComponent } from './components/category-list/category-list.component';
 import { FiltersComponent } from './components/filters/filters.component';
+import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -37,6 +39,8 @@ import { providePrimeNG } from 'primeng/config';
     CategoryListComponent,
     BannerSliderComponent,
     FiltersComponent,
+    FooterComponent,
+    MainLayoutComponent,
   ],
   imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule, HttpClientModule, SharedModule],
   providers: [

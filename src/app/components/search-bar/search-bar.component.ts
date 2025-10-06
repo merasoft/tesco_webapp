@@ -20,6 +20,8 @@ export class SearchBarComponent {
         queryParams: { search: trimmedSearch },
       });
       this.search.emit(trimmedSearch);
+      // Clear the input after navigation
+      this.searchText = '';
     } else {
       // Navigate to products without search parameter if empty
       this.router.navigate(['/products']);

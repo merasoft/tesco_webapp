@@ -19,7 +19,7 @@
 
   <div class="cart-items">
     <div *ngFor="let item of cartItems" class="cart-item">
-      <img [src]="item.image" [alt]="item.name" class="item-image" />
+      <img [src]="item.images && item.images[0] ? item.images[0] : ''" [alt]="item.name" class="item-image" />
 
       <div class="item-details">
         <h3 class="item-name">{{ item.name }}</h3>
@@ -55,8 +55,6 @@
       <span class="total-label">Totals</span>
       <span class="total-amount">$ {{ total.toFixed(2) }}</span>
     </div>
-    <button class="checkout-btn" (click)="proceedToCheckout()">
-      Continue for payments
-    </button>
+    <button class="checkout-btn" (click)="proceedToCheckout()"> Continue for payments </button>
   </div>
 </div>

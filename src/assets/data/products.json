@@ -4,7 +4,7 @@
       "id": 1,
       "name": "Apparel",
       "slug": "apparel",
-      "icon": "https://cdn-icons-png.flaticon.com/512/3050/3050155.png",
+      "icon": "https://cdn-icons-png.flaticon.com/512/892/892458.png",
       "count": 1,
       "children": [
         {
@@ -33,7 +33,7 @@
       "id": 2,
       "name": "School",
       "slug": "school",
-      "icon": "https://cdn-icons-png.flaticon.com/512/3976/3976625.png",
+      "icon": "https://cdn-icons-png.flaticon.com/512/3074/3074058.png",
       "count": 0,
       "children": [
         {
@@ -91,7 +91,7 @@
       "id": 4,
       "name": "Electronic",
       "slug": "electronic",
-      "icon": "https://cdn-icons-png.flaticon.com/512/3659/3659898.png",
+      "icon": "https://cdn-icons-png.flaticon.com/512/3659/3659877.png",
       "count": 5,
       "children": [
         {
@@ -142,7 +142,7 @@
   "banners": [
     {
       "id": 1,
-      "title": "SALE UPTO 60% OFF",
+      "title": "SALE UP TO 60% OFF",
       "subtitle": "School Collections",
       "image": "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=800&h=400&fit=crop",
       "bgColor": "#FFF4E6",
@@ -163,7 +163,12 @@
       "name": "Air pods max by Apple - Gray",
       "price": 25000000,
       "oldPrice": 31000000,
-      "image": "https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=400&h=400&fit=crop&auto=format",
+      "rating": 4.5,
+      "images": [
+        "https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=400&h=400&fit=crop&auto=format",
+        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop&auto=format",
+        "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop&auto=format"
+      ],
       "categoryId": 4,
       "brandId": 1,
       "variant": "Gray",
@@ -176,7 +181,12 @@
       "id": 2,
       "name": "Monitor LG 22''inc 4K 120Fps",
       "price": 3800000,
-      "image": "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&h=400&fit=crop",
+      "rating": 4.2,
+      "images": [
+        "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400&h=400&fit=crop",
+        "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=400&h=400&fit=crop",
+        "https://images.unsplash.com/photo-1616763355548-1b606f439f86?w=400&h=400&fit=crop"
+      ],
       "categoryId": 4,
       "brandId": 4,
       "variant": "120 Fps",
@@ -189,7 +199,12 @@
       "id": 3,
       "name": "Earphones for monitor",
       "price": 2500000,
-      "image": "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400&h=400&fit=crop",
+      "rating": 3.8,
+      "images": [
+        "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400&h=400&fit=crop",
+        "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=400&h=400&fit=crop",
+        "https://images.unsplash.com/photo-1491927570842-0261e477d937?w=400&h=400&fit=crop"
+      ],
       "categoryId": 4,
       "brandId": 2,
       "variant": "Combo",
@@ -202,7 +217,12 @@
       "id": 4,
       "name": "Aesthetic Mug - white",
       "price": 250000,
-      "image": "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=400&h=400&fit=crop",
+      "rating": 4.7,
+      "images": [
+        "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=400&h=400&fit=crop",
+        "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop",
+        "https://images.unsplash.com/photo-1495434942214-9b525bba74e9?w=400&h=400&fit=crop"
+      ],
       "categoryId": 1,
       "brandId": 3,
       "variant": "White",
@@ -215,7 +235,12 @@
       "id": 5,
       "name": "Wireless Earbuds Pro by Apple",
       "price": 2500000,
-      "image": "https://images.unsplash.com/photo-1606841837239-c5a1a4a07af7?w=400&h=400&fit=crop",
+      "rating": 4.9,
+      "images": [
+        "https://images.unsplash.com/photo-1606841837239-c5a1a4a07af7?w=400&h=400&fit=crop",
+        "https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=400&h=400&fit=crop",
+        "https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=400&h=400&fit=crop"
+      ],
       "categoryId": 4,
       "brandId": 1,
       "variant": "White",
@@ -228,7 +253,12 @@
       "id": 6,
       "name": "Gaming Headset RGB by Samsung",
       "price": 1900000,
-      "image": "https://images.unsplash.com/photo-1599669454699-248893623440?w=400&h=400&fit=crop",
+      "rating": 4.1,
+      "images": [
+        "https://images.unsplash.com/photo-1599669454699-248893623440?w=400&h=400&fit=crop",
+        "https://images.unsplash.com/photo-1546435770-a3e426bf472b?w=400&h=400&fit=crop",
+        "https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=400&h=400&fit=crop"
+      ],
       "categoryId": 3,
       "brandId": 2,
       "variant": "Black",
@@ -241,7 +271,12 @@
       "id": 7,
       "name": "Beats Studio Headphones - Gold",
       "price": 3800000,
-      "image": "https://images.unsplash.com/photo-1545127398-14699f92334b?w=400&h=400&fit=crop",
+      "rating": 4.6,
+      "images": [
+        "https://images.unsplash.com/photo-1545127398-14699f92334b?w=400&h=400&fit=crop",
+        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop",
+        "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=400&fit=crop"
+      ],
       "categoryId": 4,
       "brandId": 1,
       "variant": "Gold",
@@ -254,7 +289,12 @@
       "id": 8,
       "name": "Sport Earphones",
       "price": 1000000,
-      "image": "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=400&h=400&fit=crop",
+      "rating": 3.9,
+      "images": [
+        "https://images.unsplash.com/photo-1484704849700-f032a568e944?w=400&h=400&fit=crop",
+        "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=400&h=400&fit=crop",
+        "https://images.unsplash.com/photo-1491927570842-0261e477d937?w=400&h=400&fit=crop"
+      ],
       "categoryId": 3,
       "brandId": 3,
       "variant": "Black",

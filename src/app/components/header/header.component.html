@@ -1,4 +1,4 @@
-<header class="bg-white border-b border-gray-100 px-4 py-2.5">
+<header class="bg-white border-b border-gray-100 pl-4 pr-6 py-2.5">
   <div class="flex items-end justify-between">
     <div class="flex items-center gap-1.5 flex-1">
       <p-iftalabel class="w-full">
@@ -11,7 +11,7 @@
       </p-iftalabel>
     </div>
 
-    <div class="flex items-center gap-4">
+    <div class="flex items-center gap-6">
       <button (click)="goToCart()">
         <i class="pi pi-shopping-bag text-xl" pBadge [value]="cartCount" [badgeStyleClass]="cartCount > 0 ? 'flex' : 'hidden'"></i>
       </button>

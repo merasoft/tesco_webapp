@@ -10,14 +10,16 @@
   </div>
 
   <div class="product-image-section">
-    <img [src]="product.image" [alt]="product.name" />
+    <img [src]="product.images && product.images[0] ? product.images[0] : ''" [alt]="product.name" />
   </div>
 
   <div class="product-info-section">
     <div class="product-header">
       <div>
         <h1 class="product-name">{{ product.name }}</h1>
-        <p class="product-price">$ {{ product.price }},99 <span class="buy-count">( {{ product.buyCount }} people buy this )</span></p>
+        <p class="product-price"
+          >$ {{ product.price }},99 <span class="buy-count">( {{ product.buyCount }} people buy this )</span></p
+        >
       </div>
       <button class="favorite-btn" (click)="toggleFavorite()">
         <i [class]="isFavorite ? 'pi pi-heart-fill' : 'pi pi-heart'"></i>
@@ -27,13 +29,7 @@
     <div class="color-section">
       <h3 class="section-title">Choose the color</h3>
       <div class="color-options">
-        <div
-          *ngFor="let color of product.colors"
-          class="color-option"
-          [class.selected]="selectedColor === color"
-          [style.background-color]="color"
-          (click)="selectColor(color)">
-        </div>
+        <div *ngFor="let color of product.colors" class="color-option" [class.selected]="selectedColor === color" [style.background-color]="color" (click)="selectColor(color)"> </div>
       </div>
     </div>
 

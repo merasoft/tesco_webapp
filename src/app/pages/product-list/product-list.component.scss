@@ -3,7 +3,7 @@
     @apply relative;
 
     .p-inputtext {
-      @apply w-full py-2 pr-4 text-gray-800 text-sm pl-9 border border-gray-200 rounded-lg focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200;
+      @apply w-full py-2.5 pr-4 text-gray-800 text-sm pl-9 border border-gray-200 rounded-lg focus:ring-1 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200;
 
       &::placeholder {
         @apply text-gray-400;

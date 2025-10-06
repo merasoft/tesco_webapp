@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, EventEmitter, Input, Output, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { DataService } from '../../services/data.service';
 
 interface FilterOption {
@@ -36,7 +36,7 @@ interface Filter {
   templateUrl: './filters.component.html',
   styleUrls: ['./filters.component.scss'],
 })
-export class FiltersComponent implements OnInit {
+export class FiltersComponent implements OnInit, OnChanges {
   @Input() filtersOpen = false;
   @Output() filtersOpenChange = new EventEmitter<boolean>();
   @Output() filtersApplied = new EventEmitter<Filter[]>();
@@ -92,9 +92,18 @@ export class FiltersComponent implements OnInit {
     this.accordionActiveValues = this.getDefaultAccordionValues();
     // Load categories data
     this.loadCategories();
+    // Load filters from URL parameters
+    this.loadFiltersFromUrl();
   }
 
-  constructor(private dataService: DataService, private router: Router) {}
+  ngOnChanges(changes: SimpleChanges): void {
+    // When filtersOpen changes to true, refresh filters from URL
+    if (changes['filtersOpen'] && changes['filtersOpen'].currentValue === true) {
+      this.loadFiltersFromUrl();
+    }
+  }
+
+  constructor(private dataService: DataService, private router: Router, private route: ActivatedRoute) {}
 
   private loadCategories(): void {
     // Load categories from DataService
@@ -170,20 +179,19 @@ export class FiltersComponent implements OnInit {
   ];
 
   onMobileFilterOpen(): void {
-    // Store current filter state as backup
     this.originalFilters = JSON.parse(JSON.stringify(this.filters));
-    // Create temporary filters for mobile drawer
+    this.loadFiltersFromUrl();
     this.tempFilters = JSON.parse(JSON.stringify(this.filters));
-    // Initialize mobile accordion with all panels open
     this.accordionActiveValues = this.getDefaultAccordionValues();
   }
 
   onCategoryClick(category: Category): void {
-    // Navigate to products page with category filter
+    const currentParams = { ...this.route.snapshot.queryParams };
+    currentParams['categoryId'] = category.id.toString();
     this.router.navigate(['/products'], {
-      queryParams: { categoryId: category.id },
+      queryParams: currentParams,
     });
-    // Close the filters drawer after category selection
+
     this.filtersOpen = false;
     this.filtersOpenChange.emit(false);
     this.categorySelected.emit(category);
@@ -236,7 +244,16 @@ export class FiltersComponent implements OnInit {
   }
 
   private navigateWithFilters(): void {
-    const queryParams: any = {};
+    // Get current query parameters to preserve non-filter parameters like search, categoryId
+    const currentParams = { ...this.route.snapshot.queryParams };
+
+    // Remove existing filter parameters
+    delete currentParams['minPrice'];
+    delete currentParams['maxPrice'];
+    delete currentParams['brandIds'];
+    delete currentParams['minRating'];
+
+    const queryParams: any = { ...currentParams };
 
     // Build query parameters from filters
     this.filters.forEach((filter) => {
@@ -246,13 +263,13 @@ export class FiltersComponent implements OnInit {
           queryParams.maxPrice = filter.currentMax;
         }
       } else if (filter.type === 'checkbox' && filter.options) {
-        const selectedOptions = filter.options.filter((option) => option.checked).map((option) => option.id);
+        const selectedOptions = filter.options.filter((option) => option.checked);
 
         if (selectedOptions.length > 0) {
           if (filter.id === 'brand') {
-            queryParams.brandIds = selectedOptions.join(',');
+            queryParams.brandIds = selectedOptions.map((option) => option.id).join(',');
           } else if (filter.id === 'rating') {
-            queryParams.minRating = Math.min(...selectedOptions.map((id) => parseInt(id)));
+            queryParams.minRating = Math.min(...selectedOptions.map((option) => parseInt(option.id)));
           }
         }
       }
@@ -274,8 +291,17 @@ export class FiltersComponent implements OnInit {
       }
     });
 
-    // Navigate to products page with no filters
-    this.router.navigate(['/products']);
+    // Get current query parameters to preserve non-filter parameters like search, categoryId
+    const currentParams = { ...this.route.snapshot.queryParams };
+
+    // Remove existing filter parameters
+    delete currentParams['minPrice'];
+    delete currentParams['maxPrice'];
+    delete currentParams['brandIds'];
+    delete currentParams['minRating'];
+
+    // Navigate to products page with preserved non-filter parameters
+    this.router.navigate(['/products'], { queryParams: currentParams });
 
     this.filtersApplied.emit(this.filters);
   }
@@ -344,5 +370,57 @@ export class FiltersComponent implements OnInit {
       values.unshift('categories'); // Add categories at the beginning
     }
     return values;
+  }
+
+  private loadFiltersFromUrl(): void {
+    this.route.queryParams.subscribe((params) => {
+      // Reset all filters to default state first
+      this.resetFiltersToDefault();
+
+      // Load price range filter
+      const priceFilter = this.filters.find((f) => f.id === 'price');
+      if (priceFilter) {
+        if (params['minPrice']) {
+          priceFilter.currentMin = +params['minPrice'];
+        }
+        if (params['maxPrice']) {
+          priceFilter.currentMax = +params['maxPrice'];
+        }
+        priceFilter.range = [priceFilter.currentMin!, priceFilter.currentMax!];
+      }
+
+      // Load brand filters
+      const brandFilter = this.filters.find((f) => f.id === 'brand');
+      if (brandFilter && brandFilter.options && params['brandIds']) {
+        const selectedBrandIds = params['brandIds'].split(',');
+        brandFilter.options.forEach((option) => {
+          option.checked = selectedBrandIds.includes(option.id);
+        });
+      }
+
+      // Load rating filter
+      const ratingFilter = this.filters.find((f) => f.id === 'rating');
+      if (ratingFilter && ratingFilter.options && params['minRating']) {
+        const minRating = +params['minRating'];
+        ratingFilter.options.forEach((option) => {
+          // Check the exact rating that matches minRating
+          // Since rating options represent "X stars & up", we check if the option's rating <= minRating
+          option.checked = +option.id === minRating;
+        });
+      }
+    });
+  }
+
+  private resetFiltersToDefault(): void {
+    this.filters.forEach((filter) => {
+      if (filter.options) {
+        filter.options.forEach((option) => (option.checked = false));
+      }
+      if (filter.type === 'range') {
+        filter.currentMin = filter.min;
+        filter.currentMax = filter.max;
+        filter.range = [filter.min!, filter.max!];
+      }
+    });
   }
 }
