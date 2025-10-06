@@ -4,7 +4,7 @@
       "id": 1,
       "name": "Apparel",
       "slug": "apparel",
-      "icon": "https://cdn-icons-png.flaticon.com/512/892/892458.png",
+      "icon": "pi-shopping-bag",
       "count": 1,
       "children": [
         {
@@ -33,7 +33,7 @@
       "id": 2,
       "name": "School",
       "slug": "school",
-      "icon": "https://cdn-icons-png.flaticon.com/512/3074/3074058.png",
+      "icon": "pi-book",
       "count": 0,
       "children": [
         {
@@ -62,7 +62,7 @@
       "id": 3,
       "name": "Sports",
       "slug": "sports",
-      "icon": "https://cdn-icons-png.flaticon.com/512/857/857418.png",
+      "icon": "pi-trophy",
       "count": 2,
       "children": [
         {
@@ -91,7 +91,7 @@
       "id": 4,
       "name": "Electronic",
       "slug": "electronic",
-      "icon": "https://cdn-icons-png.flaticon.com/512/3659/3659877.png",
+      "icon": "pi-mobile",
       "count": 5,
       "children": [
         {
@@ -112,6 +112,122 @@
           "children": [
             { "id": 421, "name": "Monitors", "slug": "monitors", "count": 1 },
             { "id": 422, "name": "Keyboards", "slug": "keyboards", "count": 0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Home & Kitchen",
+      "slug": "home-kitchen",
+      "icon": "pi-home",
+      "count": 0,
+      "children": [
+        {
+          "id": 51,
+          "name": "Kitchen Appliances",
+          "slug": "kitchen-appliances",
+          "count": 0,
+          "children": [
+            { "id": 511, "name": "Blenders", "slug": "blenders", "count": 0 },
+            { "id": 512, "name": "Coffee Makers", "slug": "coffee-makers", "count": 0 }
+          ]
+        },
+        {
+          "id": 52,
+          "name": "Home Decor",
+          "slug": "home-decor",
+          "count": 0,
+          "children": [
+            { "id": 521, "name": "Wall Art", "slug": "wall-art", "count": 0 },
+            { "id": 522, "name": "Lighting", "slug": "lighting", "count": 0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Beauty & Health",
+      "slug": "beauty-health",
+      "icon": "pi-heart",
+      "count": 0,
+      "children": [
+        {
+          "id": 61,
+          "name": "Skincare",
+          "slug": "skincare",
+          "count": 0,
+          "children": [
+            { "id": 611, "name": "Face Masks", "slug": "face-masks", "count": 0 },
+            { "id": 612, "name": "Moisturizers", "slug": "moisturizers", "count": 0 }
+          ]
+        },
+        {
+          "id": 62,
+          "name": "Health",
+          "slug": "health",
+          "count": 0,
+          "children": [
+            { "id": 621, "name": "Vitamins", "slug": "vitamins", "count": 0 },
+            { "id": 622, "name": "Supplements", "slug": "supplements", "count": 0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Automotive",
+      "slug": "automotive",
+      "icon": "pi-car",
+      "count": 0,
+      "children": [
+        {
+          "id": 71,
+          "name": "Car Accessories",
+          "slug": "car-accessories",
+          "count": 0,
+          "children": [
+            { "id": 711, "name": "Phone Holders", "slug": "phone-holders", "count": 0 },
+            { "id": 712, "name": "Chargers", "slug": "car-chargers", "count": 0 }
+          ]
+        },
+        {
+          "id": 72,
+          "name": "Maintenance",
+          "slug": "maintenance",
+          "count": 0,
+          "children": [
+            { "id": 721, "name": "Cleaning Supplies", "slug": "cleaning-supplies", "count": 0 },
+            { "id": 722, "name": "Tools", "slug": "tools", "count": 0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Food & Beverages",
+      "slug": "food-beverages",
+      "icon": "pi-shopping-cart",
+      "count": 0,
+      "children": [
+        {
+          "id": 81,
+          "name": "Snacks",
+          "slug": "snacks",
+          "count": 0,
+          "children": [
+            { "id": 811, "name": "Chips", "slug": "chips", "count": 0 },
+            { "id": 812, "name": "Cookies", "slug": "cookies", "count": 0 }
+          ]
+        },
+        {
+          "id": 82,
+          "name": "Beverages",
+          "slug": "beverages",
+          "count": 0,
+          "children": [
+            { "id": 821, "name": "Coffee", "slug": "coffee", "count": 0 },
+            { "id": 822, "name": "Tea", "slug": "tea", "count": 0 }
           ]
         }
       ]

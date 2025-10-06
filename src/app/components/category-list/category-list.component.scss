@@ -1,0 +1,12 @@
+::ng-deep {
+  .catalog-drawer {
+    .p-drawer {
+      &-header {
+        @apply px-6 py-3 border-b border-gray-200;
+      }
+      &-content {
+        @apply p-4;
+      }
+    }
+  }
+}

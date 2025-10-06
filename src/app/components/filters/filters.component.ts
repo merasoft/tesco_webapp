@@ -53,11 +53,6 @@ export class FiltersComponent implements OnInit, OnChanges {
   currentSubcategory: Category | null = null;
   currentLeaf: Category | null = null;
 
-  // Route parameters
-  categorySlug: string | null = null;
-  subcategorySlug: string | null = null;
-  leafSlug: string | null = null;
-
   get shouldShowCategories(): boolean {
     return this.subcategories && this.subcategories.length > 0;
   }
@@ -92,7 +87,7 @@ export class FiltersComponent implements OnInit, OnChanges {
     this.accordionActiveValues = this.getDefaultAccordionValues();
     // Load categories data
     this.loadCategories();
-    // Load filters from URL parameters
+    // Load filters from URL parameters and update current category
     this.loadFiltersFromUrl();
   }
 
@@ -110,7 +105,8 @@ export class FiltersComponent implements OnInit, OnChanges {
     this.dataService.getCategories().subscribe({
       next: (categories: Category[]) => {
         this.categories = categories;
-        this.updateCurrentCategory();
+        // Update current category after categories are loaded
+        this.updateCurrentCategoryFromRoute();
       },
       error: (error: any) => {
         console.error('Error loading categories:', error);
@@ -121,24 +117,25 @@ export class FiltersComponent implements OnInit, OnChanges {
   }
 
   private findCurrentCategory(): void {
-    this.currentCategory = this.categories.find((cat) => cat.slug === this.categorySlug) || null;
+    // Find category by ID instead of slug
+    this.currentCategory = this.categories.find((cat) => cat.id.toString() === this.route.snapshot.queryParams['categoryId']) || null;
     this.currentSubcategory = null;
     this.currentLeaf = null;
 
-    if (this.currentCategory && this.subcategorySlug) {
-      this.currentSubcategory = this.currentCategory.children?.find((sub) => sub.slug === this.subcategorySlug) || null;
+    if (this.currentCategory && this.route.snapshot.queryParams['subcategoryId']) {
+      const subcategoryId = this.route.snapshot.queryParams['subcategoryId'];
+      this.currentSubcategory = this.currentCategory.children?.find((sub) => sub.id.toString() === subcategoryId) || null;
 
-      if (this.currentSubcategory && this.leafSlug) {
+      if (this.currentSubcategory && this.route.snapshot.queryParams['leafId']) {
         // Third level - find leaf in subcategory's children
-        this.currentLeaf = this.currentSubcategory.children?.find((leaf) => leaf.slug === this.leafSlug) || null;
+        const leafId = this.route.snapshot.queryParams['leafId'];
+        this.currentLeaf = this.currentSubcategory.children?.find((leaf) => leaf.id.toString() === leafId) || null;
       }
     }
   }
 
-  private updateCurrentCategory(): void {
-    // This would normally be called when route changes
-    // For now, we'll set a default category to show subcategories
-    this.categorySlug = 'electronic'; // Updated to match JSON structure
+  private updateCurrentCategoryFromRoute(): void {
+    // Get current category from route parameters
     this.findCurrentCategory();
   }
 
@@ -187,7 +184,20 @@ export class FiltersComponent implements OnInit, OnChanges {
 
   onCategoryClick(category: Category): void {
     const currentParams = { ...this.route.snapshot.queryParams };
-    currentParams['categoryId'] = category.id.toString();
+
+    // If this is a subcategory (second level), add subcategoryId
+    if (this.currentCategory && !this.currentSubcategory) {
+      currentParams['subcategoryId'] = category.id.toString();
+    }
+    // If this is a leaf category (third level), add leafId
+    else if (this.currentCategory && this.currentSubcategory) {
+      currentParams['leafId'] = category.id.toString();
+    }
+    // If somehow this is a main category, set categoryId
+    else {
+      currentParams['categoryId'] = category.id.toString();
+    }
+
     this.router.navigate(['/products'], {
       queryParams: currentParams,
     });
@@ -328,40 +338,19 @@ export class FiltersComponent implements OnInit, OnChanges {
     this.filtersApplied.emit(this.filters);
   }
 
-  // Additional methods from catalog component reference
-  getSubcategoryLink(subcategory: Category): string[] {
-    if (!this.currentCategory) return ['/catalog'];
-
-    // If we're at the main category level, link to subcategory
-    if (!this.subcategorySlug) {
-      return ['/catalog', this.currentCategory.slug, subcategory.slug];
-    }
-
-    // If we're in a subcategory, link to leaf category
-    if (this.currentSubcategory) {
-      return ['/catalog', this.currentCategory.slug, this.currentSubcategory.slug, subcategory.slug];
-    }
-
-    return ['/catalog', this.currentCategory.slug, subcategory.slug];
-  }
-
+  // Additional methods for category navigation
   isActiveSubcategory(subcategory: Category): boolean {
-    // If we're at the main category level, check if this is the active subcategory
-    if (!this.subcategorySlug) {
-      return false; // No active subcategory yet
+    // Check if this subcategory is currently selected
+    if (this.currentSubcategory) {
+      return subcategory.id === this.currentSubcategory.id;
     }
 
-    // If we're in a subcategory, check if this is the active leaf
-    if (this.currentSubcategory && !this.leafSlug) {
-      return subcategory.slug === this.subcategorySlug;
+    // Check if this leaf category is currently selected
+    if (this.currentLeaf) {
+      return subcategory.id === this.currentLeaf.id;
     }
 
-    // If we're in a leaf, check if this is the active leaf
-    if (this.leafSlug) {
-      return subcategory.slug === this.leafSlug;
-    }
-
-    return subcategory.slug === this.subcategorySlug;
+    return false;
   }
 
   getDefaultAccordionValues(): string[] {
@@ -376,6 +365,9 @@ export class FiltersComponent implements OnInit, OnChanges {
     this.route.queryParams.subscribe((params) => {
       // Reset all filters to default state first
       this.resetFiltersToDefault();
+
+      // Update current category based on route parameters
+      this.updateCurrentCategoryFromRoute();
 
       // Load price range filter
       const priceFilter = this.filters.find((f) => f.id === 'price');
