@@ -1,4 +1,4 @@
-<div class="h-full flex flex-col bg-gray-50 border border-gray-200 rounded-xl overflow-hidden shadow-sm" (click)="viewProduct()">
+<div class="h-full flex flex-col border border-gray-200 rounded-xl overflow-hidden shadow-sm" (click)="viewProduct()">
   <div class="w-full h-fit aspect-square flex items-center justify-center relative" (click)="$event.stopPropagation()">
     <img *ngIf="product.images && product.images.length === 1" [src]="product.images[0]" [alt]="product.name" class="w-full h-full object-cover" />
     <p-carousel
