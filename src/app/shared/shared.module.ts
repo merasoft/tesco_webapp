@@ -11,6 +11,7 @@ import { CarouselModule } from 'primeng/carousel';
 import { CheckboxModule } from 'primeng/checkbox';
 import { DrawerModule } from 'primeng/drawer';
 import { DropdownModule } from 'primeng/dropdown';
+import { GalleriaModule } from 'primeng/galleria';
 import { IconFieldModule } from 'primeng/iconfield';
 import { IftaLabelModule } from 'primeng/iftalabel';
 import { InputIconModule } from 'primeng/inputicon';
@@ -32,6 +33,7 @@ const PRIME_NG_MODULES = [
   CheckboxModule,
   DrawerModule,
   DropdownModule,
+  GalleriaModule,
   IconFieldModule,
   IftaLabelModule,
   InputIconModule,
