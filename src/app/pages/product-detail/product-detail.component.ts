@@ -14,12 +14,56 @@ export class ProductDetailComponent implements OnInit {
   isFavorite = false;
   isLoading = true;
   selectedImageIndex = 0;
+  quantity = 0;
+  private cartItems: any[] = [];
 
-  constructor(private dataService: DataService, private route: ActivatedRoute, private router: Router) {}
+  constructor(private route: ActivatedRoute, private router: Router, private dataService: DataService) {}
 
   ngOnInit(): void {
     const id = +this.route.snapshot.params['id'];
     this.loadProduct(id);
+
+    // Subscribe to cart changes to keep quantity in sync
+    this.dataService.cartItems$.subscribe((items) => {
+      this.cartItems = items;
+      this.updateQuantityFromCart();
+    });
+  }
+
+  private updateQuantityFromCart(): void {
+    if (!this.product) return;
+
+    // Get current cart items from the observable
+    const existingItem = this.cartItems.find((item: any) => item.id === this.product.id && (!this.selectedColor || item.selectedColor === this.selectedColor));
+
+    this.quantity = existingItem ? existingItem.quantity : 0;
+  }
+
+  increaseQuantity(): void {
+    this.quantity++;
+    this.dataService.updateQuantity(this.product.id, this.quantity, this.selectedColor);
+  }
+
+  decreaseQuantity(): void {
+    if (this.quantity > 1) {
+      this.quantity--;
+      this.dataService.updateQuantity(this.product.id, this.quantity, this.selectedColor);
+    } else {
+      this.dataService.removeFromCart(this.product.id, this.selectedColor);
+      this.quantity = 0;
+    }
+  }
+
+  addToCart(): void {
+    if (this.product) {
+      this.quantity = 1;
+      const cartItem = {
+        ...this.product,
+        selectedColor: this.selectedColor,
+      };
+
+      this.dataService.addToCart(cartItem, 1);
+    }
   }
 
   loadProduct(id: number): void {
@@ -46,21 +90,21 @@ export class ProductDetailComponent implements OnInit {
 
   selectColor(color: string): void {
     this.selectedColor = color;
+    this.updateQuantityFromCart(); // Update quantity when color changes
   }
 
   toggleFavorite(): void {
     this.isFavorite = !this.isFavorite;
   }
 
-  addToCart(): void {
-    if (this.product) {
-      this.dataService.addToCart(this.product);
-    }
-  }
-
   buyNow(): void {
     if (this.product) {
-      this.dataService.addToCart(this.product);
+      const cartItem = {
+        ...this.product,
+        selectedColor: this.selectedColor,
+      };
+
+      this.dataService.addToCartSilent(cartItem, 1);
       this.router.navigate(['/checkout']);
     }
   }

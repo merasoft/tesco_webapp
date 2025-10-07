@@ -20,6 +20,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { RippleModule } from 'primeng/ripple';
 import { SelectModule } from 'primeng/select';
 import { SliderModule } from 'primeng/slider';
+import { ToastModule } from 'primeng/toast';
 
 // Pipes
 import { NumberFormatPipe } from './pipes/number-format.pipe';
@@ -42,6 +43,7 @@ const PRIME_NG_MODULES = [
   RippleModule,
   SelectModule,
   SliderModule,
+  ToastModule,
 ];
 
 const ANGULAR_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];

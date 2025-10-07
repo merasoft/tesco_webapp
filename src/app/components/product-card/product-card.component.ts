@@ -19,7 +19,7 @@ export class ProductCardComponent {
 
   addToCart(event: Event): void {
     event.stopPropagation();
-    this.dataService.addToCart(this.product);
+    this.dataService.addToCart(this.product, 1);
   }
 
   getStarArray(rating: number): string[] {

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { MessageService } from 'primeng/api';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +12,7 @@ export class DataService {
   private cartItems = new BehaviorSubject<any[]>([]);
   public cartItems$ = this.cartItems.asObservable();
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private messageService: MessageService) {
     this.loadCart();
   }
 
@@ -60,8 +61,28 @@ export class DataService {
 
   // Cart methods
   addToCart(product: any, quantity: number = 1): void {
-    const currentCart = this.cartItems.value;
-    const existingItem = currentCart.find((item) => item.id === product.id);
+    const currentCart = [...this.cartItems.value];
+    const existingItem = currentCart.find((item) => item.id === product.id && (!product.selectedColor || item.selectedColor === product.selectedColor));
+
+    if (existingItem) {
+      existingItem.quantity += quantity;
+    } else {
+      currentCart.push({ ...product, quantity });
+    }
+
+    this.cartItems.next(currentCart);
+    this.saveCart();
+
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Added to Cart',
+      detail: `${product.name} added to cart`,
+    });
+  }
+
+  addToCartSilent(product: any, quantity: number = 1): void {
+    const currentCart = [...this.cartItems.value];
+    const existingItem = currentCart.find((item) => item.id === product.id && (!product.selectedColor || item.selectedColor === product.selectedColor));
 
     if (existingItem) {
       existingItem.quantity += quantity;
@@ -73,20 +94,27 @@ export class DataService {
     this.saveCart();
   }
 
-  removeFromCart(productId: number): void {
-    const currentCart = this.cartItems.value.filter((item) => item.id !== productId);
+  removeFromCart(productId: number, selectedColor?: string): void {
+    const currentCart = this.cartItems.value.filter((item) => !(item.id === productId && (!selectedColor || item.selectedColor === selectedColor)));
     this.cartItems.next(currentCart);
     this.saveCart();
+
+    this.messageService.add({
+      severity: 'info',
+      summary: 'Removed',
+      detail: 'Product removed from cart',
+    });
   }
 
-  updateQuantity(productId: number, quantity: number): void {
-    const currentCart = this.cartItems.value;
-    const item = currentCart.find((item) => item.id === productId);
+  updateQuantity(productId: number, quantity: number, selectedColor?: string): void {
+    const currentCart = [...this.cartItems.value];
+    const item = currentCart.find((item) => item.id === productId && (!selectedColor || item.selectedColor === selectedColor));
 
     if (item) {
       item.quantity = quantity;
+
       if (item.quantity <= 0) {
-        this.removeFromCart(productId);
+        this.removeFromCart(productId, selectedColor);
       } else {
         this.cartItems.next(currentCart);
         this.saveCart();

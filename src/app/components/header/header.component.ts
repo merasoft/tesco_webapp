@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { DataService } from '../../services/data.service';
 
 interface Location {
@@ -13,9 +14,10 @@ interface Location {
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   cartCount = 0;
   selectedLocation: Location | null = null;
+  private cartSubscription: Subscription = new Subscription();
   locations: Location[] = [
     { name: 'Salatiga City, Central Java', value: 'salatiga' },
     { name: 'Jakarta, DKI Jakarta', value: 'jakarta' },
@@ -29,9 +31,13 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.selectedLocation = this.locations[0];
 
-    this.dataService.cartItems$.subscribe((items) => {
-      this.cartCount = this.dataService.getCartCount();
+    this.cartSubscription = this.dataService.cartItems$.subscribe((items) => {
+      this.cartCount = items.reduce((count, item) => count + item.quantity, 0);
     });
+  }
+
+  ngOnDestroy(): void {
+    this.cartSubscription.unsubscribe();
   }
 
   goToCart(): void {
