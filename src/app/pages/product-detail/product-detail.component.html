@@ -12,7 +12,7 @@
       </div>
 
       <button routerLink="/cart">
-        <i class="pi pi-shopping-bag text-xl"></i>
+        <i class="pi pi-shopping-bag text-xl" pBadge [value]="cartCount" [ngClass]="{ 'hidden-badge': !cartCount }"></i>
       </button>
     </div>
   </header>

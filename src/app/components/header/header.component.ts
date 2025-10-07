@@ -32,6 +32,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.selectedLocation = this.locations[0];
 
     this.cartSubscription = this.dataService.cartItems$.subscribe((items) => {
+      console.log('CHANGED CART ITEMS', items);
       this.cartCount = items.reduce((count, item) => count + item.quantity, 0);
     });
   }

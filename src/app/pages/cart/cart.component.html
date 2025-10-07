@@ -1,60 +1,93 @@
-<div class="cart-container">
-  <div class="header">
-    <button class="back-btn" (click)="goBack()">
-      <i class="pi pi-arrow-left"></i>
-    </button>
-    <h2 class="page-title">Your Cart</h2>
-    <div class="cart-icon">
-      <i class="pi pi-shopping-cart"></i>
-    </div>
-  </div>
-
-  <div class="delivery-info">
-    <span class="delivery-label">Delivery to</span>
-    <div class="delivery-location">
-      <span>{{ deliveryLocation }}</span>
-      <i class="pi pi-chevron-down"></i>
-    </div>
-  </div>
-
-  <div class="cart-items">
-    <div *ngFor="let item of cartItems" class="cart-item">
-      <img [src]="item.images && item.images[0] ? item.images[0] : ''" [alt]="item.name" class="item-image" />
-
-      <div class="item-details">
-        <h3 class="item-name">{{ item.name }}</h3>
-        <p class="item-variant" *ngIf="item.variant">Variant: {{ item.variant }}</p>
-        <p class="item-price">$ {{ item.price }}</p>
-      </div>
-
-      <div class="item-actions">
-        <div class="quantity-controls">
-          <button class="qty-btn" (click)="updateQuantity(item.id, -1)">
-            <i class="pi pi-minus"></i>
-          </button>
-          <span class="quantity">{{ item.quantity }}</span>
-          <button class="qty-btn" (click)="updateQuantity(item.id, 1)">
-            <i class="pi pi-plus"></i>
-          </button>
-        </div>
-        <button class="remove-btn" (click)="removeItem(item.id)">
-          <i class="pi pi-trash"></i>
+<div class="h-[calc(100vh-80px)] flex flex-col">
+  <!-- Header -->
+  <header class="bg-white border-b border-gray-100 p-4">
+    <div class="flex items-center justify-between gap-4">
+      <div class="flex items-center gap-4 flex-1">
+        <button (click)="goBack()">
+          <i class="pi pi-arrow-left text-lg"></i>
         </button>
+        <div class="flex-1">
+          <h2 class="text-lg text-center font-semibold">Your Cart</h2>
+        </div>
       </div>
-    </div>
 
-    <div *ngIf="cartItems.length === 0" class="empty-cart">
-      <i class="pi pi-shopping-cart"></i>
-      <p>Your cart is empty</p>
-      <button class="shop-now-btn" (click)="goBack()">Shop Now</button>
+      <button (click)="goBack()">
+        <i class="pi pi-shopping-bag text-xl" pBadge [value]="cartCount" [ngClass]="{ 'hidden-badge': !cartCount }"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Delivery Info -->
+  <div class="bg-blue-50 p-4 border-b border-gray-100">
+    <div class="flex items-center justify-between">
+      <span class="text-sm text-gray-600">Delivery to</span>
+      <div class="flex items-center gap-2">
+        <span class="text-sm font-medium text-gray-900">{{ deliveryLocation }}</span>
+        <i class="pi pi-chevron-down text-sm text-gray-500"></i>
+      </div>
     </div>
   </div>
 
-  <div class="cart-footer" *ngIf="cartItems.length > 0">
-    <div class="total-section">
-      <span class="total-label">Totals</span>
-      <span class="total-amount">$ {{ total.toFixed(2) }}</span>
+  <!-- Cart Content -->
+  <div class="flex-1 overflow-y-auto pb-4">
+    <!-- Empty Cart State -->
+    <div *ngIf="cartItems.length === 0" class="flex flex-col items-center justify-center min-h-[400px] text-center p-6">
+      <i class="pi pi-shopping-cart text-6xl text-gray-400 mb-4"></i>
+      <h3 class="text-xl font-semibold text-gray-700 mb-2">Your cart is empty</h3>
+      <p class="text-gray-500 mb-6">Add some products to get started</p>
+      <button class="px-6 py-3 bg-blue-500 text-white rounded-lg font-medium transition-colors border-0" (click)="goBack()"> Start Shopping </button>
     </div>
-    <button class="checkout-btn" (click)="proceedToCheckout()"> Continue for payments </button>
+
+    <!-- Cart Items -->
+    <div *ngIf="cartItems.length > 0" class="p-4 space-y-4">
+      <div *ngFor="let item of cartItems" class="bg-white rounded-lg border border-gray-200 p-4">
+        <div class="flex gap-4">
+          <!-- Product Image -->
+          <div class="w-20 h-20 rounded-lg overflow-hidden bg-gray-100 flex-shrink-0">
+            <img [src]="item.images && item.images[0] ? item.images[0] : ''" [alt]="item.name" class="w-full h-full object-cover" loading="lazy" />
+          </div>
+
+          <!-- Product Details -->
+          <div class="flex-1 min-w-0">
+            <div class="flex flex-col cursor-pointer" (click)="goToProduct(item.id)">
+              <h3 class="font-semibold text-gray-900 text-sm leading-tight">{{ item.name }}</h3>
+              <p *ngIf="item.selectedColor" class="text-xs text-gray-500 mt-1">Color: {{ item.selectedColor }}</p>
+            </div>
+            <p class="text-lg font-bold text-gray-900 mt-2">{{ item.price | numberFormat }} <span class="text-sm">sum</span></p>
+
+            <div class="flex items-center gap-4 mt-1">
+              <div class="flex items-center border border-gray-300 rounded-lg overflow-hidden">
+                <button (click)="updateQuantity(item.id, -1)" class="w-8 h-8 bg-transparent border-0 flex items-center justify-center">
+                  <i class="pi pi-minus text-xs"></i>
+                </button>
+                <span class="px-3 text-center text-sm min-w-[2rem]">{{ item.quantity }}</span>
+                <button (click)="updateQuantity(item.id, 1)" class="w-8 h-8 bg-transparent border-0 flex items-center justify-center">
+                  <i class="pi pi-plus text-xs"></i>
+                </button>
+              </div>
+              <button (click)="removeItem(item.id)" class="text-red-500 text-sm font-medium bg-transparent border-0 p-0">
+                <i class="pi pi-trash text-xs mr-1"></i>
+                Remove
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fixed Cart Footer -->
+  <div *ngIf="cartItems.length > 0" class="bg-white border-t border-gray-200 p-4 space-y-3">
+    <!-- Order Summary Header -->
+    <h3 class="text-lg font-semibold text-gray-900">Order Summary</h3>
+
+    <!-- Order Details -->
+    <div class="flex items-center justify-between">
+      <span class="text-lg text-gray-900">Total</span>
+      <span class="text-lg font-bold text-gray-900">{{ total | numberFormat }} <span class="text-base">sum</span></span>
+    </div>
+
+    <!-- Checkout Button -->
+    <button class="w-full bg-blue-500 text-white py-3 rounded-lg font-semibold border-0 transition-colors" (click)="proceedToCheckout()"> Proceed to checkout </button>
   </div>
 </div>

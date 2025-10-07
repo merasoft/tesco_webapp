@@ -1,82 +1,106 @@
-<div class="checkout-container">
-  <div class="header">
-    <button class="back-btn" (click)="goBack()">
-      <i class="pi pi-arrow-left"></i>
-    </button>
-    <h2 class="page-title">Payment method</h2>
-    <div class="cart-icon">
-      <i class="pi pi-shopping-cart"></i>
-    </div>
-  </div>
-
-  <div class="payment-section">
-    <h3 class="section-title">Select existing card</h3>
-
-    <div class="card-item">
-      <i class="pi pi-credit-card card-icon"></i>
-      <span class="card-number">{{ cardNumber }}</span>
-      <i class="pi pi-trash delete-icon"></i>
-    </div>
-
-    <div class="or-divider">
-      <span>Or input new card</span>
-    </div>
-
-    <div class="new-card-form">
-      <div class="form-group">
-        <label>Card Number</label>
-        <input type="text" class="form-input" placeholder="**** **** **** ****" />
-      </div>
-
-      <div class="form-row">
-        <div class="form-group">
-          <label>Expiry Date</label>
-          <input type="text" class="form-input" placeholder="MM/YY" />
-        </div>
-        <div class="form-group">
-          <label>CVV</label>
-          <input type="text" class="form-input" placeholder="***" />
+<div class="h-[calc(100vh-80px)] flex flex-col">
+  <!-- Header -->
+  <header class="bg-white border-b border-gray-100 p-4">
+    <div class="flex items-center justify-between gap-4">
+      <div class="flex items-center gap-4 flex-1">
+        <button (click)="goBack()">
+          <i class="pi pi-arrow-left text-lg"></i>
+        </button>
+        <div class="flex-1">
+          <h2 class="text-lg text-center font-semibold">Checkout</h2>
         </div>
       </div>
 
-      <div class="form-group">
-        <label>Cardholder Name</label>
-        <input type="text" class="form-input" placeholder="John Doe" />
+      <button routerLink="/cart">
+        <i class="pi pi-shopping-bag text-xl" pBadge [value]="cartCount" [ngClass]="{ 'hidden-badge': !cartCount }"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Delivery Info -->
+  <div class="bg-blue-50 p-4 border-b border-gray-100">
+    <div class="flex items-center justify-between">
+      <span class="text-sm text-gray-600">Delivery to</span>
+      <div class="flex items-center gap-2">
+        <span class="text-sm font-medium text-gray-900">{{ deliveryLocation }}</span>
+        <i class="pi pi-chevron-down text-sm text-gray-500"></i>
       </div>
     </div>
   </div>
 
-  <div class="checkout-footer">
-    <div class="total-section">
-      <span class="total-label">Total Amount</span>
-      <span class="total-amount">$ {{ total.toFixed(2) }}</span>
+  <!-- Content -->
+  <div class="flex-1 overflow-y-auto">
+    <!-- Order Summary Section -->
+    <div class="bg-white p-4 mb-4">
+      <h3 class="text-base font-semibold text-gray-900 mb-3">Order Summary</h3>
+
+      <div class="space-y-3">
+        <div *ngFor="let item of cartItems" class="flex gap-3">
+          <!-- Product Image -->
+          <div class="w-16 h-16 rounded-lg overflow-hidden bg-gray-100 flex-shrink-0">
+            <img [src]="item.images && item.images[0] ? item.images[0] : ''" [alt]="item.name" class="w-full h-full object-cover" loading="lazy" />
+          </div>
+
+          <!-- Product Details -->
+          <div class="flex-1 min-w-0">
+            <h4 class="font-medium text-gray-900 text-sm leading-tight">{{ item.name }}</h4>
+            <p *ngIf="item.selectedColor" class="text-xs text-gray-500 mt-0.5">Color: {{ item.selectedColor }}</p>
+            <div class="flex items-center justify-between mt-1">
+              <span class="font-semibold text-gray-900 text-sm">{{ item.price | numberFormat }} sum</span>
+              <span class="text-sm text-gray-600">{{ item.quantity }} quantity</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <button class="pay-btn" (click)="processPayment()">
-      Pay Now
-    </button>
+
+    <!-- Delivery Options Section -->
+    <div class="bg-white p-4">
+      <h3 class="text-base font-semibold text-gray-900 mb-3">Delivery Options</h3>
+
+      <div class="space-y-3">
+        <div
+          *ngFor="let option of deliveryOptions"
+          class="flex items-center justify-between p-3 border rounded-lg cursor-pointer transition-colors"
+          [ngClass]="{ 'border-blue-500 bg-blue-50': selectedDeliveryOption === option.id, 'border-gray-200': selectedDeliveryOption !== option.id }"
+          (click)="selectDeliveryOption(option.id)">
+          <div class="flex items-center gap-3">
+            <div
+              class="w-4 h-4 rounded-full border-2 flex items-center justify-center"
+              [ngClass]="{ 'border-blue-500': selectedDeliveryOption === option.id, 'border-gray-300': selectedDeliveryOption !== option.id }">
+              <div *ngIf="selectedDeliveryOption === option.id" class="w-2 h-2 bg-blue-500 rounded-full"></div>
+            </div>
+            <div>
+              <p class="font-medium text-gray-900 text-sm">{{ option.name }}</p>
+              <p class="text-xs text-gray-500">{{ option.description }}</p>
+            </div>
+          </div>
+          <span class="font-semibold text-gray-900 text-sm">{{ option.price > 0 ? (option.price | numberFormat) + ' sum' : 'Free' }}</span>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
 
-<!-- Success Modal -->
-<div class="modal-overlay" *ngIf="showSuccessModal" (click)="closeModal()">
-  <div class="modal-content" (click)="$event.stopPropagation()">
-    <button class="close-btn" (click)="closeModal()">
-      <i class="pi pi-times"></i>
-    </button>
-
-    <div class="success-icon">
-      <i class="pi pi-check"></i>
+  <!-- Fixed Footer -->
+  <div class="bg-white border-t border-gray-200 p-4 space-y-4">
+    <!-- Price Breakdown -->
+    <div class="space-y-2">
+      <div class="flex items-center justify-between">
+        <span class="text-sm text-gray-600">Subtotal ({{ cartCount }} items)</span>
+        <span class="text-sm font-medium text-gray-900">{{ subtotal | numberFormat }} sum</span>
+      </div>
+      <div class="flex items-center justify-between">
+        <span class="text-sm text-gray-600">Delivery fee</span>
+        <span class="text-sm font-medium text-gray-900">{{ selectedDeliveryFee > 0 ? (selectedDeliveryFee | numberFormat) + ' sum' : 'Free' }}</span>
+      </div>
+      <hr class="my-2" />
+      <div class="flex items-center justify-between">
+        <span class="text-lg font-semibold text-gray-900">Total</span>
+        <span class="text-xl font-bold text-gray-900">{{ total | numberFormat }} <span class="text-base">sum</span></span>
+      </div>
     </div>
 
-    <h2 class="modal-title">Congrats! your payment is successfully</h2>
-    <p class="modal-text">Track your order or just chat directly to the seller. Download order summary in down below</p>
-
-    <div class="invoice-download">
-      <i class="pi pi-file-pdf"></i>
-      <span>order_invoice</span>
-      <i class="pi pi-download"></i>
-    </div>
-
-    <button class="continue-btn" (click)="closeModal()">Continue</button>
+    <!-- Place Order Button -->
+    <button class="w-full bg-blue-500 text-white py-3 rounded-lg font-semibold border-0 transition-colors" (click)="proceedToPayment()"> Select payment method </button>
   </div>
 </div>

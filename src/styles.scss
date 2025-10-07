@@ -15,19 +15,10 @@
   }
 }
 
-.btn-primary {
-  @apply bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-800 transition-colors;
+.p-badge {
+  @apply min-w-[22px] h-[22px] p-0 text-xs rounded-full items-center justify-center bg-pink-500;
 }
 
-.btn-secondary {
-  @apply bg-gray-200 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-300 transition-colors;
+.hidden-badge .p-badge {
+  @apply hidden;
 }
-
-.card {
-  @apply bg-white rounded-lg shadow-sm overflow-hidden;
-}
-
-.input-field {
-  @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500;
-}
-

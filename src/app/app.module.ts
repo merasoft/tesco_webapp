@@ -16,6 +16,7 @@ import { MainLayoutComponent } from './layouts/main-layout/main-layout.component
 import { CartComponent } from './pages/cart/cart.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { HomeComponent } from './pages/home/home.component';
+import { PaymentComponent } from './pages/payment/payment.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import { ProductListComponent } from './pages/product-list/product-list.component';
 import { SharedModule } from './shared/shared.module';
@@ -33,6 +34,7 @@ import { providePrimeNG } from 'primeng/config';
     ProductDetailComponent,
     CartComponent,
     CheckoutComponent,
+    PaymentComponent,
     HeaderComponent,
     SearchBarComponent,
     ProductCardComponent,

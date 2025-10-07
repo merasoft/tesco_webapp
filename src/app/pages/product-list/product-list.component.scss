@@ -19,10 +19,6 @@
     }
   }
 
-  .p-badge {
-    @apply min-w-[22px] h-[22px] p-0 text-xs rounded-full items-center justify-center bg-pink-500;
-  }
-
   .p-button {
     &.p-button-text {
       @apply transition-colors;

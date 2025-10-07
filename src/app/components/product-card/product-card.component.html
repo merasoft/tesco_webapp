@@ -35,7 +35,10 @@
       </div>
       <span class="text-xs text-gray-500 ml-1">({{ product.rating }})</span>
     </div>
-    <p class="font-bold text-gray-900 mb-2">{{ product.price | numberFormat }} sum</p>
+    <p class="font-bold text-gray-900 mb-2">
+      {{ product.price | numberFormat }}
+      <span class="text-sm">sum</span>
+    </p>
     <button class="w-full bg-blue-500 text-sm text-white py-2 rounded-lg hover:bg-blue-600 transition-colors border-0 cursor-pointer font-medium" (click)="addToCart($event)">
       <i class="mr-2 text-sm pi pi-shopping-cart"></i>
       Add to cart

@@ -15,6 +15,7 @@ export class ProductDetailComponent implements OnInit {
   isLoading = true;
   selectedImageIndex = 0;
   quantity = 0;
+  cartCount = 0;
   private cartItems: any[] = [];
 
   constructor(private route: ActivatedRoute, private router: Router, private dataService: DataService) {}
@@ -26,6 +27,7 @@ export class ProductDetailComponent implements OnInit {
     // Subscribe to cart changes to keep quantity in sync
     this.dataService.cartItems$.subscribe((items) => {
       this.cartItems = items;
+      this.cartCount = items.reduce((count, item) => count + item.quantity, 0);
       this.updateQuantityFromCart();
     });
   }
