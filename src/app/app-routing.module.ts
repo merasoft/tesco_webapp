@@ -6,6 +6,9 @@ import { ProductDetailComponent } from './pages/product-detail/product-detail.co
 import { CartComponent } from './pages/cart/cart.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { PaymentComponent } from './pages/payment/payment.component';
+import { WishlistComponent } from './pages/wishlist/wishlist.component';
+import { HistoryComponent } from './pages/history/history.component';
+import { AccountComponent } from './pages/account/account.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -14,6 +17,9 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'payment', component: PaymentComponent },
+  { path: 'wishlist', component: WishlistComponent },
+  { path: 'history', component: HistoryComponent },
+  { path: 'account', component: AccountComponent },
   { path: '**', redirectTo: '' },
 ];
 

@@ -19,6 +19,9 @@ import { HomeComponent } from './pages/home/home.component';
 import { PaymentComponent } from './pages/payment/payment.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import { ProductListComponent } from './pages/product-list/product-list.component';
+import { WishlistComponent } from './pages/wishlist/wishlist.component';
+import { HistoryComponent } from './pages/history/history.component';
+import { AccountComponent } from './pages/account/account.component';
 import { SharedModule } from './shared/shared.module';
 
 // PrimeNG Config
@@ -35,6 +38,9 @@ import { providePrimeNG } from 'primeng/config';
     CartComponent,
     CheckoutComponent,
     PaymentComponent,
+    WishlistComponent,
+    HistoryComponent,
+    AccountComponent,
     HeaderComponent,
     SearchBarComponent,
     ProductCardComponent,

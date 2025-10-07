@@ -1,6 +1,6 @@
 <div class="h-[calc(100vh-80px)] flex flex-col">
   <!-- Header -->
-  <header class="bg-white border-b border-gray-100 p-4">
+  <header class="bg-white border-b border-gray-100 p-4 sticky top-0 z-40" [ngClass]="{ 'pr-6': cartCount > 0 }">
     <div class="flex items-center justify-between gap-4">
       <div class="flex items-center gap-4 flex-1">
         <button (click)="goBack()">
@@ -61,7 +61,7 @@
       <div class="space-y-3">
         <div
           *ngFor="let option of deliveryOptions"
-          class="flex items-center justify-between p-3 border rounded-lg cursor-pointer transition-colors"
+          class="flex items-center justify-between p-3 border rounded-lg cursor-pointer"
           [ngClass]="{ 'border-blue-500 bg-blue-50': selectedDeliveryOption === option.id, 'border-gray-200': selectedDeliveryOption !== option.id }"
           (click)="selectDeliveryOption(option.id)">
           <div class="flex items-center gap-3">
@@ -101,6 +101,6 @@
     </div>
 
     <!-- Place Order Button -->
-    <button class="w-full bg-blue-500 text-white py-3 rounded-lg font-semibold border-0 transition-colors" (click)="proceedToPayment()"> Select payment method </button>
+    <button class="w-full bg-blue-500 text-white py-3 rounded-lg font-semibold border-0" (click)="proceedToPayment()"> Select payment method </button>
   </div>
 </div>

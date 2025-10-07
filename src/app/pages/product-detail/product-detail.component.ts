@@ -30,6 +30,13 @@ export class ProductDetailComponent implements OnInit {
       this.cartCount = items.reduce((count, item) => count + item.quantity, 0);
       this.updateQuantityFromCart();
     });
+
+    // Subscribe to wishlist changes
+    this.dataService.wishlistItems$.subscribe((items) => {
+      if (this.product) {
+        this.isFavorite = items.some((item) => item.id === this.product.id);
+      }
+    });
   }
 
   private updateQuantityFromCart(): void {
@@ -96,7 +103,9 @@ export class ProductDetailComponent implements OnInit {
   }
 
   toggleFavorite(): void {
-    this.isFavorite = !this.isFavorite;
+    if (this.product) {
+      this.dataService.toggleWishlist(this.product);
+    }
   }
 
   buyNow(): void {

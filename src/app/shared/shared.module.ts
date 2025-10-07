@@ -9,6 +9,7 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { CarouselModule } from 'primeng/carousel';
 import { CheckboxModule } from 'primeng/checkbox';
+import { DialogModule } from 'primeng/dialog';
 import { DrawerModule } from 'primeng/drawer';
 import { DropdownModule } from 'primeng/dropdown';
 import { GalleriaModule } from 'primeng/galleria';
@@ -32,6 +33,7 @@ const PRIME_NG_MODULES = [
   CardModule,
   CarouselModule,
   CheckboxModule,
+  DialogModule,
   DrawerModule,
   DropdownModule,
   GalleriaModule,

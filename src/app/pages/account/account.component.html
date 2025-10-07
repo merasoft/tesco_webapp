@@ -1,0 +1,125 @@
+<div>
+  <!-- Header -->
+  <header class="bg-white border-b border-gray-100 p-4 sticky top-0 z-40" [ngClass]="{ 'pr-6': cartCount > 0 }">
+    <div class="flex items-center justify-between gap-4">
+      <div class="flex items-center gap-4 flex-1">
+        <button (click)="goBack()">
+          <i class="pi pi-arrow-left text-lg text-gray-700"></i>
+        </button>
+        <div class="flex-1">
+          <h2 class="text-lg text-center font-semibold text-gray-900">My Account</h2>
+        </div>
+      </div>
+
+      <button routerLink="/cart">
+        <i class="pi pi-shopping-bag text-xl text-gray-700" pBadge [value]="cartCount" [ngClass]="{ 'hidden-badge': !cartCount }"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <div class="p-4">
+    <!-- Profile Section -->
+    <div class="bg-white rounded-lg p-6 mb-6 shadow-sm border border-gray-100">
+      <div class="flex items-center gap-4 mb-4">
+        <div class="relative">
+          <img [src]="userProfile.avatar" [alt]="userProfile.name" class="w-16 h-16 rounded-full object-cover border-2 border-blue-500" />
+          <button (click)="editProfile()" class="absolute -bottom-1 -right-1 bg-blue-500 text-white rounded-full w-6 h-6 flex items-center justify-center">
+            <i class="pi pi-pencil text-xs"></i>
+          </button>
+        </div>
+        <div class="flex-1">
+          <h3 class="text-lg font-semibold text-gray-900">{{ userProfile.name }}</h3>
+          <p class="text-gray-600 text-sm mb-1">{{ userProfile.email }}</p>
+          <p class="text-gray-500 text-xs">Member since {{ userProfile.memberSince | date : 'MMM yyyy' }}</p>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="flex justify-between gap-4 pt-4 border-t border-gray-100">
+        <div class="text-left">
+          <div class="text-xl font-bold text-blue-600">{{ userProfile.totalOrders }}</div>
+          <div class="text-xs text-gray-500">Total Orders</div>
+        </div>
+        <div class="text-right">
+          <div class="text-xl font-bold text-purple-600 text-nowrap">{{ getMembershipDuration() }}</div>
+          <div class="text-xs text-gray-500">Member For</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="grid grid-cols-2 gap-4 mb-6">
+      <button routerLink="/wishlist" class="bg-white p-4 rounded-lg shadow-sm border border-gray-100 text-center">
+        <i class="pi pi-heart text-2xl text-pink-500 mb-2 block"></i>
+        <span class="text-sm font-medium text-gray-900">Wishlist</span>
+      </button>
+      <button routerLink="/history" class="bg-white p-4 rounded-lg shadow-sm border border-gray-100 text-center">
+        <i class="pi pi-file text-2xl text-blue-500 mb-2 block"></i>
+        <span class="text-sm font-medium text-gray-900">Order History</span>
+      </button>
+    </div>
+
+    <!-- Menu Items -->
+    <div class="space-y-2">
+      <div *ngFor="let item of accountMenuItems" class="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden">
+        <button
+          (click)="handleMenuItemClick(item)"
+          class="w-full p-4 flex items-center gap-4 text-left menu-item"
+          [ngClass]="{
+            'text-red-600': item.action === 'logout',
+            'text-gray-900': item.action !== 'logout'
+          }">
+          <div
+            class="w-10 h-10 rounded-full flex items-center justify-center"
+            [ngClass]="{
+              'bg-red-100': item.action === 'logout',
+              'bg-blue-100': item.action !== 'logout'
+            }">
+            <i
+              [class]="'pi ' + item.icon + ' text-lg'"
+              [ngClass]="{
+                'text-red-600': item.action === 'logout',
+                'text-blue-600': item.action !== 'logout'
+              }">
+            </i>
+          </div>
+
+          <div class="flex-1">
+            <h4 class="font-medium">{{ item.title }}</h4>
+            <p class="text-sm text-gray-500">{{ item.description }}</p>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <span *ngIf="item.badge" class="bg-red-500 text-white text-xs px-2 py-1 rounded-full">
+              {{ item.badge }}
+            </span>
+            <i class="pi pi-chevron-right text-gray-400"></i>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <!-- App Version -->
+    <div class="mt-8 text-center text-xs text-gray-400">
+      <p>Tesco App v1.0.0</p>
+      <p>© 2024 Tesco. All rights reserved.</p>
+    </div>
+  </div>
+
+  <!-- Logout Confirmation Modal -->
+  <div *ngIf="showLogoutModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+    <div class="bg-white rounded-lg p-6 w-full max-w-sm">
+      <div class="text-center mb-6">
+        <i class="pi pi-exclamation-triangle text-4xl text-orange-500 mb-4 block"></i>
+        <h3 class="text-lg font-semibold text-gray-900 mb-2">Confirm Logout</h3>
+        <p class="text-gray-600">Are you sure you want to sign out of your account?</p>
+      </div>
+
+      <div class="flex gap-3">
+        <button (click)="cancelLogout()" class="flex-1 py-2 px-4 border border-gray-200 text-gray-700 rounded-lg"> Cancel </button>
+        <button (click)="confirmLogout()" class="flex-1 py-2 px-4 bg-red-500 text-white rounded-lg"> Logout </button>
+      </div>
+    </div>
+  </div>
+</div>

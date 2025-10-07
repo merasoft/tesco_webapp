@@ -1,5 +1,12 @@
 <div class="h-full flex flex-col border border-gray-200 rounded-xl overflow-hidden shadow-sm" (click)="viewProduct()">
   <div class="w-full h-fit aspect-square flex items-center justify-center relative" (click)="$event.stopPropagation()">
+    <!-- Wishlist Heart Button -->
+    <button
+      (click)="toggleWishlist($event)"
+      class="absolute top-2 right-2 z-10 w-8 h-8 rounded-full bg-white shadow-md flex items-center justify-center"
+      [ngClass]="{ 'text-red-500': isInWishlist, 'text-gray-400': !isInWishlist }">
+      <i [class]="isInWishlist ? 'pi pi-heart-fill text-sm' : 'pi pi-heart text-sm'"></i>
+    </button>
     <img *ngIf="product.images && product.images.length === 1" [src]="product.images[0]" [alt]="product.name" class="w-full h-full object-cover" />
     <p-carousel
       *ngIf="product.images && product.images.length > 1"
@@ -39,7 +46,7 @@
       {{ product.price | numberFormat }}
       <span class="text-sm">sum</span>
     </p>
-    <button class="w-full bg-blue-500 text-sm text-white py-2 rounded-lg hover:bg-blue-600 transition-colors border-0 cursor-pointer font-medium" (click)="addToCart($event)">
+    <button class="w-full bg-blue-500 text-sm text-white py-2 rounded-lg border-0 cursor-pointer font-medium" (click)="addToCart($event)">
       <i class="mr-2 text-sm pi pi-shopping-cart"></i>
       Add to cart
     </button>

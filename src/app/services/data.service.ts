@@ -12,8 +12,12 @@ export class DataService {
   private cartItems = new BehaviorSubject<any[]>([]);
   public cartItems$ = this.cartItems.asObservable();
 
+  private wishlistItems = new BehaviorSubject<any[]>([]);
+  public wishlistItems$ = this.wishlistItems.asObservable();
+
   constructor(private http: HttpClient, private messageService: MessageService) {
     this.loadCart();
+    this.loadWishlist();
   }
 
   getData(): Observable<any> {
@@ -76,7 +80,7 @@ export class DataService {
     this.messageService.add({
       severity: 'success',
       summary: 'Added to Cart',
-      detail: `${product.name} added to cart`,
+      detail: `${product.name}`,
     });
   }
 
@@ -143,6 +147,74 @@ export class DataService {
     const savedCart = localStorage.getItem('cart');
     if (savedCart) {
       this.cartItems.next(JSON.parse(savedCart));
+    }
+  }
+
+  // Wishlist methods
+  addToWishlist(product: any): void {
+    const currentWishlist = [...this.wishlistItems.value];
+    const existingItem = currentWishlist.find((item) => item.id === product.id);
+
+    if (!existingItem) {
+      currentWishlist.push({ ...product, addedDate: new Date() });
+      this.wishlistItems.next(currentWishlist);
+      this.saveWishlist();
+
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Added to Wishlist',
+        detail: `${product.name}`,
+      });
+    }
+  }
+
+  removeFromWishlist(productId: number): void {
+    const currentWishlist = this.wishlistItems.value.filter((item) => item.id !== productId);
+    this.wishlistItems.next(currentWishlist);
+    this.saveWishlist();
+
+    this.messageService.add({
+      severity: 'info',
+      summary: 'Removed',
+      detail: 'Product removed from wishlist',
+    });
+  }
+
+  toggleWishlist(product: any): boolean {
+    const isInWishlist = this.isInWishlist(product.id);
+
+    if (isInWishlist) {
+      this.removeFromWishlist(product.id);
+      return false;
+    } else {
+      this.addToWishlist(product);
+      return true;
+    }
+  }
+
+  isInWishlist(productId: number): boolean {
+    return this.wishlistItems.value.some((item) => item.id === productId);
+  }
+
+  clearWishlist(): void {
+    this.wishlistItems.next([]);
+    this.saveWishlist();
+
+    this.messageService.add({
+      severity: 'info',
+      summary: 'Cleared',
+      detail: 'Wishlist cleared successfully',
+    });
+  }
+
+  private saveWishlist(): void {
+    localStorage.setItem('wishlist', JSON.stringify(this.wishlistItems.value));
+  }
+
+  private loadWishlist(): void {
+    const savedWishlist = localStorage.getItem('wishlist');
+    if (savedWishlist) {
+      this.wishlistItems.next(JSON.parse(savedWishlist));
     }
   }
 }

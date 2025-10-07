@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from '../../services/data.service';
 
@@ -8,10 +8,18 @@ import { DataService } from '../../services/data.service';
   templateUrl: './product-card.component.html',
   styleUrls: ['./product-card.component.scss'],
 })
-export class ProductCardComponent {
+export class ProductCardComponent implements OnInit {
   @Input() product: any;
+  isInWishlist = false;
 
   constructor(private dataService: DataService, private router: Router) {}
+
+  ngOnInit(): void {
+    // Check if product is in wishlist
+    this.dataService.wishlistItems$.subscribe((items) => {
+      this.isInWishlist = items.some((item) => item.id === this.product.id);
+    });
+  }
 
   viewProduct(): void {
     this.router.navigate(['/products', this.product.id]);
@@ -20,6 +28,11 @@ export class ProductCardComponent {
   addToCart(event: Event): void {
     event.stopPropagation();
     this.dataService.addToCart(this.product, 1);
+  }
+
+  toggleWishlist(event: Event): void {
+    event.stopPropagation();
+    this.dataService.toggleWishlist(this.product);
   }
 
   getStarArray(rating: number): string[] {

@@ -1,0 +1,8 @@
+// Account specific styles using Tailwind utilities
+.menu-item {
+  @apply transition-all duration-200 ease-in-out;
+}
+
+.menu-item:hover {
+  @apply translate-x-1 shadow-lg;
+}

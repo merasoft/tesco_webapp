@@ -1,0 +1,183 @@
+<div>
+  <!-- Header -->
+  <header class="bg-white border-b border-gray-100 p-4 sticky top-0 z-40" [ngClass]="{ 'pr-6': cartCount > 0 }">
+    <div class="flex items-center justify-between gap-4">
+      <div class="flex items-center gap-4 flex-1">
+        <button (click)="goBack()">
+          <i class="pi pi-arrow-left text-lg text-gray-700"></i>
+        </button>
+        <div class="flex-1">
+          <h2 class="text-lg text-center font-semibold text-gray-900">Order History</h2>
+        </div>
+      </div>
+
+      <button routerLink="/cart">
+        <i class="pi pi-shopping-bag text-xl text-gray-700" pBadge [value]="cartCount" [ngClass]="{ 'hidden-badge': !cartCount }"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Filters -->
+  <div class="bg-white border-b border-gray-100 p-4">
+    <!-- Filter Tabs -->
+    <div class="flex gap-2 overflow-x-auto pb-2">
+      <button
+        *ngFor="let filter of filterOptions"
+        class="flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium"
+        [ngClass]="{
+          'bg-blue-500 text-white': selectedFilter === filter.value,
+          'bg-gray-100 text-gray-600': selectedFilter !== filter.value
+        }"
+        (click)="selectedFilter = filter.value; onFilterChange()">
+        {{ filter.label }}
+      </button>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="p-4">
+    <!-- Loading State -->
+    <div *ngIf="isLoading" class="space-y-3">
+      <div *ngFor="let i of [1, 2, 3]" class="bg-white rounded-lg p-3 animate-pulse">
+        <div class="flex justify-between items-start mb-2">
+          <div class="bg-gray-200 h-3 w-20 rounded"></div>
+          <div class="bg-gray-200 h-4 w-16 rounded-full"></div>
+        </div>
+        <div class="space-y-1 mb-3">
+          <div class="bg-gray-200 h-2 w-24 rounded"></div>
+          <div class="bg-gray-200 h-2 w-20 rounded"></div>
+        </div>
+        <div class="flex gap-2">
+          <div class="bg-gray-200 w-10 h-10 rounded"></div>
+          <div class="bg-gray-200 w-10 h-10 rounded"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty State -->
+    <div *ngIf="!isLoading && filteredOrders.length === 0 && orders.length === 0" class="text-center py-16">
+      <div class="mb-6">
+        <i class="pi pi-file text-6xl text-gray-300 mb-4 block"></i>
+        <h3 class="text-xl font-semibold text-gray-900 mb-2">No orders yet</h3>
+        <p class="text-gray-500 mb-6">Start shopping to see your order history here</p>
+        <button (click)="goBack()" class="bg-blue-500 text-white px-6 py-3 rounded-lg font-medium"> Start Shopping </button>
+      </div>
+    </div>
+
+    <!-- Order List -->
+    <div *ngIf="!isLoading && filteredOrders.length > 0" class="space-y-3">
+      <div *ngFor="let order of filteredOrders; trackBy: trackByOrderId" class="bg-white rounded-lg border border-gray-200 overflow-hidden order-card">
+        <!-- Order Header -->
+        <div class="p-3 border-b border-gray-100">
+          <div class="flex items-start justify-between mb-2">
+            <div class="flex flex-col gap-1">
+              <span class="font-semibold text-gray-900 text-sm">{{ order.id }}</span>
+              <span class="px-2 py-1 text-xs font-medium rounded-full flex items-center gap-1 w-fit" [ngClass]="getStatusClass(order.status)">
+                <i [class]="'pi ' + getStatusIcon(order.status) + ' text-xs'"></i>
+                {{ order.status | titlecase }}
+              </span>
+            </div>
+            <div class="text-right">
+              <div class="text-lg font-bold text-blue-600">{{ order.total | numberFormat }} <span class="text-sm">sum</span></div>
+              <div class="text-xs text-gray-500">{{ order.items.length }} item(s)</div>
+            </div>
+          </div>
+
+          <div class="text-xs text-gray-500">
+            <span>{{ order.date | date : 'MMM d, y' }}</span>
+          </div>
+        </div>
+
+        <!-- Order Items -->
+        <div class="p-3">
+          <div class="flex gap-2 mb-3 overflow-x-auto">
+            <div *ngFor="let item of order.items" class="flex-shrink-0 cursor-pointer" (click)="goToProduct(item.id)">
+              <img [src]="item.image" [alt]="item.name" class="w-14 h-14 object-cover rounded border border-gray-200" onerror="this.src='https://via.placeholder.com/400x400?text=No+Image'" />
+              <div class="text-center mt-1">
+                <span class="text-xs text-gray-500">×{{ item.quantity }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Order Details -->
+          <div class="space-y-1 text-xs text-gray-600 mb-3">
+            <div class="flex items-center gap-2">
+              <i class="pi pi-map-marker text-gray-400"></i>
+              <span class="truncate">{{ order.deliveryAddress }}</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i class="pi pi-credit-card text-gray-400"></i>
+              <span>{{ order.paymentMethod }}</span>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="flex gap-2">
+            <button (click)="viewOrderDetails(order)" class="w-full border border-gray-200 text-gray-700 py-2 px-3 rounded-lg text-xs font-medium"> View Details </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Load More -->
+    <div *ngIf="!isLoading && filteredOrders.length > 0" class="mt-6 mb-2 text-center">
+      <button class="text-blue-600 font-medium"> Load More Orders </button>
+    </div>
+  </div>
+
+  <!-- Order Details Dialog -->
+  <p-dialog [(visible)]="showOrderDialog" [modal]="true" [closable]="true" [draggable]="false" [resizable]="false" styleClass="w-11/12 max-w-md" header="Order Details">
+    <div *ngIf="selectedOrder" class="space-y-4">
+      <!-- Order Header -->
+      <div class="border-b border-gray-100 pb-4">
+        <div class="flex items-center justify-between mb-2">
+          <h3 class="font-semibold text-gray-900">{{ selectedOrder.id }}</h3>
+          <span class="px-2 py-1 text-xs font-medium rounded-full flex items-center gap-1" [ngClass]="getStatusClass(selectedOrder.status)">
+            <i [class]="'pi ' + getStatusIcon(selectedOrder.status) + ' text-xs'"></i>
+            {{ selectedOrder.status | titlecase }}
+          </span>
+        </div>
+        <div class="text-sm text-gray-500">{{ selectedOrder.date | date : 'MMM d, y' }}</div>
+      </div>
+
+      <!-- Order Items -->
+      <div>
+        <h4 class="font-medium text-gray-900 mb-3">Items ({{ selectedOrder.items.length }})</h4>
+        <div class="space-y-3 max-h-48 overflow-y-auto">
+          <div *ngFor="let item of selectedOrder.items" class="flex items-center gap-3">
+            <img [src]="item.image" [alt]="item.name" class="w-12 h-12 object-cover rounded border border-gray-200" onerror="this.src='https://via.placeholder.com/400x400?text=No+Image'" />
+            <div class="flex-1 min-w-0">
+              <div class="font-medium text-sm text-gray-900 truncate">{{ item.name }}</div>
+              <div class="text-xs text-gray-500">Qty: {{ item.quantity }}</div>
+            </div>
+            <div class="text-sm font-medium text-gray-900">{{ item.price | numberFormat }} <span class="text-xs">sum</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Order Summary -->
+      <div class="border-t border-gray-100 pt-4">
+        <div class="space-y-2 text-sm">
+          <div class="flex items-center gap-2">
+            <i class="pi pi-map-marker text-gray-400"></i>
+            <span class="text-gray-600">{{ selectedOrder.deliveryAddress }}</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <i class="pi pi-credit-card text-gray-400"></i>
+            <span class="text-gray-600">{{ selectedOrder.paymentMethod }}</span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between mt-4 pt-3 border-t border-gray-100">
+          <span class="font-medium text-gray-900">Total</span>
+          <span class="text-lg font-bold text-blue-600">{{ selectedOrder.total | numberFormat }} <span class="text-sm">sum</span></span>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="flex gap-3 pt-4">
+        <button (click)="closeOrderDialog()" class="w-full border border-gray-200 text-gray-700 py-2 px-4 rounded-lg text-sm font-medium"> Close </button>
+      </div>
+    </div>
+  </p-dialog>
+</div>

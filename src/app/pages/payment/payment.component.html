@@ -1,6 +1,6 @@
 <div class="h-[calc(100vh-80px)] flex flex-col">
   <!-- Header -->
-  <header class="bg-white border-b border-gray-100 p-4">
+  <header class="bg-white border-b border-gray-100 p-4 sticky top-0 z-40" [ngClass]="{ 'pr-6': cartCount > 0 }">
     <div class="flex items-center justify-between gap-4">
       <div class="flex items-center gap-4 flex-1">
         <button (click)="goBack()">
@@ -26,7 +26,7 @@
       <div class="space-y-3">
         <div
           *ngFor="let method of paymentMethods"
-          class="flex items-center justify-between p-4 border rounded-lg cursor-pointer transition-colors"
+          class="flex items-center justify-between p-4 border rounded-lg cursor-pointer"
           [ngClass]="{ 'border-blue-500 bg-blue-50': selectedPaymentMethod === method.id, 'border-gray-200': selectedPaymentMethod !== method.id }"
           (click)="selectPaymentMethod(method.id)">
           <div class="flex items-center gap-3">
@@ -113,7 +113,7 @@
     </div>
 
     <!-- Place Order Button -->
-    <button class="w-full bg-blue-500 text-white py-3 rounded-lg font-semibold border-0 transition-colors" (click)="processPayment()"> Place order </button>
+    <button class="w-full bg-blue-500 text-white py-3 rounded-lg font-semibold border-0" (click)="processPayment()"> Place order </button>
   </div>
 </div>
 
@@ -137,6 +137,6 @@
       <i class="pi pi-download text-gray-500"></i>
     </div>
 
-    <button class="w-full bg-blue-500 text-white py-3 rounded-lg font-semibold border-0 transition-colors" (click)="closeModal()"> Continue Shopping </button>
+    <button class="w-full bg-blue-500 text-white py-3 rounded-lg font-semibold border-0" (click)="closeModal()"> Continue Shopping </button>
   </div>
 </div>
