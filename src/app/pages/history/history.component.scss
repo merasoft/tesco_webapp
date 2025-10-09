@@ -2,7 +2,3 @@
 .order-card {
   @apply transition-all duration-200 ease-in-out;
 }
-
-.order-card:hover {
-  @apply -translate-y-0.5 shadow-lg;
-}

@@ -24,7 +24,6 @@ export class HomeComponent implements OnInit {
   }
 
   onFiltersApplied(filters: any): void {
-    console.log('Filters applied:', filters);
     // Apply filters to products
   }
 }

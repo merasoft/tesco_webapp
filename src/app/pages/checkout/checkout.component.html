@@ -7,7 +7,7 @@
           <i class="pi pi-arrow-left text-lg"></i>
         </button>
         <div class="flex-1">
-          <h2 class="text-lg text-center font-semibold">Checkout</h2>
+          <h2 class="text-lg text-center font-semibold">Оформление заказа</h2>
         </div>
       </div>
 
@@ -19,11 +19,20 @@
 
   <!-- Delivery Info -->
   <div class="bg-blue-50 p-4 border-b border-gray-100">
-    <div class="flex items-center justify-between">
-      <span class="text-sm text-gray-600">Delivery to</span>
-      <div class="flex items-center gap-2">
-        <span class="text-sm font-medium text-gray-900">{{ deliveryLocation }}</span>
-        <i class="pi pi-chevron-down text-sm text-gray-500"></i>
+    <div class="flex items-center justify-between gap-4">
+      <span class="text-sm text-gray-600">Доставка в</span>
+      <div class="w-[210px]">
+        <p-select [options]="locations" [(ngModel)]="selectedLocation" optionLabel="name" styleClass="w-full" panelStyleClass="w-[210px]" (onChange)="onLocationChange($event.value)">
+          <ng-template #selectedItem>
+            <span class="text-sm font-medium text-gray-800">{{ selectedLocation?.name }}</span>
+          </ng-template>
+          <ng-template #item let-location>
+            <span class="w-full truncate" [ngClass]="{ 'text-blue-500': location.isAddNew }">
+              <i *ngIf="location.isAddNew" class="text-xs pi pi-plus mr-1"></i>
+              {{ location.name }}
+            </span>
+          </ng-template>
+        </p-select>
       </div>
     </div>
   </div>
@@ -32,7 +41,7 @@
   <div class="flex-1 overflow-y-auto">
     <!-- Order Summary Section -->
     <div class="bg-white p-4 mb-4">
-      <h3 class="text-base font-semibold text-gray-900 mb-3">Order Summary</h3>
+      <h3 class="text-base font-semibold text-gray-900 mb-3">Сводка заказа</h3>
 
       <div class="space-y-3">
         <div *ngFor="let item of cartItems" class="flex gap-3">
@@ -44,10 +53,10 @@
           <!-- Product Details -->
           <div class="flex-1 min-w-0">
             <h4 class="font-medium text-gray-900 text-sm leading-tight">{{ item.name }}</h4>
-            <p *ngIf="item.selectedColor" class="text-xs text-gray-500 mt-0.5">Color: {{ item.selectedColor }}</p>
+            <p *ngIf="item.selectedColor" class="text-xs text-gray-500 mt-0.5">Цвет: {{ item.selectedColor }}</p>
             <div class="flex items-center justify-between mt-1">
-              <span class="font-semibold text-gray-900 text-sm">{{ item.price | numberFormat }} sum</span>
-              <span class="text-sm text-gray-600">{{ item.quantity }} quantity</span>
+              <span class="font-semibold text-gray-900 text-sm">{{ item.price | numberFormat }} сум</span>
+              <span class="text-sm text-gray-600">{{ item.quantity }} шт.</span>
             </div>
           </div>
         </div>
@@ -56,7 +65,7 @@
 
     <!-- Delivery Options Section -->
     <div class="bg-white p-4">
-      <h3 class="text-base font-semibold text-gray-900 mb-3">Delivery Options</h3>
+      <h3 class="text-base font-semibold text-gray-900 mb-3">Варианты доставки</h3>
 
       <div class="space-y-3">
         <div
@@ -75,7 +84,7 @@
               <p class="text-xs text-gray-500">{{ option.description }}</p>
             </div>
           </div>
-          <span class="font-semibold text-gray-900 text-sm">{{ option.price > 0 ? (option.price | numberFormat) + ' sum' : 'Free' }}</span>
+          <span class="font-semibold text-gray-900 text-sm">{{ option.price > 0 ? (option.price | numberFormat) + ' сум' : 'Бесплатно' }}</span>
         </div>
       </div>
     </div>
@@ -86,21 +95,24 @@
     <!-- Price Breakdown -->
     <div class="space-y-2">
       <div class="flex items-center justify-between">
-        <span class="text-sm text-gray-600">Subtotal ({{ cartCount }} items)</span>
-        <span class="text-sm font-medium text-gray-900">{{ subtotal | numberFormat }} sum</span>
+        <span class="text-sm text-gray-600">Промежуточный итог ({{ cartCount }} товаров)</span>
+        <span class="text-sm font-medium text-gray-900">{{ subtotal | numberFormat }} сум</span>
       </div>
       <div class="flex items-center justify-between">
-        <span class="text-sm text-gray-600">Delivery fee</span>
-        <span class="text-sm font-medium text-gray-900">{{ selectedDeliveryFee > 0 ? (selectedDeliveryFee | numberFormat) + ' sum' : 'Free' }}</span>
+        <span class="text-sm text-gray-600">Стоимость доставки</span>
+        <span class="text-sm font-medium text-gray-900">{{ selectedDeliveryFee > 0 ? (selectedDeliveryFee | numberFormat) + ' сум' : 'Бесплатно' }}</span>
       </div>
       <hr class="my-2" />
       <div class="flex items-center justify-between">
-        <span class="text-lg font-semibold text-gray-900">Total</span>
-        <span class="text-xl font-bold text-gray-900">{{ total | numberFormat }} <span class="text-base">sum</span></span>
+        <span class="text-lg font-semibold text-gray-900">Итого</span>
+        <span class="text-xl font-bold text-gray-900">{{ total | numberFormat }} <span class="text-base">сум</span></span>
       </div>
     </div>
 
     <!-- Place Order Button -->
-    <button class="w-full bg-blue-500 text-white py-3 rounded-lg font-semibold border-0" (click)="proceedToPayment()"> Select payment method </button>
+    <button class="w-full bg-blue-500 text-white py-3 rounded-lg font-semibold border-0" (click)="proceedToPayment()"> Выбрать способ оплаты </button>
   </div>
 </div>
+
+<!-- Address Drawer -->
+<app-address-drawer [(visible)]="showAddressDrawer" (addressSaved)="onAddressAdded($event)" (closed)="onDrawerClosed()"> </app-address-drawer>

@@ -36,11 +36,11 @@ export class HistoryComponent implements OnInit {
   selectedOrder: Order | null = null;
 
   filterOptions = [
-    { label: 'All Orders', value: 'all' },
-    { label: 'Delivered', value: 'delivered' },
-    { label: 'Processing', value: 'processing' },
-    { label: 'Shipped', value: 'shipped' },
-    { label: 'Cancelled', value: 'cancelled' },
+    { label: 'Все заказы', value: 'all' },
+    { label: 'Доставлено', value: 'delivered' },
+    { label: 'В обработке', value: 'processing' },
+    { label: 'Отправлено', value: 'shipped' },
+    { label: 'Отменено', value: 'cancelled' },
   ];
 
   constructor(private dataService: DataService, private router: Router) {}
@@ -89,7 +89,7 @@ export class HistoryComponent implements OnInit {
         status: statuses[Math.floor(Math.random() * statuses.length)],
         total: total,
         items: orderItems,
-        deliveryAddress: 'Salatiga City, Central Java',
+        deliveryAddress: 'г. Ташкент, Юнусабадский район',
         paymentMethod: '**** **** **** 1934',
       });
     }
@@ -146,6 +146,21 @@ export class HistoryComponent implements OnInit {
     }
   }
 
+  getStatusText(status: string): string {
+    switch (status) {
+      case 'delivered':
+        return 'Доставлено';
+      case 'processing':
+        return 'В обработке';
+      case 'shipped':
+        return 'Отправлено';
+      case 'cancelled':
+        return 'Отменено';
+      default:
+        return status;
+    }
+  }
+
   reorderItems(order: Order): void {
     // Add all items from the order to cart
     order.items.forEach((item) => {
@@ -160,8 +175,8 @@ export class HistoryComponent implements OnInit {
 
     this.dataService['messageService'].add({
       severity: 'success',
-      summary: 'Added to Cart',
-      detail: `${order.items.length} items added to cart`,
+      summary: 'Добавлено в корзину',
+      detail: `${order.items.length} товаров добавлено в корзину`,
     });
   }
 

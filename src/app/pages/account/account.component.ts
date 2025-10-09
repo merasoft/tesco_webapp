@@ -32,9 +32,9 @@ export class AccountComponent implements OnInit {
   showLogoutModal = false;
 
   userProfile: UserProfile = {
-    name: 'John Doe',
-    email: 'john.doe@example.com',
-    phone: '+1 (555) 123-4567',
+    name: 'Иван Иванов',
+    email: 'ivan.ivanov@example.com',
+    phone: '+998 90 123-45-67',
     avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face',
     memberSince: new Date('2023-01-15'),
     totalOrders: 24,
@@ -44,26 +44,26 @@ export class AccountComponent implements OnInit {
   accountMenuItems: AccountMenuItem[] = [
     {
       icon: 'pi-user',
-      title: 'Edit Profile',
-      description: 'Update your personal information',
+      title: 'Редактировать профиль',
+      description: 'Обновить личную информацию',
       route: '/profile/edit',
     },
     {
       icon: 'pi-map-marker',
-      title: 'Shipping Addresses',
-      description: 'Manage your delivery addresses',
-      route: '/addresses',
+      title: 'Адреса доставки',
+      description: 'Управление адресами доставки',
+      route: '/delivery-addresses',
     },
     {
       icon: 'pi-credit-card',
-      title: 'Payment Methods',
-      description: 'Manage cards and payment options',
+      title: 'Способы оплаты',
+      description: 'Управление картами и способами оплаты',
       route: '/payment-methods',
     },
     {
       icon: 'pi-bell',
-      title: 'Notifications',
-      description: 'Manage your notification preferences',
+      title: 'Уведомления',
+      description: 'Настройки уведомлений',
       route: '/notifications',
       badge: '3',
     },
@@ -87,8 +87,8 @@ export class AccountComponent implements OnInit {
     // },
     {
       icon: 'pi-sign-out',
-      title: 'Logout',
-      description: 'Sign out of your account',
+      title: 'Выйти',
+      description: 'Выйти из аккаунта',
       action: 'logout',
     },
   ];
@@ -108,12 +108,17 @@ export class AccountComponent implements OnInit {
 
   handleMenuItemClick(item: AccountMenuItem): void {
     if (item.route) {
-      // Navigate to route (placeholder - these routes don't exist yet)
-      this.dataService['messageService'].add({
-        severity: 'info',
-        summary: 'Coming Soon',
-        detail: `${item.title} feature will be available soon`,
-      });
+      if (item.route === '/delivery-addresses') {
+        // Navigate to delivery addresses page
+        this.router.navigate(['/delivery-addresses']);
+      } else {
+        // Navigate to other routes (placeholder - these routes don't exist yet)
+        this.dataService['messageService'].add({
+          severity: 'info',
+          summary: 'Скоро',
+          detail: `Функция "${item.title}" будет доступна в ближайшее время`,
+        });
+      }
     } else if (item.action) {
       this.handleAction(item.action);
     }
@@ -134,7 +139,7 @@ export class AccountComponent implements OnInit {
     this.dataService['messageService'].add({
       severity: 'info',
       summary: 'Tesco App',
-      detail: 'Version 1.0.0 - Built with Angular & PrimeNG',
+      detail: 'Версия 1.0.0 - Создано с помощью Angular & PrimeNG',
     });
   }
 
@@ -145,8 +150,8 @@ export class AccountComponent implements OnInit {
 
     this.dataService['messageService'].add({
       severity: 'success',
-      summary: 'Logged Out',
-      detail: 'You have been logged out successfully',
+      summary: 'Выход выполнен',
+      detail: 'Вы успешно вышли из аккаунта',
     });
 
     // Navigate to login or home
@@ -160,8 +165,8 @@ export class AccountComponent implements OnInit {
   editProfile(): void {
     this.dataService['messageService'].add({
       severity: 'info',
-      summary: 'Coming Soon',
-      detail: 'Profile editing feature will be available soon',
+      summary: 'Скоро',
+      detail: 'Функция редактирования профиля будет доступна в ближайшее время',
     });
   }
 
@@ -172,9 +177,33 @@ export class AccountComponent implements OnInit {
     const months = Math.floor((diff % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30));
 
     if (years > 0) {
-      return `${years} year${years > 1 ? 's' : ''} ${months > 0 ? `${months} month${months > 1 ? 's' : ''}` : ''}`;
+      let result = `${years} ${this.getRussianYearForm(years)}`;
+      if (months > 0) {
+        result += ` ${months} ${this.getRussianMonthForm(months)}`;
+      }
+      return result;
     } else {
-      return `${months} month${months > 1 ? 's' : ''}`;
+      return `${months} ${this.getRussianMonthForm(months)}`;
+    }
+  }
+
+  private getRussianYearForm(count: number): string {
+    if (count % 10 === 1 && count % 100 !== 11) {
+      return 'год';
+    } else if (count % 10 >= 2 && count % 10 <= 4 && (count % 100 < 10 || count % 100 >= 20)) {
+      return 'года';
+    } else {
+      return 'лет';
+    }
+  }
+
+  private getRussianMonthForm(count: number): string {
+    if (count % 10 === 1 && count % 100 !== 11) {
+      return 'месяц';
+    } else if (count % 10 >= 2 && count % 10 <= 4 && (count % 100 < 10 || count % 100 >= 20)) {
+      return 'месяца';
+    } else {
+      return 'месяцев';
     }
   }
 }

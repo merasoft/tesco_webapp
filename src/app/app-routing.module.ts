@@ -9,6 +9,7 @@ import { PaymentComponent } from './pages/payment/payment.component';
 import { WishlistComponent } from './pages/wishlist/wishlist.component';
 import { HistoryComponent } from './pages/history/history.component';
 import { AccountComponent } from './pages/account/account.component';
+import { DeliveryAddressesComponent } from './pages/delivery-addresses/delivery-addresses.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'wishlist', component: WishlistComponent },
   { path: 'history', component: HistoryComponent },
   { path: 'account', component: AccountComponent },
+  { path: 'delivery-addresses', component: DeliveryAddressesComponent },
   { path: '**', redirectTo: '' },
 ];
 

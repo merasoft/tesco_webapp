@@ -1,0 +1,57 @@
+<!-- Address Drawer -->
+<p-drawer [(visible)]="visible" position="bottom" [blockScroll]="true" class="address-drawer" styleClass="h-fit max-h-[80%]" (onShow)="focusInput()" (onHide)="closeDrawer()">
+  <ng-template #header>
+    <div class="flex items-center gap-2">
+      <i class="pi pi-map-marker text-blue-600"></i>
+      <span class="font-semibold">Добавить новый адрес</span>
+    </div>
+  </ng-template>
+
+  <ng-template #content>
+    <div class="space-y-4">
+      <!-- Address Form -->
+      <div class="space-y-3">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Название адреса</label>
+          <input
+            #addressLabelInput
+            type="text"
+            class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500"
+            placeholder="Дом, Работа, и т.д."
+            [(ngModel)]="newAddress.label" />
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Полный адрес</label>
+          <textarea
+            class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+            rows="3"
+            placeholder="Улица, дом, квартира"
+            [(ngModel)]="newAddress.address"></textarea>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Город</label>
+            <input type="text" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Ташкент" [(ngModel)]="newAddress.city" />
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Почтовый индекс</label>
+            <input type="text" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="100000" [(ngModel)]="newAddress.zipCode" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Телефон</label>
+          <input type="tel" class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="+998 90 123-45-67" [(ngModel)]="newAddress.phone" />
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center justify-end gap-3 pt-4 border-t border-gray-200">
+        <button (click)="closeDrawer()" class="py-2 px-4 border border-gray-300 text-gray-700 rounded-md font-medium"> Отмена </button>
+        <button (click)="saveAddress()" class="py-2 px-4 bg-blue-500 text-white rounded-md font-medium" [disabled]="!newAddress.address || !newAddress.city"> Сохранить </button>
+      </div>
+    </div>
+  </ng-template>
+</p-drawer>

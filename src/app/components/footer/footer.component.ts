@@ -18,10 +18,10 @@ interface NavigationItem {
 export class FooterComponent implements OnInit, OnDestroy {
   hasWishlistItems = false;
   navigationItems: NavigationItem[] = [
-    { icon: 'pi pi-home', label: 'Home', route: '' },
-    { icon: 'pi pi-heart', label: 'Wishlist', route: '/wishlist' },
-    { icon: 'pi pi-file', label: 'History', route: '/history' },
-    { icon: 'pi pi-user', label: 'Account', route: '/account' },
+    { icon: 'pi pi-home', label: 'Главная', route: '' },
+    { icon: 'pi pi-heart', label: 'Избранное', route: '/wishlist' },
+    { icon: 'pi pi-shopping-bag', label: 'Заказы', route: '/history' },
+    { icon: 'pi pi-user', label: 'Аккаунт', route: '/account' },
   ];
   private wishlistSubscription: Subscription = new Subscription();
 

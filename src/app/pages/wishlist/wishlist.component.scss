@@ -2,7 +2,3 @@
 .wishlist-item {
   @apply transition-all duration-200 ease-in-out;
 }
-
-.wishlist-item:hover {
-  @apply -translate-y-0.5 shadow-lg;
-}

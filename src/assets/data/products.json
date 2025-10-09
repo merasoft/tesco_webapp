@@ -2,156 +2,208 @@
   "categories": [
     {
       "id": 1,
-      "name": "Apparel",
+      "name": "Одежда",
       "image": "https://images.unsplash.com/photo-1445205170230-053b83016050?w=400&h=300&fit=crop&auto=format",
       "count": 1,
       "children": [
         {
           "id": 11,
-          "name": "Clothing",
+          "name": "Одежда",
           "count": 1,
           "children": [
-            { "id": 111, "name": "T-Shirts", "count": 0 },
-            { "id": 112, "name": "Jeans", "count": 0 }
+            { "id": 111, "name": "Футболки", "count": 0 },
+            { "id": 112, "name": "Джинсы", "count": 0 }
           ]
         },
         {
           "id": 12,
-          "name": "Accessories",
+          "name": "Аксессуары",
           "count": 1,
           "children": [
-            { "id": 121, "name": "Mugs", "count": 1 },
-            { "id": 122, "name": "Bags", "count": 0 }
+            { "id": 121, "name": "Кружки", "count": 1 },
+            { "id": 122, "name": "Сумки", "count": 0 }
           ]
         }
       ]
     },
     {
       "id": 2,
-      "name": "School",
+      "name": "Школа",
       "image": "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=300&fit=crop&auto=format",
       "count": 0,
       "children": [
         {
           "id": 21,
-          "name": "Stationery",
+          "name": "Канцелярия",
           "count": 0,
           "children": [
-            { "id": 211, "name": "Notebooks", "count": 0 },
-            { "id": 212, "name": "Pens", "count": 0 }
+            { "id": 211, "name": "Тетради", "count": 0 },
+            { "id": 212, "name": "Ручки", "count": 0 }
           ]
         },
         {
           "id": 22,
-          "name": "Bags",
+          "name": "Сумки",
           "count": 0,
           "children": [
-            { "id": 221, "name": "Backpacks", "count": 0 },
-            { "id": 222, "name": "Lunch Boxes", "count": 0 }
+            { "id": 221, "name": "Рюкзаки", "count": 0 },
+            { "id": 222, "name": "Ланч-боксы", "count": 0 }
           ]
         }
       ]
     },
     {
       "id": 3,
-      "name": "Sports",
+      "name": "Спорт",
       "image": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop&auto=format",
       "count": 2,
       "children": [
         {
           "id": 31,
-          "name": "Gaming",
+          "name": "Игры",
           "count": 1,
           "children": [
-            { "id": 311, "name": "Gaming Headsets", "count": 1 },
-            { "id": 312, "name": "Gaming Keyboards", "count": 0 }
+            { "id": 311, "name": "Игровые наушники", "count": 1 },
+            { "id": 312, "name": "Игровые клавиатуры", "count": 0 }
           ]
         },
         {
           "id": 32,
-          "name": "Fitness",
+          "name": "Фитнес",
           "count": 1,
           "children": [
-            { "id": 321, "name": "Sport Earphones", "count": 1 },
-            { "id": 322, "name": "Fitness Trackers", "count": 0 }
+            { "id": 321, "name": "Спортивные наушники", "count": 1 },
+            { "id": 322, "name": "Фитнес-трекеры", "count": 0 }
           ]
         }
       ]
     },
     {
       "id": 4,
-      "name": "Electronic",
+      "name": "Электроника",
       "image": "https://images.unsplash.com/photo-1498049794561-7780e7231661?w=400&h=300&fit=crop&auto=format",
       "count": 5,
       "children": [
         {
           "id": 41,
-          "name": "Audio",
+          "name": "Аудио",
           "count": 4,
           "children": [
-            { "id": 411, "name": "Headphones", "count": 2 },
-            { "id": 412, "name": "Earbuds", "count": 2 }
+            { "id": 411, "name": "Наушники", "count": 2 },
+            { "id": 412, "name": "Вкладыши", "count": 2 }
           ]
         },
         {
           "id": 42,
-          "name": "Computer",
+          "name": "Компьютер",
           "count": 1,
           "children": [
-            { "id": 421, "name": "Monitors", "count": 1 },
-            { "id": 422, "name": "Keyboards", "count": 0 }
+            { "id": 421, "name": "Мониторы", "count": 1 },
+            { "id": 422, "name": "Клавиатуры", "count": 0 }
           ]
         }
       ]
     },
     {
       "id": 5,
-      "name": "Home & Kitchen",
+      "name": "Дом и кухня",
       "image": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=300&fit=crop&auto=format",
       "count": 0,
       "children": [
         {
           "id": 51,
-          "name": "Kitchen Appliances",
+          "name": "Кухонная техника",
           "count": 0,
           "children": [
-            { "id": 511, "name": "Blenders", "count": 0 },
-            { "id": 512, "name": "Coffee Makers", "count": 0 }
+            { "id": 511, "name": "Блендеры", "count": 0 },
+            { "id": 512, "name": "Кофеварки", "count": 0 }
           ]
         },
         {
           "id": 52,
-          "name": "Home Decor",
+          "name": "Декор для дома",
           "count": 0,
           "children": [
-            { "id": 521, "name": "Wall Art", "count": 0 },
-            { "id": 522, "name": "Lighting", "count": 0 }
+            { "id": 521, "name": "Настенный декор", "count": 0 },
+            { "id": 522, "name": "Освещение", "count": 0 }
           ]
         }
       ]
     },
     {
       "id": 6,
-      "name": "Beauty & Health",
+      "name": "Красота и здоровье",
       "image": "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400&h=300&fit=crop&auto=format",
       "count": 0,
       "children": [
         {
           "id": 61,
-          "name": "Skincare",
+          "name": "Уход за кожей",
           "count": 0,
           "children": [
-            { "id": 611, "name": "Face Masks", "count": 0 },
-            { "id": 612, "name": "Moisturizers", "count": 0 }
+            { "id": 611, "name": "Маски для лица", "count": 0 },
+            { "id": 612, "name": "Увлажняющие средства", "count": 0 }
           ]
         },
         {
           "id": 62,
-          "name": "Health",
+          "name": "Здоровье",
           "count": 0,
           "children": [
-            { "id": 621, "name": "Vitamins", "count": 0 },
-            { "id": 622, "name": "Supplements", "count": 0 }
+            { "id": 621, "name": "Витамины", "count": 0 },
+            { "id": 622, "name": "Добавки", "count": 0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Автомобили",
+      "image": "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=400&h=300&fit=crop&auto=format",
+      "count": 0,
+      "children": [
+        {
+          "id": 71,
+          "name": "Автоаксессуары",
+          "count": 0,
+          "children": [
+            { "id": 711, "name": "Держатели для телефона", "count": 0 },
+            { "id": 712, "name": "Зарядные устройства", "count": 0 }
+          ]
+        },
+        {
+          "id": 72,
+          "name": "Обслуживание",
+          "count": 0,
+          "children": [
+            { "id": 721, "name": "Средства для чистки", "count": 0 },
+            { "id": 722, "name": "Инструменты", "count": 0 }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Еда и напитки",
+      "image": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop&auto=format",
+      "count": 0,
+      "children": [
+        {
+          "id": 81,
+          "name": "Закуски",
+          "count": 0,
+          "children": [
+            { "id": 811, "name": "Чипсы", "count": 0 },
+            { "id": 812, "name": "Печенье", "count": 0 }
+          ]
+        },
+        {
+          "id": 82,
+          "name": "Напитки",
+          "count": 0,
+          "children": [
+            { "id": 821, "name": "Кофе", "count": 0 },
+            { "id": 822, "name": "Чай", "count": 0 }
           ]
         }
       ]
@@ -182,16 +234,16 @@
   "banners": [
     {
       "id": 1,
-      "title": "SALE UP TO 60% OFF",
-      "subtitle": "School Collections",
+      "title": "СКИДКА ДО 60%",
+      "subtitle": "Школьные коллекции",
       "image": "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=800&h=400&fit=crop",
       "bgColor": "#FFF4E6",
       "textColor": "#111827"
     },
     {
       "id": 2,
-      "title": "ELECTRONIC GEAR",
-      "subtitle": "DRONE 40% OFF",
+      "title": "ЭЛЕКТРОНИКА",
+      "subtitle": "ДРОНЫ СКИДКА 40%",
       "image": "https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=800&h=400&fit=crop",
       "bgColor": "#1E3A8A",
       "textColor": "#FFFFFF"
@@ -200,7 +252,7 @@
   "products": [
     {
       "id": 1,
-      "name": "Air pods max by Apple - Gray",
+      "name": "Наушники Air pods max от Apple - Серые",
       "price": 25000000,
       "oldPrice": 31000000,
       "rating": 4.5,
@@ -211,15 +263,15 @@
       ],
       "categoryId": 4,
       "brandId": 1,
-      "variant": "Gray",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla arcu mi tincidunt eget morbi, turpis mi sed. Neque viverra varius, morbi consequat. Nulla bibendum purus odio semper purus. Ut cursus platea id blandit. Amet non at proin justo nulla ac. A blandit morbi suspendisse.",
+      "variant": "Серый",
+      "description": "Премиальные беспроводные наушники от Apple с активным шумоподавлением. Превосходное качество звука и длительное время работы от батареи. Идеальный выбор для любителей музыки и профессионалов.",
       "colors": ["#FFC0CB", "#FFFFFF", "#90EE90", "#ADD8E6", "#2F4F4F"],
       "seller": "Apple Store",
       "buyCount": 219
     },
     {
       "id": 2,
-      "name": "Monitor LG 22''inc 4K 120Fps",
+      "name": "Монитор LG 22 дюйма 4K 120Fps",
       "price": 3800000,
       "rating": 4.2,
       "images": [
@@ -230,14 +282,14 @@
       "categoryId": 4,
       "brandId": 4,
       "variant": "120 Fps",
-      "description": "High quality 4K monitor with 120fps refresh rate for ultimate gaming experience.",
+      "description": "Высококачественный 4K монитор с частотой обновления 120 кадров в секунду для максимального игрового опыта.",
       "colors": ["#000000"],
-      "seller": "LG Official",
+      "seller": "LG Официальный",
       "buyCount": 156
     },
     {
       "id": 3,
-      "name": "Earphones for monitor",
+      "name": "Наушники для монитора",
       "price": 2500000,
       "rating": 3.8,
       "images": [
@@ -247,15 +299,15 @@
       ],
       "categoryId": 4,
       "brandId": 2,
-      "variant": "Combo",
-      "description": "Premium earphones with noise cancellation and crystal clear sound.",
+      "variant": "Комбо",
+      "description": "Премиальные наушники с шумоподавлением и кристально чистым звуком.",
       "colors": ["#FFFFFF", "#000000"],
-      "seller": "Samsung Audio",
+      "seller": "Samsung Аудио",
       "buyCount": 342
     },
     {
       "id": 4,
-      "name": "Aesthetic Mug - white",
+      "name": "Эстетичная кружка - белая",
       "price": 250000,
       "rating": 4.7,
       "images": [
@@ -265,15 +317,15 @@
       ],
       "categoryId": 1,
       "brandId": 3,
-      "variant": "White",
-      "description": "Beautiful ceramic mug for your daily coffee routine.",
+      "variant": "Белая",
+      "description": "Красивая керамическая кружка для ежедневного кофейного ритуала.",
       "colors": ["#FFFFFF", "#000000", "#FF6B6B"],
-      "seller": "Home Decor Store",
+      "seller": "Магазин Домашнего Декора",
       "buyCount": 89
     },
     {
       "id": 5,
-      "name": "Wireless Earbuds Pro by Apple",
+      "name": "Беспроводные наушники Pro от Apple",
       "price": 2500000,
       "rating": 4.9,
       "images": [
@@ -283,15 +335,15 @@
       ],
       "categoryId": 4,
       "brandId": 1,
-      "variant": "White",
-      "description": "Advanced wireless earbuds with active noise cancellation.",
+      "variant": "Белые",
+      "description": "Передовые беспроводные наушники с активным шумоподавлением.",
       "colors": ["#FFFFFF"],
       "seller": "Apple Store",
       "buyCount": 567
     },
     {
       "id": 6,
-      "name": "Gaming Headset RGB by Samsung",
+      "name": "Игровая гарнитура RGB от Samsung",
       "price": 1900000,
       "rating": 4.1,
       "images": [
@@ -301,15 +353,15 @@
       ],
       "categoryId": 3,
       "brandId": 2,
-      "variant": "Black",
-      "description": "Professional gaming headset with RGB lighting and surround sound.",
+      "variant": "Черные",
+      "description": "Профессиональная игровая гарнитура с RGB подсветкой и объемным звуком.",
       "colors": ["#000000", "#FF0000"],
-      "seller": "Gaming Pro",
+      "seller": "Гейминг Про",
       "buyCount": 234
     },
     {
       "id": 7,
-      "name": "Beats Studio Headphones - Gold",
+      "name": "Наушники Beats Studio - Золотые",
       "price": 3800000,
       "rating": 4.6,
       "images": [
@@ -319,15 +371,15 @@
       ],
       "categoryId": 4,
       "brandId": 1,
-      "variant": "Gold",
-      "description": "Premium over-ear headphones with studio-quality sound.",
+      "variant": "Золотые",
+      "description": "Премиальные накладные наушники со студийным качеством звука.",
       "colors": ["#D4AF37", "#FFFFFF", "#000000"],
-      "seller": "Beats Official",
+      "seller": "Beats Официальный",
       "buyCount": 445
     },
     {
       "id": 8,
-      "name": "Sport Earphones",
+      "name": "Спортивные наушники",
       "price": 1000000,
       "rating": 3.9,
       "images": [
@@ -337,11 +389,37 @@
       ],
       "categoryId": 3,
       "brandId": 3,
-      "variant": "Black",
-      "description": "Sweat-resistant earphones perfect for workouts and sports.",
+      "variant": "Черные",
+      "description": "Устойчивые к поту наушники, идеально подходящие для тренировок и спорта.",
       "colors": ["#000000", "#00FF00"],
-      "seller": "SportTech",
+      "seller": "СпортТех",
       "buyCount": 678
+    }
+  ],
+  "addresses": [
+    {
+      "id": "1",
+      "label": "Дом",
+      "address": "ул. Навои, 15А, кв. 12",
+      "city": "Ташкент",
+      "zipCode": "100000",
+      "phone": "+998 90 123-45-67"
+    },
+    {
+      "id": "2",
+      "label": "Работа",
+      "address": "ул. Амира Тимура, 42, офис 301",
+      "city": "Ташкент",
+      "zipCode": "100001",
+      "phone": "+998 90 987-65-43"
+    },
+    {
+      "id": "3",
+      "label": "Родители",
+      "address": "ул. Бунёдкор, 23, кв. 5",
+      "city": "Ташкент",
+      "zipCode": "100002",
+      "phone": "+998 90 555-12-34"
     }
   ]
 }

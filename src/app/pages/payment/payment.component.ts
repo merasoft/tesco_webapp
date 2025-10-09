@@ -18,7 +18,7 @@ export class PaymentComponent implements OnInit {
   cardNumber = '**** **** **** 1934';
 
   paymentMethods = [
-    { id: 'card', name: 'Credit/Debit Card', icon: 'pi-credit-card' },
+    { id: 'card', name: 'Кредитная/Дебетовая карта', icon: 'pi-credit-card' },
     { id: 'paypal', name: 'PayPal', icon: 'pi-paypal' },
     { id: 'apple-pay', name: 'Apple Pay', icon: 'pi-apple' },
     { id: 'google-pay', name: 'Google Pay', icon: 'pi-google' },

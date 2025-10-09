@@ -13,7 +13,7 @@
               #searchInput
               type="text"
               pInputText
-              placeholder="Search products..."
+              placeholder="Поиск товаров..."
               [(ngModel)]="searchTerm"
               (input)="onSearchInput()"
               (focus)="onSearchFocus()"
@@ -37,15 +37,15 @@
   <!-- Fullscreen Recent Search Suggestions -->
   <div *ngIf="showSearchSuggestions" class="fixed top-16 left-0 right-0 bottom-20 bg-white z-50 overflow-y-auto">
     <div class="p-4 border-gray-100 flex items-center justify-between">
-      <span class="text-base font-medium text-gray-900">Recent searches</span>
-      <button (click)="clearRecentSearches()" class="text-sm text-gray-500"> Clear all </button>
+      <span class="text-base font-medium text-gray-900">Недавние поиски</span>
+      <button (click)="clearRecentSearches()" class="text-sm text-gray-500"> Очистить всё </button>
     </div>
     <div class="px-4">
       <!-- Show "Search for..." if no filtered results but user is typing -->
       <div *ngIf="searchTerm.trim() && filteredRecentSearches.length === 0" class="flex items-center justify-between border-b border-gray-50">
         <button (click)="selectRecentSearch(searchTerm.trim())" class="p-2 flex items-center gap-3 flex-1">
           <i class="pi pi-search text-gray-400"></i>
-          <span class="text-gray-700">Search for "{{ searchTerm.trim() }}"</span>
+          <span class="text-gray-700">Искать "{{ searchTerm.trim() }}"</span>
         </button>
       </div>
 
@@ -63,16 +63,16 @@
       <!-- Show empty message if no recent searches and no search term -->
       <div *ngIf="!searchTerm.trim() && recentSearches.length === 0" class="p-4 text-center text-gray-500">
         <i class="pi pi-search text-2xl mb-2 block text-gray-300"></i>
-        <p class="text-sm">No recent searches</p>
+        <p class="text-sm">Нет недавних поисков</p>
       </div>
     </div>
   </div>
 
   <!-- Results Header -->
   <div class="p-4 pb-0 flex justify-between items-center">
-    <h3 class="text-base font-medium text-gray-900">Search results</h3>
-    <button class="flex items-center gap-2 px-3 py-2 bg-white rounded-lg border border-gray-200 text-gray-700 text-sm" (click)="onFiltersClick()">
-      <span class="font-medium">Filters</span>
+    <h3 class="text-base font-medium text-gray-900">Результаты поиска</h3>
+    <button class="flex items-center gap-3 px-3 py-2 bg-white rounded-lg border border-gray-200 text-gray-700 text-sm" (click)="onFiltersClick()">
+      <span class="font-medium">Фильтры</span>
       <i class="pi pi-sliders-h text-sm"></i>
     </button>
   </div>
@@ -94,8 +94,8 @@
   <!-- No Results -->
   <div *ngIf="!isLoading && products.length === 0" class="text-center text-gray-500">
     <i class="pi pi-search text-4xl mb-4 block text-gray-300"></i>
-    <p class="text-lg mb-2">No products found</p>
-    <p class="text-sm">Try adjusting your search or filters</p>
+    <p class="text-lg mb-2">Товары не найдены</p>
+    <p class="text-sm">Попробуйте изменить поиск или фильтры</p>
   </div>
 
   <!-- Filters Component -->

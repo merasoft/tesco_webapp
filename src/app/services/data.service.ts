@@ -18,6 +18,7 @@ export class DataService {
   constructor(private http: HttpClient, private messageService: MessageService) {
     this.loadCart();
     this.loadWishlist();
+    this.loadAddressesFromStorage();
   }
 
   getData(): Observable<any> {
@@ -79,7 +80,7 @@ export class DataService {
 
     this.messageService.add({
       severity: 'success',
-      summary: 'Added to Cart',
+      summary: 'Добавлено в корзину',
       detail: `${product.name}`,
       life: 2000,
     });
@@ -106,8 +107,8 @@ export class DataService {
 
     this.messageService.add({
       severity: 'info',
-      summary: 'Removed',
-      detail: 'Item removed from cart',
+      summary: 'Удалено',
+      detail: 'Товар удален из корзины',
       life: 2000,
     });
   }
@@ -164,7 +165,7 @@ export class DataService {
 
       this.messageService.add({
         severity: 'success',
-        summary: 'Added to Wishlist',
+        summary: 'Добавлено в избранное',
         detail: `${product.name}`,
         life: 2000,
       });
@@ -178,8 +179,8 @@ export class DataService {
 
     this.messageService.add({
       severity: 'info',
-      summary: 'Removed',
-      detail: 'Item removed from wishlist',
+      summary: 'Удалено',
+      detail: 'Товар удален из избранного',
       life: 2000,
     });
   }
@@ -206,8 +207,8 @@ export class DataService {
 
     this.messageService.add({
       severity: 'info',
-      summary: 'Cleared',
-      detail: 'Wishlist cleared',
+      summary: 'Очищено',
+      detail: 'Избранное очищено',
       life: 2000,
     });
   }
@@ -221,5 +222,148 @@ export class DataService {
     if (savedWishlist) {
       this.wishlistItems.next(JSON.parse(savedWishlist));
     }
+  }
+
+  // Address Management Methods
+  private addressesSubject = new BehaviorSubject<any[]>([]);
+  public addresses$ = this.addressesSubject.asObservable();
+
+  // Selected address management - shared across all components
+  private selectedAddressSubject = new BehaviorSubject<any>(null);
+  public selectedAddress$ = this.selectedAddressSubject.asObservable();
+
+  getAddresses(): Observable<any[]> {
+    return this.getData().pipe(map((data) => data.addresses || []));
+  }
+
+  loadAddressesFromStorage(): void {
+    const savedAddresses = localStorage.getItem('delivery-addresses');
+    if (savedAddresses) {
+      this.addressesSubject.next(JSON.parse(savedAddresses));
+      // Load selected address after addresses are loaded
+      this.loadSelectedAddress();
+    } else {
+      // Load initial addresses from JSON and save to localStorage
+      this.getAddresses().subscribe((addresses) => {
+        this.addressesSubject.next(addresses);
+        this.saveAddresses();
+        // Load selected address after addresses are loaded
+        this.loadSelectedAddress();
+      });
+    }
+  }
+
+  // Selected address management methods
+  setSelectedAddress(location: any): void {
+    this.selectedAddressSubject.next(location);
+    localStorage.setItem('selected-address', JSON.stringify(location));
+  }
+
+  getSelectedAddress(): any {
+    return this.selectedAddressSubject.value;
+  }
+
+  private loadSelectedAddress(): void {
+    const savedSelected = localStorage.getItem('selected-address');
+    if (savedSelected) {
+      this.selectedAddressSubject.next(JSON.parse(savedSelected));
+    } else {
+      // Set first non-"add new" address as default
+      const addresses = this.getAddressesForDropdown();
+      const firstRealAddress = addresses.find((addr) => !addr.isAddNew);
+      if (firstRealAddress) {
+        this.setSelectedAddress(firstRealAddress);
+      }
+    }
+  }
+
+  getAllAddresses(): any[] {
+    return this.addressesSubject.value;
+  }
+
+  addAddress(address: any): void {
+    const currentAddresses = this.addressesSubject.value;
+    address.id = Date.now().toString();
+
+    const updatedAddresses = [...currentAddresses, address];
+    this.addressesSubject.next(updatedAddresses);
+    this.saveAddresses();
+
+    // Automatically select the newly added address
+    const newLocation = {
+      name: `${address.label} - ${address.address}`,
+      value: address.id,
+      isAddNew: false,
+    };
+    this.setSelectedAddress(newLocation);
+
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Адрес добавлен',
+      detail: 'Новый адрес доставки успешно добавлен',
+      life: 2000,
+    });
+  }
+  updateAddress(updatedAddress: any): void {
+    const currentAddresses = this.addressesSubject.value;
+    const index = currentAddresses.findIndex((addr) => addr.id === updatedAddress.id);
+
+    if (index !== -1) {
+      currentAddresses[index] = updatedAddress;
+      this.addressesSubject.next([...currentAddresses]);
+      this.saveAddresses();
+
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Адрес обновлен',
+        detail: 'Адрес доставки успешно обновлен',
+        life: 2000,
+      });
+    }
+  }
+
+  deleteAddress(addressId: string): void {
+    const currentAddresses = this.addressesSubject.value;
+    const updatedAddresses = currentAddresses.filter((addr) => addr.id !== addressId);
+    this.addressesSubject.next(updatedAddresses);
+    this.saveAddresses();
+
+    // If the deleted address was selected, select another one
+    const currentSelected = this.getSelectedAddress();
+    if (currentSelected && currentSelected.value === addressId) {
+      const availableAddresses = this.getAddressesForDropdown();
+      const firstRealAddress = availableAddresses.find((addr) => !addr.isAddNew);
+      if (firstRealAddress) {
+        this.setSelectedAddress(firstRealAddress);
+      } else {
+        this.setSelectedAddress(null);
+      }
+    }
+
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Адрес удален',
+      detail: 'Адрес доставки успешно удален',
+      life: 2000,
+    });
+  }
+
+  getAddressesForDropdown(): any[] {
+    const addresses = this.getAllAddresses();
+    const dropdownOptions = [{ name: 'Добавить новый адрес', value: 'add-new', isAddNew: true }];
+
+    addresses.forEach((address) => {
+      dropdownOptions.push({
+        name: `${address.label} - ${address.address}`,
+        value: address.id,
+        isAddNew: false,
+      });
+    });
+
+    return dropdownOptions;
+  }
+
+  private saveAddresses(): void {
+    localStorage.setItem('delivery-addresses', JSON.stringify(this.addressesSubject.value));
   }
 }

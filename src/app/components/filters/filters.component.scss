@@ -70,17 +70,3 @@
     }
   }
 }
-
-::ng-deep {
-  .filter-drawer {
-    .p-drawer {
-      &-header {
-        @apply p-4 border-b border-gray-200;
-      }
-
-      &-content {
-        @apply p-4;
-      }
-    }
-  }
-}

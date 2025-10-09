@@ -1,7 +1,9 @@
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { registerLocaleData } from '@angular/common';
+import localeRu from '@angular/common/locales/ru';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +14,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { AddressDrawerComponent } from './components/address-drawer/address-drawer.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
@@ -22,12 +25,16 @@ import { ProductListComponent } from './pages/product-list/product-list.componen
 import { WishlistComponent } from './pages/wishlist/wishlist.component';
 import { HistoryComponent } from './pages/history/history.component';
 import { AccountComponent } from './pages/account/account.component';
+import { DeliveryAddressesComponent } from './pages/delivery-addresses/delivery-addresses.component';
 import { SharedModule } from './shared/shared.module';
 
 // PrimeNG Config
 import Lara from '@primeng/themes/lara';
 import { MessageService } from 'primeng/api';
 import { providePrimeNG } from 'primeng/config';
+
+// Register Russian locale
+registerLocaleData(localeRu);
 
 @NgModule({
   declarations: [
@@ -41,8 +48,10 @@ import { providePrimeNG } from 'primeng/config';
     WishlistComponent,
     HistoryComponent,
     AccountComponent,
+    DeliveryAddressesComponent,
     HeaderComponent,
     SearchBarComponent,
+    AddressDrawerComponent,
     ProductCardComponent,
     CategoryListComponent,
     BannerSliderComponent,
@@ -53,6 +62,7 @@ import { providePrimeNG } from 'primeng/config';
   imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule, HttpClientModule, SharedModule],
   providers: [
     MessageService,
+    { provide: LOCALE_ID, useValue: 'ru' },
     providePrimeNG({
       theme: {
         preset: Lara,

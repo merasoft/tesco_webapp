@@ -109,7 +109,7 @@ export class FiltersComponent implements OnInit, OnChanges {
         this.updateCurrentCategoryFromRoute();
       },
       error: (error: any) => {
-        console.error('Error loading categories:', error);
+        console.error('Ошибка загрузки категорий:', error);
         // Fallback to empty categories
         this.categories = [];
       },
@@ -142,7 +142,7 @@ export class FiltersComponent implements OnInit, OnChanges {
   filters: Filter[] = [
     {
       id: 'price',
-      name: 'Price',
+      name: 'Цена',
       type: 'range',
       min: 569000,
       max: 52314918,
@@ -152,7 +152,7 @@ export class FiltersComponent implements OnInit, OnChanges {
     },
     {
       id: 'brand',
-      name: 'Brand',
+      name: 'Бренд',
       type: 'checkbox',
       options: [
         { id: 'honor', name: 'Honor', count: 2, checked: false },
@@ -164,13 +164,13 @@ export class FiltersComponent implements OnInit, OnChanges {
     },
     {
       id: 'rating',
-      name: 'Rating',
+      name: 'Рейтинг',
       type: 'checkbox',
       options: [
         { id: '5', name: '<span class="text-lg text-yellow-400">★★★★★</span>', count: 25, checked: false },
-        { id: '4', name: '<span class="text-lg text-yellow-400">★★★★</span><span class="text-lg text-gray-400">☆</span> & up', count: 45, checked: false },
-        { id: '3', name: '<span class="text-lg text-yellow-400">★★★</span><span class="text-lg text-gray-400">☆☆</span> & up', count: 78, checked: false },
-        { id: '2', name: '<span class="text-lg text-yellow-400">★★</span><span class="text-lg text-gray-400">☆☆☆</span> & up', count: 92, checked: false },
+        { id: '4', name: '<span class="text-lg text-yellow-400">★★★★</span><span class="text-lg text-gray-400">☆</span> и выше', count: 45, checked: false },
+        { id: '3', name: '<span class="text-lg text-yellow-400">★★★</span><span class="text-lg text-gray-400">☆☆</span> и выше', count: 78, checked: false },
+        { id: '2', name: '<span class="text-lg text-yellow-400">★★</span><span class="text-lg text-gray-400">☆☆☆</span> и выше', count: 92, checked: false },
       ],
     },
   ];
