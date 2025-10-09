@@ -67,24 +67,24 @@ export class AccountComponent implements OnInit {
       route: '/notifications',
       badge: '3',
     },
-    {
-      icon: 'pi-shield',
-      title: 'Privacy & Security',
-      description: 'Password and security settings',
-      route: '/security',
-    },
-    {
-      icon: 'pi-question-circle',
-      title: 'Help & Support',
-      description: 'Get help and contact support',
-      route: '/support',
-    },
-    {
-      icon: 'pi-info-circle',
-      title: 'About App',
-      description: 'App version and information',
-      action: 'about',
-    },
+    // {
+    //   icon: 'pi-shield',
+    //   title: 'Privacy & Security',
+    //   description: 'Password and security settings',
+    //   route: '/security',
+    // },
+    // {
+    //   icon: 'pi-question-circle',
+    //   title: 'Help & Support',
+    //   description: 'Get help and contact support',
+    //   route: '/support',
+    // },
+    // {
+    //   icon: 'pi-info-circle',
+    //   title: 'About App',
+    //   description: 'App version and information',
+    //   action: 'about',
+    // },
     {
       icon: 'pi-sign-out',
       title: 'Logout',

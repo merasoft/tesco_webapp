@@ -1,18 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from '../../services/data.service';
+import { finalize } from 'rxjs';
 
 interface Category {
   id: number;
   name: string;
-  slug?: string;
-  icon?: string;
+  image?: string;
   count: number;
   children?: Category[];
-}
-
-interface CatalogData {
-  categories: Category[];
 }
 
 @Component({
@@ -22,28 +18,29 @@ interface CatalogData {
   styleUrls: ['./category-list.component.scss'],
 })
 export class CategoryListComponent implements OnInit {
-  categories: any[] = [];
-  displayedCategories: any[] = [];
-  catalogData!: CatalogData;
-  isDialogOpen = false;
+  categories: Category[] = [];
   isLoading = false;
   openPanels = new Set<number>();
 
   constructor(private dataService: DataService, private router: Router) {}
 
-  ngOnInit(): void {
-    this.dataService.getCategories().subscribe((data) => {
-      this.categories = data;
-      this.catalogData = { categories: data };
-      // Show only first 4 categories + "All" button
-      this.displayedCategories = [...data.slice(0, 4), { id: 0, name: 'All', icon: 'pi-th-large' }];
-    });
+  loadCategories(): void {
+    this.isLoading = false;
+    this.dataService
+      .getCategories()
+      .pipe(
+        finalize(() => {
+          this.isLoading = false;
+        })
+      )
+      .subscribe((data) => {
+        this.categories = data;
+      });
   }
 
   selectCategory(categoryId: number): void {
     if (categoryId === 0) {
-      // Show all categories drawer
-      this.toggleDrawer();
+      // Navigate to products page without category filter
     } else {
       this.router.navigate(['/products'], {
         queryParams: { categoryId },
@@ -51,28 +48,7 @@ export class CategoryListComponent implements OnInit {
     }
   }
 
-  toggleDrawer() {
-    this.isDialogOpen = !this.isDialogOpen;
-  }
-
-  closeDrawer() {
-    this.isDialogOpen = false;
-  }
-
-  toggleAccordionPanel(categoryId: number) {
-    if (this.openPanels.has(categoryId)) {
-      this.openPanels.delete(categoryId);
-    } else {
-      this.openPanels.clear();
-      this.openPanels.add(categoryId);
-    }
-  }
-
-  isAccordionPanelOpen(categoryId: number): boolean {
-    return this.openPanels.has(categoryId);
-  }
-
-  trackByCategory(index: number, category: Category): number {
-    return category.id;
+  ngOnInit(): void {
+    this.loadCategories();
   }
 }

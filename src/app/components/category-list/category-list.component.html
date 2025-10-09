@@ -1,46 +1,12 @@
 <div class="px-4 py-4">
-  <h3 class="text-lg font-semibold mb-4">Category</h3>
-  <div class="grid grid-cols-5 gap-2">
-    <div *ngFor="let category of displayedCategories" class="flex flex-col items-center gap-1" (click)="selectCategory(category.id)">
-      <div class="w-11 h-11 p-2 aspect-square bg-blue-50 rounded-lg overflow-hidden flex items-center justify-center">
-        <i *ngIf="category.id != 0" class="text-blue-500 text-xl pi" [ngClass]="category.icon"></i>
+  <h3 class="text-lg font-semibold mb-4">Shop by category</h3>
+  <div class="grid grid-cols-2 gap-4">
+    <div *ngFor="let category of categories" class="flex flex-col items-center gap-1" (click)="selectCategory(category.id)">
+      <div class="w-full aspect-square rounded-lg shadow overflow-hidden flex items-center justify-center">
+        <img [src]="category.image" [alt]="category.name" class="w-full h-full object-cover" />
         <i *ngIf="category.id == 0" class="text-blue-500 text-xl pi pi-th-large"></i>
       </div>
       <span class="text-sm text-center text-gray-700">{{ category.name }}</span>
     </div>
   </div>
 </div>
-
-<p-drawer [(visible)]="isDialogOpen" [blockScroll]="true" position="full" styleClass="catalog-drawer">
-  <ng-template #header>
-    <h3 class="text-xl font-semibold text-gray-900">All Categories</h3>
-  </ng-template>
-  <ng-template #content>
-    <div class="pl-2 pr-6 py-2">
-      <div class="flex flex-col gap-6">
-        <div *ngFor="let cat of catalogData?.categories; trackBy: trackByCategory">
-          <button (click)="toggleAccordionPanel(cat.id)" class="w-full flex items-center justify-between text-sm text-gray-700">
-            <div class="flex items-center gap-2">
-              <i class="pi" [ngClass]="cat.icon"></i>
-              <span>{{ cat.name }}</span>
-            </div>
-            <i class="text-xs" [class]="isAccordionPanelOpen(cat.id) ? 'pi pi-chevron-up' : 'pi pi-chevron-down'"></i>
-          </button>
-          <div class="overflow-hidden" [class]="isAccordionPanelOpen(cat.id) ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'">
-            <div class="flex flex-col gap-4 ml-1 pl-5 pt-4 border-l-2 border-l-blue-500">
-              <a [routerLink]="['/products']" [queryParams]="{ categoryId: cat.id }" (click)="closeDrawer()" class="w-fit text-sm text-gray-700 relative inline-block"> All {{ cat.name }} </a>
-              <a
-                *ngFor="let sub of cat.children"
-                [routerLink]="['/products']"
-                [queryParams]="{ categoryId: cat.id, subcategoryId: sub.id }"
-                (click)="closeDrawer()"
-                class="w-fit text-sm text-gray-700 relative inline-block">
-                <span> {{ sub.name }} </span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </ng-template>
-</p-drawer>

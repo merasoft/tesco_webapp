@@ -20,7 +20,7 @@
   <!-- Content -->
   <div class="p-4">
     <!-- Profile Section -->
-    <div class="bg-white rounded-lg p-6 mb-6 shadow-sm border border-gray-100">
+    <div class="bg-white rounded-lg p-6 mb-4 shadow-sm border border-gray-100">
       <div class="flex items-center gap-4 mb-4">
         <div class="relative">
           <img [src]="userProfile.avatar" [alt]="userProfile.name" class="w-16 h-16 rounded-full object-cover border-2 border-blue-500" />
@@ -46,18 +46,6 @@
           <div class="text-xs text-gray-500">Member For</div>
         </div>
       </div>
-    </div>
-
-    <!-- Quick Actions -->
-    <div class="grid grid-cols-2 gap-4 mb-6">
-      <button routerLink="/wishlist" class="bg-white p-4 rounded-lg shadow-sm border border-gray-100 text-center">
-        <i class="pi pi-heart text-2xl text-pink-500 mb-2 block"></i>
-        <span class="text-sm font-medium text-gray-900">Wishlist</span>
-      </button>
-      <button routerLink="/history" class="bg-white p-4 rounded-lg shadow-sm border border-gray-100 text-center">
-        <i class="pi pi-file text-2xl text-blue-500 mb-2 block"></i>
-        <span class="text-sm font-medium text-gray-900">Order History</span>
-      </button>
     </div>
 
     <!-- Menu Items -->

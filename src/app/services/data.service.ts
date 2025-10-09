@@ -81,6 +81,7 @@ export class DataService {
       severity: 'success',
       summary: 'Added to Cart',
       detail: `${product.name}`,
+      life: 2000,
     });
   }
 
@@ -106,7 +107,8 @@ export class DataService {
     this.messageService.add({
       severity: 'info',
       summary: 'Removed',
-      detail: 'Product removed from cart',
+      detail: 'Item removed from cart',
+      life: 2000,
     });
   }
 
@@ -164,6 +166,7 @@ export class DataService {
         severity: 'success',
         summary: 'Added to Wishlist',
         detail: `${product.name}`,
+        life: 2000,
       });
     }
   }
@@ -176,7 +179,8 @@ export class DataService {
     this.messageService.add({
       severity: 'info',
       summary: 'Removed',
-      detail: 'Product removed from wishlist',
+      detail: 'Item removed from wishlist',
+      life: 2000,
     });
   }
 
@@ -203,7 +207,8 @@ export class DataService {
     this.messageService.add({
       severity: 'info',
       summary: 'Cleared',
-      detail: 'Wishlist cleared successfully',
+      detail: 'Wishlist cleared',
+      life: 2000,
     });
   }
 

@@ -3,28 +3,25 @@
     {
       "id": 1,
       "name": "Apparel",
-      "slug": "apparel",
-      "icon": "pi-shopping-bag",
+      "image": "https://images.unsplash.com/photo-1445205170230-053b83016050?w=400&h=300&fit=crop&auto=format",
       "count": 1,
       "children": [
         {
           "id": 11,
           "name": "Clothing",
-          "slug": "clothing",
           "count": 1,
           "children": [
-            { "id": 111, "name": "T-Shirts", "slug": "t-shirts", "count": 0 },
-            { "id": 112, "name": "Jeans", "slug": "jeans", "count": 0 }
+            { "id": 111, "name": "T-Shirts", "count": 0 },
+            { "id": 112, "name": "Jeans", "count": 0 }
           ]
         },
         {
           "id": 12,
           "name": "Accessories",
-          "slug": "accessories",
           "count": 1,
           "children": [
-            { "id": 121, "name": "Mugs", "slug": "mugs", "count": 1 },
-            { "id": 122, "name": "Bags", "slug": "bags", "count": 0 }
+            { "id": 121, "name": "Mugs", "count": 1 },
+            { "id": 122, "name": "Bags", "count": 0 }
           ]
         }
       ]
@@ -32,28 +29,25 @@
     {
       "id": 2,
       "name": "School",
-      "slug": "school",
-      "icon": "pi-book",
+      "image": "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=300&fit=crop&auto=format",
       "count": 0,
       "children": [
         {
           "id": 21,
           "name": "Stationery",
-          "slug": "stationery",
           "count": 0,
           "children": [
-            { "id": 211, "name": "Notebooks", "slug": "notebooks", "count": 0 },
-            { "id": 212, "name": "Pens", "slug": "pens", "count": 0 }
+            { "id": 211, "name": "Notebooks", "count": 0 },
+            { "id": 212, "name": "Pens", "count": 0 }
           ]
         },
         {
           "id": 22,
           "name": "Bags",
-          "slug": "school-bags",
           "count": 0,
           "children": [
-            { "id": 221, "name": "Backpacks", "slug": "backpacks", "count": 0 },
-            { "id": 222, "name": "Lunch Boxes", "slug": "lunch-boxes", "count": 0 }
+            { "id": 221, "name": "Backpacks", "count": 0 },
+            { "id": 222, "name": "Lunch Boxes", "count": 0 }
           ]
         }
       ]
@@ -61,28 +55,25 @@
     {
       "id": 3,
       "name": "Sports",
-      "slug": "sports",
-      "icon": "pi-trophy",
+      "image": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop&auto=format",
       "count": 2,
       "children": [
         {
           "id": 31,
           "name": "Gaming",
-          "slug": "gaming",
           "count": 1,
           "children": [
-            { "id": 311, "name": "Gaming Headsets", "slug": "gaming-headsets", "count": 1 },
-            { "id": 312, "name": "Gaming Keyboards", "slug": "gaming-keyboards", "count": 0 }
+            { "id": 311, "name": "Gaming Headsets", "count": 1 },
+            { "id": 312, "name": "Gaming Keyboards", "count": 0 }
           ]
         },
         {
           "id": 32,
           "name": "Fitness",
-          "slug": "fitness",
           "count": 1,
           "children": [
-            { "id": 321, "name": "Sport Earphones", "slug": "sport-earphones", "count": 1 },
-            { "id": 322, "name": "Fitness Trackers", "slug": "fitness-trackers", "count": 0 }
+            { "id": 321, "name": "Sport Earphones", "count": 1 },
+            { "id": 322, "name": "Fitness Trackers", "count": 0 }
           ]
         }
       ]
@@ -90,28 +81,25 @@
     {
       "id": 4,
       "name": "Electronic",
-      "slug": "electronic",
-      "icon": "pi-mobile",
+      "image": "https://images.unsplash.com/photo-1498049794561-7780e7231661?w=400&h=300&fit=crop&auto=format",
       "count": 5,
       "children": [
         {
           "id": 41,
           "name": "Audio",
-          "slug": "audio",
           "count": 4,
           "children": [
-            { "id": 411, "name": "Headphones", "slug": "headphones", "count": 2 },
-            { "id": 412, "name": "Earbuds", "slug": "earbuds", "count": 2 }
+            { "id": 411, "name": "Headphones", "count": 2 },
+            { "id": 412, "name": "Earbuds", "count": 2 }
           ]
         },
         {
           "id": 42,
           "name": "Computer",
-          "slug": "computer",
           "count": 1,
           "children": [
-            { "id": 421, "name": "Monitors", "slug": "monitors", "count": 1 },
-            { "id": 422, "name": "Keyboards", "slug": "keyboards", "count": 0 }
+            { "id": 421, "name": "Monitors", "count": 1 },
+            { "id": 422, "name": "Keyboards", "count": 0 }
           ]
         }
       ]
@@ -119,28 +107,25 @@
     {
       "id": 5,
       "name": "Home & Kitchen",
-      "slug": "home-kitchen",
-      "icon": "pi-home",
+      "image": "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=300&fit=crop&auto=format",
       "count": 0,
       "children": [
         {
           "id": 51,
           "name": "Kitchen Appliances",
-          "slug": "kitchen-appliances",
           "count": 0,
           "children": [
-            { "id": 511, "name": "Blenders", "slug": "blenders", "count": 0 },
-            { "id": 512, "name": "Coffee Makers", "slug": "coffee-makers", "count": 0 }
+            { "id": 511, "name": "Blenders", "count": 0 },
+            { "id": 512, "name": "Coffee Makers", "count": 0 }
           ]
         },
         {
           "id": 52,
           "name": "Home Decor",
-          "slug": "home-decor",
           "count": 0,
           "children": [
-            { "id": 521, "name": "Wall Art", "slug": "wall-art", "count": 0 },
-            { "id": 522, "name": "Lighting", "slug": "lighting", "count": 0 }
+            { "id": 521, "name": "Wall Art", "count": 0 },
+            { "id": 522, "name": "Lighting", "count": 0 }
           ]
         }
       ]
@@ -148,86 +133,25 @@
     {
       "id": 6,
       "name": "Beauty & Health",
-      "slug": "beauty-health",
-      "icon": "pi-heart",
+      "image": "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400&h=300&fit=crop&auto=format",
       "count": 0,
       "children": [
         {
           "id": 61,
           "name": "Skincare",
-          "slug": "skincare",
           "count": 0,
           "children": [
-            { "id": 611, "name": "Face Masks", "slug": "face-masks", "count": 0 },
-            { "id": 612, "name": "Moisturizers", "slug": "moisturizers", "count": 0 }
+            { "id": 611, "name": "Face Masks", "count": 0 },
+            { "id": 612, "name": "Moisturizers", "count": 0 }
           ]
         },
         {
           "id": 62,
           "name": "Health",
-          "slug": "health",
           "count": 0,
           "children": [
-            { "id": 621, "name": "Vitamins", "slug": "vitamins", "count": 0 },
-            { "id": 622, "name": "Supplements", "slug": "supplements", "count": 0 }
-          ]
-        }
-      ]
-    },
-    {
-      "id": 7,
-      "name": "Automotive",
-      "slug": "automotive",
-      "icon": "pi-car",
-      "count": 0,
-      "children": [
-        {
-          "id": 71,
-          "name": "Car Accessories",
-          "slug": "car-accessories",
-          "count": 0,
-          "children": [
-            { "id": 711, "name": "Phone Holders", "slug": "phone-holders", "count": 0 },
-            { "id": 712, "name": "Chargers", "slug": "car-chargers", "count": 0 }
-          ]
-        },
-        {
-          "id": 72,
-          "name": "Maintenance",
-          "slug": "maintenance",
-          "count": 0,
-          "children": [
-            { "id": 721, "name": "Cleaning Supplies", "slug": "cleaning-supplies", "count": 0 },
-            { "id": 722, "name": "Tools", "slug": "tools", "count": 0 }
-          ]
-        }
-      ]
-    },
-    {
-      "id": 8,
-      "name": "Food & Beverages",
-      "slug": "food-beverages",
-      "icon": "pi-shopping-cart",
-      "count": 0,
-      "children": [
-        {
-          "id": 81,
-          "name": "Snacks",
-          "slug": "snacks",
-          "count": 0,
-          "children": [
-            { "id": 811, "name": "Chips", "slug": "chips", "count": 0 },
-            { "id": 812, "name": "Cookies", "slug": "cookies", "count": 0 }
-          ]
-        },
-        {
-          "id": 82,
-          "name": "Beverages",
-          "slug": "beverages",
-          "count": 0,
-          "children": [
-            { "id": 821, "name": "Coffee", "slug": "coffee", "count": 0 },
-            { "id": 822, "name": "Tea", "slug": "tea", "count": 0 }
+            { "id": 621, "name": "Vitamins", "count": 0 },
+            { "id": 622, "name": "Supplements", "count": 0 }
           ]
         }
       ]

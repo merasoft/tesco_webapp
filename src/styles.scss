@@ -22,3 +22,26 @@
 .hidden-badge .p-badge {
   @apply hidden;
 }
+
+.p-toast {
+  &-message {
+    @apply w-[80%] m-0 mt-4;
+
+    &-text {
+      @apply gap-1 items-start;
+    }
+
+    &-content {
+      @apply py-3;
+    }
+  }
+
+  &-summary {
+    @apply font-normal;
+  }
+
+  &-close-button,
+  &-message-icon {
+    @apply h-6;
+  }
+}
