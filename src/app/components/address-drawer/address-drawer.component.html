@@ -49,8 +49,8 @@
 
       <!-- Action Buttons -->
       <div class="flex items-center justify-end gap-3 pt-4 border-t border-gray-200">
-        <button (click)="closeDrawer()" class="py-2 px-4 border border-gray-300 text-gray-700 rounded-md font-medium"> Отмена </button>
-        <button (click)="saveAddress()" class="py-2 px-4 bg-blue-500 text-white rounded-md font-medium" [disabled]="!newAddress.address || !newAddress.city"> Сохранить </button>
+        <button (click)="closeDrawer()" class="py-2 px-4 text-sm border border-gray-300 text-gray-700 rounded-md font-medium"> Отмена </button>
+        <button (click)="saveAddress()" class="py-2 px-4 text-sm bg-blue-500 text-white rounded-md font-medium" [disabled]="!newAddress.address || !newAddress.city"> Сохранить </button>
       </div>
     </div>
   </ng-template>
