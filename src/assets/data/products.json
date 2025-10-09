@@ -252,7 +252,7 @@
   "products": [
     {
       "id": 1,
-      "name": "Наушники Air pods max от Apple - Серые",
+      "name": "Наушники Air pods max",
       "price": 25000000,
       "oldPrice": 31000000,
       "rating": 4.5,
@@ -307,7 +307,7 @@
     },
     {
       "id": 4,
-      "name": "Эстетичная кружка - белая",
+      "name": "Эстетичная кружка",
       "price": 250000,
       "rating": 4.7,
       "images": [
@@ -325,7 +325,7 @@
     },
     {
       "id": 5,
-      "name": "Беспроводные наушники Pro от Apple",
+      "name": "Беспроводные наушники Pro",
       "price": 2500000,
       "rating": 4.9,
       "images": [
@@ -343,7 +343,7 @@
     },
     {
       "id": 6,
-      "name": "Игровая гарнитура RGB от Samsung",
+      "name": "Игровая гарнитура RGB",
       "price": 1900000,
       "rating": 4.1,
       "images": [
@@ -361,7 +361,7 @@
     },
     {
       "id": 7,
-      "name": "Наушники Beats Studio - Золотые",
+      "name": "Наушники Beats Studio",
       "price": 3800000,
       "rating": 4.6,
       "images": [
