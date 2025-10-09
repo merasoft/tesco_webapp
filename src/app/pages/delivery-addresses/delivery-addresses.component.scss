@@ -1,0 +1,107 @@
+.header {
+  @apply bg-white border-b border-gray-100 sticky top-0 z-40;
+}
+
+.back-button {
+  @apply p-2 -m-2 rounded-full transition-colors;
+
+  &:hover {
+    @apply bg-gray-100;
+  }
+
+  i {
+    @apply text-lg text-gray-700;
+  }
+}
+
+.add-address-button {
+  @apply w-full flex items-center justify-center gap-2 p-4;
+  @apply border-2 border-dashed border-blue-300 rounded-lg;
+  @apply text-blue-600 font-medium transition-colors;
+
+  &:hover {
+    @apply border-blue-400 bg-blue-50;
+  }
+}
+
+.address-card {
+  @apply bg-white rounded-lg border border-gray-200 p-4;
+  @apply transition-shadow duration-200;
+
+  &:hover {
+    @apply shadow-sm;
+  }
+}
+
+.address-label {
+  @apply flex items-center gap-2 mb-2;
+
+  i {
+    @apply text-blue-600;
+  }
+
+  span {
+    @apply font-semibold text-gray-900;
+  }
+}
+
+.address-details {
+  @apply space-y-1 text-sm text-gray-600;
+
+  .phone {
+    @apply flex items-center gap-1;
+
+    i {
+      @apply text-xs;
+    }
+  }
+}
+
+.action-buttons {
+  @apply flex items-center gap-2 ml-4;
+
+  button {
+    @apply p-2 rounded-lg transition-colors;
+
+    &.edit-button {
+      @apply text-blue-600;
+
+      &:hover {
+        @apply bg-blue-50;
+      }
+    }
+
+    &.delete-button {
+      @apply text-red-600;
+
+      &:hover {
+        @apply bg-red-50;
+      }
+    }
+  }
+}
+
+.empty-state {
+  @apply flex flex-col items-center justify-center py-12 text-center;
+
+  i {
+    @apply text-6xl text-gray-400 mb-4;
+  }
+
+  h3 {
+    @apply text-xl font-semibold text-gray-700 mb-2;
+  }
+
+  p {
+    @apply text-gray-500 mb-6;
+  }
+
+  button {
+    @apply px-6 py-3 bg-blue-500 text-white rounded-lg font-medium;
+    @apply transition-colors;
+
+    &:hover {
+      @apply bg-blue-600;
+    }
+  }
+}

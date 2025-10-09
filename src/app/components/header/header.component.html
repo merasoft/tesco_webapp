@@ -1,18 +1,39 @@
-<header class="header-container">
-  <div class="header-top">
-    <div class="location">
-      <span class="location-text">{{ location }}</span>
-      <i class="pi pi-chevron-down"></i>
+<header class="bg-white border-b border-gray-100 pl-4 pr-6 py-2.5">
+  <div class="flex items-end justify-between">
+    <div class="flex items-center gap-1.5 w-56">
+      <p-iftalabel class="w-full">
+        <p-select
+          [options]="locations"
+          [(ngModel)]="selectedLocation"
+          optionLabel="name"
+          class="location-select"
+          styleClass="w-full"
+          panelStyleClass="w-56"
+          (onChange)="onLocationChange($event.value)">
+          <ng-template #selectedItem>
+            <span class="text-sm font-medium text-gray-800">{{ selectedLocation?.name }}</span>
+          </ng-template>
+          <ng-template #item let-location>
+            <span class="w-full truncate" [ngClass]="{ 'text-blue-500': location.isAddNew }">
+              <i *ngIf="location.isAddNew" class="text-xs pi pi-plus mr-1"></i>
+              {{ location.name }}
+            </span>
+          </ng-template>
+        </p-select>
+        <label for="dd-city">Адрес доставки</label>
+      </p-iftalabel>
     </div>
 
-    <div class="header-icons">
-      <button class="icon-btn" (click)="goToCart()">
-        <i class="pi pi-shopping-cart"></i>
-        <span class="badge" *ngIf="cartCount > 0">{{ cartCount }}</span>
+    <div class="flex items-center gap-6">
+      <button (click)="goToCart()">
+        <i class="pi pi-shopping-bag text-xl" pBadge [value]="cartCount" [ngClass]="{ 'hidden-badge': !cartCount }"></i>
       </button>
-      <button class="icon-btn">
-        <i class="pi pi-bell"></i>
+      <button (click)="(null)">
+        <i class="pi pi-bell text-xl" pBadge [value]="1" [badgeStyleClass]="'hidden'"></i>
       </button>
     </div>
   </div>
 </header>
+
+<!-- Address Drawer -->
+<app-address-drawer [(visible)]="showAddressDrawer" (addressSaved)="onAddressAdded($event)" (closed)="onDrawerClosed()"> </app-address-drawer>

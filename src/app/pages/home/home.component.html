@@ -1,43 +1,22 @@
-<div class="home-container">
+<div class="min-h-screen bg-white">
   <app-header></app-header>
   <app-search-bar></app-search-bar>
   <app-banner-slider></app-banner-slider>
-  <app-brand-list></app-brand-list>
   <app-category-list></app-category-list>
 
-  <div class="recent-products">
-    <div class="section-header">
-      <h3 class="section-title">Recent product</h3>
-      <button class="filters-btn">
-        <span>Filters</span>
-        <i class="pi pi-sliders-h"></i>
+  <div class="p-4">
+    <div class="flex items-center justify-between mb-4">
+      <h3 class="text-lg font-semibold text-gray-900">Недавние товары</h3>
+      <button class="flex items-center gap-3 px-3 py-2 bg-white rounded-lg border border-gray-200 text-gray-700" (click)="openFilters()">
+        <span class="text-sm font-medium">Фильтры</span>
+        <i class="pi pi-sliders-h text-sm"></i>
       </button>
     </div>
 
-    <div class="products-grid">
-      <app-product-card
-        *ngFor="let product of recentProducts"
-        [product]="product">
-      </app-product-card>
+    <div class="grid grid-cols-2 gap-4">
+      <app-product-card *ngFor="let product of recentProducts" [product]="product"></app-product-card>
     </div>
   </div>
 
-  <nav class="bottom-nav">
-    <button class="nav-item active">
-      <i class="pi pi-home"></i>
-      <span>Home</span>
-    </button>
-    <button class="nav-item">
-      <i class="pi pi-heart"></i>
-      <span>Wishlist</span>
-    </button>
-    <button class="nav-item">
-      <i class="pi pi-file"></i>
-      <span>History</span>
-    </button>
-    <button class="nav-item">
-      <i class="pi pi-user"></i>
-      <span>Account</span>
-    </button>
-  </nav>
+  <app-filters [(filtersOpen)]="filtersOpen" (filtersApplied)="onFiltersApplied($event)"> </app-filters>
 </div>

@@ -1,12 +1,54 @@
-<div class="product-card" (click)="viewProduct()">
-  <div class="product-image">
-    <img [src]="product.image" [alt]="product.name" />
+<div class="h-full flex flex-col border border-gray-200 rounded-xl overflow-hidden shadow-sm" (click)="viewProduct()">
+  <div class="w-full h-fit aspect-square flex items-center justify-center relative" (click)="$event.stopPropagation()">
+    <!-- Wishlist Heart Button -->
+    <button
+      (click)="toggleWishlist($event)"
+      class="absolute top-2 right-2 z-10 w-8 h-8 rounded-full bg-white shadow-md flex items-center justify-center"
+      [ngClass]="{ 'text-red-500': isInWishlist, 'text-gray-400': !isInWishlist }">
+      <i [class]="isInWishlist ? 'pi pi-heart-fill text-sm' : 'pi pi-heart text-sm'"></i>
+    </button>
+    <img *ngIf="product.images && product.images.length === 1" [src]="product.images[0]" [alt]="product.name" class="w-full h-full object-cover" />
+    <p-carousel
+      *ngIf="product.images && product.images.length > 1"
+      [value]="product.images"
+      [numVisible]="1"
+      [numScroll]="1"
+      [circular]="true"
+      [showNavigators]="false"
+      [showIndicators]="true"
+      class="card-image-carousel">
+      <ng-template let-image #item>
+        <img [src]="image" class="w-full aspect-square object-cover" loading="lazy" />
+      </ng-template>
+    </p-carousel>
   </div>
-  <div class="product-info">
-    <h4 class="product-name">{{ product.name }}</h4>
-    <p class="product-price">${{ product.price }}</p>
-    <button class="add-to-cart-btn" (click)="addToCart($event)">
-      Add to cart
+  <div class="p-3 flex flex-col flex-1">
+    <h4 class="text-sm font-medium text-gray-800 mb-2 line-clamp-2">{{ product.name }}</h4>
+
+    <!-- Rating Display -->
+    <div *ngIf="product.rating" class="flex items-center gap-2 mt-auto mb-2">
+      <div class="flex items-center gap-0.5">
+        <span *ngFor="let star of getStarArray(product.rating)" class="text-sm relative">
+          <!-- Full Star -->
+          <i *ngIf="star === 'full'" class="text-sm pi pi-star-fill text-yellow-400"></i>
+          <!-- Half Star -->
+          <span *ngIf="star === 'half'" class="inline-block relative">
+            <i class="text-sm pi pi-star-half-fill text-yellow-400"></i>
+            <i class="text-sm pi pi-star-half-fill text-gray-300 absolute top-0 left-0 transform scale-x-[-1]"></i>
+          </span>
+          <!-- Empty Star -->
+          <i *ngIf="star === 'empty'" class="text-sm pi pi-star-fill text-gray-300"></i>
+        </span>
+      </div>
+      <span class="text-xs text-gray-500 ml-1">({{ product.rating }})</span>
+    </div>
+    <p class="font-bold text-gray-900 mb-2">
+      {{ product.price | numberFormat }}
+      <span class="text-sm">сум</span>
+    </p>
+    <button class="w-full bg-blue-500 text-sm text-white py-2 rounded-lg border-0 cursor-pointer font-medium" (click)="addToCart($event)">
+      <i class="mr-2 text-sm pi pi-shopping-cart"></i>
+      В корзину
     </button>
   </div>
 </div>

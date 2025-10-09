@@ -1,0 +1,4 @@
+// Account specific styles using Tailwind utilities
+.menu-item {
+  @apply transition-all duration-200 ease-in-out;
+}

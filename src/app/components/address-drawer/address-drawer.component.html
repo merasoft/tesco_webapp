@@ -1,0 +1,104 @@
+<!-- Address Drawer -->
+<p-drawer [(visible)]="visible" position="bottom" [blockScroll]="true" class="address-drawer" styleClass="h-fit max-h-[90%]" (onShow)="focusInput()" (onHide)="closeDrawer()">
+  <ng-template #header>
+    <div class="flex items-center gap-2">
+      <i class="pi pi-map-marker text-blue-600"></i>
+      <span class="font-semibold">{{ initialAddress ? 'Редактировать адрес' : 'Добавить новый адрес' }}</span>
+    </div>
+  </ng-template>
+
+  <ng-template #content>
+    <form [formGroup]="addressForm" class="space-y-4">
+      <!-- Address Form -->
+      <div class="space-y-3">
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Название адреса</label>
+          <input
+            #addressLabelInput
+            type="text"
+            formControlName="label"
+            class="w-full p-2 border rounded-lg focus:outline-none focus:ring-1"
+            [ngClass]="{
+              'border-gray-300 focus:ring-blue-500': !isFieldInvalid('label'),
+              'border-red-300 focus:ring-red-500': isFieldInvalid('label')
+            }"
+            placeholder="Дом, Работа, и т.д." />
+          <div *ngIf="isFieldInvalid('label')" class="mt-1 text-sm text-red-600">
+            {{ getFieldError('label') }}
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Полный адрес</label>
+          <textarea
+            formControlName="address"
+            class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 resize-none"
+            [ngClass]="{
+              'border-gray-300 focus:ring-blue-500': !isFieldInvalid('address'),
+              'border-red-300 focus:ring-red-500': isFieldInvalid('address')
+            }"
+            rows="3"
+            placeholder="Улица, дом, квартира"></textarea>
+          <div *ngIf="isFieldInvalid('address')" class="mt-1 text-sm text-red-600">
+            {{ getFieldError('address') }}
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Город</label>
+            <input
+              type="text"
+              formControlName="city"
+              class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2"
+              [ngClass]="{
+                'border-gray-300 focus:ring-blue-500': !isFieldInvalid('city'),
+                'border-red-300 focus:ring-red-500': isFieldInvalid('city')
+              }"
+              placeholder="Ташкент" />
+            <div *ngIf="isFieldInvalid('city')" class="mt-1 text-sm text-red-600">
+              {{ getFieldError('city') }}
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Почтовый индекс</label>
+            <input
+              type="text"
+              formControlName="zipCode"
+              class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2"
+              [ngClass]="{
+                'border-gray-300 focus:ring-blue-500': !isFieldInvalid('zipCode'),
+                'border-red-300 focus:ring-red-500': isFieldInvalid('zipCode')
+              }"
+              placeholder="100000" />
+            <div *ngIf="isFieldInvalid('zipCode')" class="mt-1 text-sm text-red-600">
+              {{ getFieldError('zipCode') }}
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700 mb-1">Телефон</label>
+          <input
+            type="tel"
+            formControlName="phone"
+            class="w-full p-2 border rounded-lg focus:outline-none focus:ring-2"
+            [ngClass]="{
+              'border-gray-300 focus:ring-blue-500': !isFieldInvalid('phone'),
+              'border-red-300 focus:ring-red-500': isFieldInvalid('phone')
+            }"
+            placeholder="+998 90 123-45-67" />
+          <div *ngIf="isFieldInvalid('phone')" class="mt-1 text-sm text-red-600">
+            {{ getFieldError('phone') }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center justify-end gap-3 pt-4 border-t border-gray-200">
+        <button (click)="closeDrawer()" type="button" class="py-2 px-4 text-sm border border-gray-300 text-gray-700 rounded-md font-medium"> Отмена </button>
+        <button (click)="saveAddress()" type="button" class="py-2 px-4 text-sm bg-blue-500 text-white rounded-md font-medium" [disabled]="addressForm.invalid"> Сохранить </button>
+      </div>
+    </form>
+  </ng-template>
+</p-drawer>

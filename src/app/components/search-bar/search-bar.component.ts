@@ -1,12 +1,11 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-search-bar',
-  templateUrl: './search-bar.component.html',
   standalone: false,
-  styleUrls: ['./search-bar.component.scss']
+  templateUrl: './search-bar.component.html',
+  styleUrls: ['./search-bar.component.scss'],
 })
 export class SearchBarComponent {
   searchText = '';
@@ -15,16 +14,37 @@ export class SearchBarComponent {
   constructor(private router: Router) {}
 
   onSearch(): void {
-    if (this.searchText.trim()) {
+    const trimmedSearch = this.searchText.trim();
+    if (trimmedSearch) {
       this.router.navigate(['/products'], {
-        queryParams: { search: this.searchText }
+        queryParams: { search: trimmedSearch },
       });
+      this.search.emit(trimmedSearch);
+      // Clear the input after navigation
+      this.searchText = '';
+    } else {
+      // Navigate to products without search parameter if empty
+      this.router.navigate(['/products']);
+      this.search.emit('');
     }
   }
 
   onInputChange(): void {
-    if (!this.searchText.trim()) {
+    const trimmedSearch = this.searchText.trim();
+    if (!trimmedSearch) {
       this.search.emit('');
+    }
+  }
+
+  onClear(): void {
+    this.searchText = '';
+    this.search.emit('');
+  }
+
+  onKeyDown(event: KeyboardEvent): void {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      this.onSearch();
     }
   }
 }

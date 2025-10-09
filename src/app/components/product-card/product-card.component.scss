@@ -1,27 +1,29 @@
-.product-card {
-  @apply bg-white rounded-xl overflow-hidden cursor-pointer transition-shadow hover:shadow-lg;
-}
+::ng-deep .card-image-carousel {
+  @apply h-full;
 
-.product-image {
-  @apply w-full h-48 bg-gray-100 flex items-center justify-center p-4;
-}
+  .p-carousel {
+    &,
+    &-content-container,
+    &-content,
+    &-viewport,
+    &-item-list {
+      @apply h-full;
+    }
 
-.product-image img {
-  @apply w-full h-full object-cover rounded-lg;
-}
+    &-indicator-list {
+      @apply flex justify-center absolute bottom-3 left-1/2 -translate-x-1/2 z-20;
 
-.product-info {
-  @apply p-4;
-}
+      .p-carousel-indicator {
+        @apply p-0 bg-transparent border-0;
 
-.product-name {
-  @apply text-sm font-medium text-gray-800 mb-2 truncate;
-}
+        button {
+          @apply w-4 h-2 bg-white/50 rounded-full transition-all duration-300 border-0;
+        }
 
-.product-price {
-  @apply text-lg font-bold text-gray-900 mb-3;
-}
-
-.add-to-cart-btn {
-  @apply w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-800 transition-colors border-0 cursor-pointer font-medium;
+        &.p-carousel-indicator-active button {
+          @apply bg-white;
+        }
+      }
+    }
+  }
 }

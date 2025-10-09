@@ -1,0 +1,4 @@
+// History specific styles using Tailwind utilities
+.order-card {
+  @apply transition-all duration-200 ease-in-out;
+}

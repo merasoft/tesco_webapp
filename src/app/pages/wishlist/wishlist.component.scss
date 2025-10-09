@@ -1,0 +1,4 @@
+// Wishlist specific styles using Tailwind utilities
+.wishlist-item {
+  @apply transition-all duration-200 ease-in-out;
+}

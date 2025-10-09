@@ -2,28 +2,97 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import 'primeicons/primeicons.css';
+
+@layer base {
+  body {
+    @apply font-sans bg-white;
+    font-family: 'Inter', sans-serif;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 }
 
-body {
-  @apply bg-gray-50 font-sans;
+.p-badge {
+  @apply min-w-[22px] h-[22px] p-0 text-xs rounded-full items-center justify-center bg-pink-500;
 }
 
-.btn-primary {
-  @apply bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-800 transition-colors;
+.hidden-badge .p-badge {
+  @apply hidden;
 }
 
-.btn-secondary {
-  @apply bg-gray-200 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-300 transition-colors;
+.p-toast {
+  &-message {
+    @apply w-[80%] m-0 mt-4;
+
+    &-text {
+      @apply gap-1 items-start;
+    }
+
+    &-content {
+      @apply py-3;
+    }
+  }
+
+  &-summary {
+    @apply font-normal;
+  }
+
+  &-close-button,
+  &-message-icon {
+    @apply h-6;
+  }
 }
 
-.card {
-  @apply bg-white rounded-lg shadow-sm overflow-hidden;
+// Dropdown address
+.p-select {
+  @apply border-0 bg-transparent shadow-none;
+
+  .p-select {
+    &-dropdown {
+      @apply w-7 items-end;
+
+      &-icon {
+        @apply w-3 h-5;
+      }
+    }
+    &-label {
+      @apply text-sm px-0 py-0;
+    }
+
+    &-overlay {
+      @apply border border-gray-200 shadow;
+
+      .p-select-option {
+        @apply text-sm py-2 px-3;
+
+        &-selected {
+          @apply bg-gray-100 text-gray-800;
+        }
+      }
+    }
+  }
 }
 
-.input-field {
-  @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500;
+.location-select.p-select {
+  .p-select {
+    &-label {
+      @apply pt-4;
+    }
+  }
+}
+
+.p-drawer {
+  &-header {
+    @apply p-4 border-b border-gray-200;
+  }
+
+  &-content {
+    @apply p-4;
+  }
+}
+.p-drawer-bottom {
+  @apply rounded-t-2xl;
 }

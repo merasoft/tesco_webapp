@@ -1,0 +1,20 @@
+<nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-4 py-2 z-50">
+  <div class="flex items-center justify-between">
+    <button
+      *ngFor="let item of navigationItems"
+      class="flex flex-col items-center gap-1 py-2 px-3"
+      [ngClass]="{
+        'text-blue-500': isActiveRoute(item.route),
+        'text-gray-400': !isActiveRoute(item.route)
+      }"
+      (click)="navigateTo(item.route)">
+      <i
+        [class]="item.icon + ' text-lg'"
+        [ngClass]="{
+          'text-red-500': item.route === '/wishlist' && hasWishlistItems,
+          '!text-blue-500': isActiveRoute(item.route)
+        }"></i>
+      <span class="text-xs" [ngClass]="{ 'font-medium': isActiveRoute(item.route) }">{{ item.label }}</span>
+    </button>
+  </div>
+</nav>
